@@ -3,6 +3,7 @@ import {
   Arrow,
   Label,
   Options,
+  Overlay,
   Radio,
   Select,
   Wrapper,
@@ -16,24 +17,27 @@ export const Dropdown = ({ options }) => {
     setValue(e.target.id);
   };
   return (
-    <Wrapper>
-      <Select onClick={() => setIsActive(!isActive)}>
-        {value} <Arrow isActive={isActive}>〉</Arrow>
-      </Select>
-      <Options isActive={isActive} onClick={() => setIsActive(false)}>
-        {options.map((p, i) => (
-          <Label key={i} isSelected={value === p}>
-            {p}
-            <Radio
-              type="radio"
-              name="region"
-              onClick={handleClickRadio}
-              id={p}
-            />
-          </Label>
-        ))}
-        <Label>내 동네 설정하기</Label>
-      </Options>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Select onClick={() => setIsActive(!isActive)}>
+          {value} <Arrow isActive={isActive}>〉</Arrow>
+        </Select>
+        <Options isActive={isActive} onClick={() => setIsActive(false)}>
+          {options.map((p, i) => (
+            <Label key={i} isSelected={value === p}>
+              {p}
+              <Radio
+                type="radio"
+                name="region"
+                onClick={handleClickRadio}
+                id={p}
+              />
+            </Label>
+          ))}
+          <Label>내 동네 설정하기</Label>
+        </Options>
+      </Wrapper>
+      {isActive && <Overlay onClick={() => setIsActive(!isActive)} />}
+    </>
   );
 };

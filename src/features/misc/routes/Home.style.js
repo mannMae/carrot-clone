@@ -13,6 +13,7 @@ export const Posting = styled.div`
   margin: 0 auto;
   padding: 20px;
   gap: 20px;
+  cursor: pointer;
 `;
 
 export const Image = styled.img`

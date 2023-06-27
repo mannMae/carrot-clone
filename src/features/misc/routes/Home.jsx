@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import {
   Icon,
   Image,
@@ -11,11 +12,24 @@ import {
 } from './Home.style';
 
 import HeartIcon from 'assets/icons/heart-outlined.svg';
+import { useObserver } from 'hooks/useObserver';
 
 export const Home = () => {
+  const [postingList, setPostingList] = useState([]);
+  const [page, setPage] = useState(0);
+  useEffect(() => {
+    setPostingList([...postingList, ...mockDatas]);
+  }, [page]);
+
+  const { observe } = useObserver(() => setPage((page) => page + 1));
+  const target = useRef(null);
+  useEffect(() => {
+    observe(target.current);
+  }, []);
+
   return (
     <Wrapper>
-      {mockDatas.map((p, i) => (
+      {postingList.map((p, i) => (
         <Posting key={i}>
           <Image src={p.image} />
           <Infomation>
@@ -31,6 +45,7 @@ export const Home = () => {
           </Infomation>
         </Posting>
       ))}
+      <div ref={target}></div>
     </Wrapper>
   );
 };

@@ -28,6 +28,7 @@ export const Arrow = styled.span`
 export const Options = styled.div`
   position: absolute;
   top: 100%;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -51,4 +52,15 @@ export const Label = styled.label`
 
 export const Radio = styled.input`
   display: none;
+`;
+
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${(props) => props.theme.colors.black};
+  opacity: 0.5;
 `;

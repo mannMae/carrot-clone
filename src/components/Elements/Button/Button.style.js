@@ -12,6 +12,7 @@ export const Wrapper = styled.button`
   align-items: center;
   border: none;
   border-radius: 15px;
+
   padding: ${(props) => (props.size ? props.size.padding : '2px 6px')};
   font-size: ${(props) =>
     props.size
