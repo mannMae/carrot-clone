@@ -31,6 +31,8 @@ import LocationFilledIcon from 'assets/icons/location-fiiled.svg';
 import ChatBubbleFilledIcon from 'assets/icons/chat-bubble-fiiled.svg';
 import UserFilledIcon from 'assets/icons/user-filled.svg';
 
+import PlusIcon from 'assets/icons/plus.svg';
+
 export const MainLayout = ({ children }) => {
   return (
     <>
@@ -46,7 +48,7 @@ export const MainLayout = ({ children }) => {
 
 const Header = () => {
   const location = useLocation();
-  console.log(location.pathname);
+
   if (location.pathname === '/') {
     return (
       <HeaderWrapper>
@@ -168,7 +170,7 @@ const WriteButton = ({ contentScrollY, ...props }) => {
   return (
     <>
       <Button
-        startIcon="+"
+        startIcon={PlusIcon}
         {...props}
         contentWidth={isShowingText ? '38px' : '0px'}
         position="fixed"

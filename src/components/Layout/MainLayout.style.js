@@ -38,7 +38,7 @@ export const Icon = styled.img`
 //
 
 export const Contents = styled.main`
-  padding-top: 30px;
+  padding-top: 45px;
   position: relative;
   overflow-y: scroll;
   height: 100%;

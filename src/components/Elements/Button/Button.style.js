@@ -10,7 +10,10 @@ export const Wrapper = styled.button`
   display: flex;
   jutify-content: center;
   align-items: center;
-  border: none;
+  border: ${(props) =>
+    props?.variant?.backgroundColor === 'white'
+      ? `1px solid ${props.theme.colors[props.variant.color]}`
+      : 'none'};
   border-radius: 15px;
 
   padding: ${(props) => (props.size ? props.size.padding : '2px 6px')};
@@ -36,4 +39,9 @@ export const Content = styled.span`
   overflow: hidden;
   white-space: nowrap;
   transition: all ease 1s 0s;
+`;
+
+export const Icon = styled.img`
+  width: ${(props) => (props.size ? props.size : '14px')};
+  height: ${(props) => (props.size ? props.size : '14px')};
 `;

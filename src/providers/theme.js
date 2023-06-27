@@ -9,6 +9,7 @@ const colors = {
   white: '#fff',
   black: '#000',
   gray: '#999',
+  lightGray: '#ddd',
   danger: '#ff0000',
 };
 

@@ -1,5 +1,5 @@
 import { Spinner } from 'components/Elements/Spinner';
-import { Content, Wrapper } from './Button.style';
+import { Content, Icon, Wrapper } from './Button.style';
 
 export const Button = ({
   isLoading,
@@ -14,9 +14,9 @@ export const Button = ({
 }) => {
   return (
     <Wrapper variant={variants[variant]} size={sizes[size]} {...props}>
-      {isLoading ? <Spinner /> : startIcon}
+      {isLoading ? <Spinner /> : startIcon ? <Icon src={startIcon} /> : null}
       <Content contentWidth={contentWidth}>{children}</Content>
-      {!isLoading && endIcon}
+      {!isLoading && endIcon ? <Icon src={endIcon} /> : null}
     </Wrapper>
   );
 };
@@ -33,6 +33,10 @@ const variants = {
   danger: {
     backgroundColor: 'danger',
     color: 'white',
+  },
+  gray: {
+    backgroundColor: 'white',
+    color: 'gray',
   },
 };
 
