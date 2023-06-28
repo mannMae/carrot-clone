@@ -1,24 +1,34 @@
 import { useState } from 'react';
 import {
+  AccentBadge,
   AdBanner,
   AdBannerAnchor,
   AdBannerContent,
+  CarAddtionalInfo,
   CarName,
   CarPrice,
   CarType,
-  CarViews,
   Categories,
   Category,
   CategoryIcon,
+  Description,
+  DescriptionBubble,
   FoldButton,
+  Icon,
+  JobLocation,
+  JobPay,
+  JobPost,
+  JobRank,
+  JobTitle,
   PropertyCategory,
   PropertyInfomation,
   PropertyLocation,
   PropertyPrice,
   ReadMore,
   Section,
+  SectionDescriptionWrapper,
+  SectionSubtitle,
   SectionTitle,
-  SectionToday,
   SliderItem,
   SliderItemImage,
   SliderItemInfomation,
@@ -27,6 +37,7 @@ import {
 } from './Around.style';
 
 import DownArrowIcon from 'assets/icons/down-arrow-square.svg';
+import InfomationIcon from 'assets/icons/infomation.svg';
 
 export const Around = () => {
   const [isFoldedCategories, setIsFoldedCategories] = useState(true);
@@ -83,8 +94,29 @@ export const Around = () => {
         <ReadMore>더보기 〉</ReadMore>
       </Section>
       <Section>
+        <SectionTitle>오늘의 인기 알바</SectionTitle>
+        <SliderWrapper>
+          {jobList.map((job, i) => {
+            return (
+              <SliderItem key={i}>
+                <JobPost>
+                  <JobTitle>
+                    <JobRank>{i + 1}위</JobRank> {job.title}
+                  </JobTitle>
+                  <JobLocation>
+                    {job.name} ・ {job.location}
+                  </JobLocation>
+                  <JobPay>{job.pay}</JobPay>
+                </JobPost>
+              </SliderItem>
+            );
+          })}
+        </SliderWrapper>
+        <ReadMore>더보기 〉</ReadMore>
+      </Section>
+      <Section>
         <SectionTitle>지금 인기있는 중고차 매물</SectionTitle>
-        <SectionToday>오늘 381명이 거래했어요</SectionToday>
+        <SectionSubtitle>오늘 381명이 거래했어요</SectionSubtitle>
         <SliderWrapper>
           {usedCars.map((car, i) => {
             return (
@@ -94,7 +126,7 @@ export const Around = () => {
                   <CarType>{car.type}</CarType>
                   <CarName>{car.name}</CarName>
                   <CarPrice>{car.price}</CarPrice>
-                  <CarViews>{car.views}</CarViews>
+                  <CarAddtionalInfo>{car.views}명이 보는 중</CarAddtionalInfo>
                 </SliderItemInfomation>
               </SliderItem>
             );
@@ -102,8 +134,64 @@ export const Around = () => {
         </SliderWrapper>
         <ReadMore>더보기 〉</ReadMore>
       </Section>
-      <Section></Section>
+      <Section>
+        <SectionTitle>
+          직거래로 딜러 수수료를 아껴보세요
+          <SectionDescription>
+            딜러 매도비와 알선 수수료를 아껴, 저렴하게 구매할 수 있어요.
+          </SectionDescription>
+        </SectionTitle>
+        <SliderWrapper>
+          {directUsedCars.map((car, i) => {
+            return (
+              <SliderItem key={i}>
+                <SliderItemImage src={car.image} />
+                <SliderItemInfomation>
+                  <CarType>{car.type}</CarType>
+                  <CarName>{car.name}</CarName>
+                  <CarPrice>{car.price}</CarPrice>
+                  <AccentBadge>{car.savedMoney} 절약</AccentBadge>
+                </SliderItemInfomation>
+              </SliderItem>
+            );
+          })}
+        </SliderWrapper>
+        <ReadMore>더보기 〉</ReadMore>
+      </Section>
+      <Section>
+        <SectionTitle>이런 상품은 어떠세요?</SectionTitle>
+        <SectionSubtitle>
+          오라형님이 봤던 상품을 바탕으로 제안해요.
+        </SectionSubtitle>
+        <SliderWrapper>
+          {directUsedCars.map((car, i) => {
+            return (
+              <SliderItem key={i}>
+                <SliderItemImage src={car.image} />
+                <SliderItemInfomation>
+                  <CarType>{car.type}</CarType>
+                  <CarName>{car.name}</CarName>
+                  <CarPrice>{car.price}</CarPrice>
+                  <AccentBadge>{car.savedMoney} 절약</AccentBadge>
+                </SliderItemInfomation>
+              </SliderItem>
+            );
+          })}
+        </SliderWrapper>
+      </Section>
     </Wrapper>
+  );
+};
+
+const SectionDescription = ({ children }) => {
+  const [isShowing, setIsShowing] = useState(false);
+  return (
+    <SectionDescriptionWrapper onClick={() => setIsShowing((prev) => !prev)}>
+      <Icon src={InfomationIcon} />
+      <DescriptionBubble isShowing={isShowing}>
+        ▲<Description>{children}</Description>
+      </DescriptionBubble>
+    </SectionDescriptionWrapper>
   );
 };
 
@@ -293,6 +381,57 @@ const properties = [
   },
 ];
 
+const jobList = [
+  {
+    title: '잭앤더 평일 아르바이트 구합니다',
+    name: '잭앤더베이글',
+    location: '반포동',
+    pay: '시급 12,000원',
+  },
+  {
+    title: '잭앤더 평일 아르바이트 구합니다',
+    name: '잭앤더베이글',
+    location: '반포동',
+    pay: '시급 12,000원',
+  },
+  {
+    title: '잭앤더 평일 아르바이트 구합니다',
+    name: '잭앤더베이글',
+    location: '반포동',
+    pay: '시급 12,000원',
+  },
+  {
+    title: '잭앤더 평일 아르바이트 구합니다',
+    name: '잭앤더베이글',
+    location: '반포동',
+    pay: '시급 12,000원',
+  },
+  {
+    title: '잭앤더 평일 아르바이트 구합니다',
+    name: '잭앤더베이글',
+    location: '반포동',
+    pay: '시급 12,000원',
+  },
+  {
+    title: '잭앤더 평일 아르바이트 구합니다',
+    name: '잭앤더베이글',
+    location: '반포동',
+    pay: '시급 12,000원',
+  },
+  {
+    title: '잭앤더 평일 아르바이트 구합니다',
+    name: '잭앤더베이글',
+    location: '반포동',
+    pay: '시급 12,000원',
+  },
+  {
+    title: '잭앤더 평일 아르바이트 구합니다',
+    name: '잭앤더베이글',
+    location: '반포동',
+    pay: '시급 12,000원',
+  },
+];
+
 const usedCars = [
   {
     image:
@@ -389,5 +528,72 @@ const usedCars = [
     name: 'IS XE20 IS 250 프리미엄',
     price: '590만원',
     views: 127,
+  },
+];
+
+const directUsedCars = [
+  {
+    image:
+      'https://img1.daumcdn.net/thumb/R380x0/?fname=%2Fmedia%2Fvitraya%2Fauto%2Fimage%2F5ecf16%2F072F53F70C0450CCC1BAF91911724F0DA6631052C62D26CDA2_55QW',
+    type: '렉서스',
+    name: 'IS XE20 IS 250 프리미엄',
+    price: '590만원',
+    savedMoney: '53만원',
+  },
+  {
+    image:
+      'https://img1.daumcdn.net/thumb/R380x0/?fname=%2Fmedia%2Fvitraya%2Fauto%2Fimage%2F5ecf16%2F072F53F70C0450CCC1BAF91911724F0DA6631052C62D26CDA2_55QW',
+    type: '렉서스',
+    name: 'IS XE20 IS 250 프리미엄',
+    price: '590만원',
+    savedMoney: '53만원',
+  },
+  {
+    image:
+      'https://img1.daumcdn.net/thumb/R380x0/?fname=%2Fmedia%2Fvitraya%2Fauto%2Fimage%2F5ecf16%2F072F53F70C0450CCC1BAF91911724F0DA6631052C62D26CDA2_55QW',
+    type: '렉서스',
+    name: 'IS XE20 IS 250 프리미엄',
+    price: '590만원',
+    savedMoney: '53만원',
+  },
+  {
+    image:
+      'https://img1.daumcdn.net/thumb/R380x0/?fname=%2Fmedia%2Fvitraya%2Fauto%2Fimage%2F5ecf16%2F072F53F70C0450CCC1BAF91911724F0DA6631052C62D26CDA2_55QW',
+    type: '렉서스',
+    name: 'IS XE20 IS 250 프리미엄',
+    price: '590만원',
+    savedMoney: '53만원',
+  },
+  {
+    image:
+      'https://img1.daumcdn.net/thumb/R380x0/?fname=%2Fmedia%2Fvitraya%2Fauto%2Fimage%2F5ecf16%2F072F53F70C0450CCC1BAF91911724F0DA6631052C62D26CDA2_55QW',
+    type: '렉서스',
+    name: 'IS XE20 IS 250 프리미엄',
+    price: '590만원',
+    savedMoney: '53만원',
+  },
+  {
+    image:
+      'https://img1.daumcdn.net/thumb/R380x0/?fname=%2Fmedia%2Fvitraya%2Fauto%2Fimage%2F5ecf16%2F072F53F70C0450CCC1BAF91911724F0DA6631052C62D26CDA2_55QW',
+    type: '렉서스',
+    name: 'IS XE20 IS 250 프리미엄',
+    price: '590만원',
+    savedMoney: '53만원',
+  },
+  {
+    image:
+      'https://img1.daumcdn.net/thumb/R380x0/?fname=%2Fmedia%2Fvitraya%2Fauto%2Fimage%2F5ecf16%2F072F53F70C0450CCC1BAF91911724F0DA6631052C62D26CDA2_55QW',
+    type: '렉서스',
+    name: 'IS XE20 IS 250 프리미엄',
+    price: '590만원',
+    savedMoney: '53만원',
+  },
+  {
+    image:
+      'https://img1.daumcdn.net/thumb/R380x0/?fname=%2Fmedia%2Fvitraya%2Fauto%2Fimage%2F5ecf16%2F072F53F70C0450CCC1BAF91911724F0DA6631052C62D26CDA2_55QW',
+    type: '렉서스',
+    name: 'IS XE20 IS 250 프리미엄',
+    price: '590만원',
+    savedMoney: '53만원',
   },
 ];

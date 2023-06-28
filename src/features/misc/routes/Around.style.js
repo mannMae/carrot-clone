@@ -85,7 +85,7 @@ export const SectionTitle = styled.h2`
   font-weight: 600;
 `;
 
-export const SectionToday = styled.p`
+export const SectionSubtitle = styled.p`
   margin: 20px 0 0 20px;
   font-size: ${(props) => props.theme.fontSizes.medium};
   color: ${(props) => props.theme.colors.gray};
@@ -150,10 +150,81 @@ export const PropertyLocation = styled.span`
   color: ${(props) => props.theme.colors.gray};
 `;
 
+export const JobPost = styled.div`
+  width: 200px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+  border: ${(props) => `1px solid ${props.theme.colors.lightGray}`};
+  border-radius: 5px;
+  padding: 10px;
+`;
+
+export const JobTitle = styled.h4`
+  font-size: ${(props) => props.theme.fontSizes.medium};
+`;
+
+export const JobRank = styled.span`
+  font-size: ${(props) => props.theme.fontSizes.medium};
+  color: ${(props) => props.theme.colors.primary};
+`;
+
+export const JobLocation = styled.span`
+  font-size: ${(props) => props.theme.fontSizes.small};
+`;
+
+export const JobPay = styled.span`
+  font-size: ${(props) => props.theme.fontSizes.medium};
+  font-weight: 700;
+`;
+
 export const CarType = styled.span``;
 
 export const CarName = styled.span``;
 
 export const CarPrice = styled.span``;
 
-export const CarViews = styled.span``;
+export const CarAddtionalInfo = styled.span`
+  color: ${(props) => props.theme.colors.primary};
+`;
+
+export const AccentBadge = styled.span`
+  border-radius: 3px;
+  padding: 1px 3px;
+  color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.primary};
+`;
+
+export const SectionDescriptionWrapper = styled.button`
+  position: relative;
+  padding: 0 0 0 5px;
+`;
+
+export const DescriptionBubble = styled.div`
+  position: absolute;
+  right: -20%;
+  display: ${(props) => (props.isShowing ? 'block' : 'none')};
+  text-align: right;
+  font-size: 20px;
+`;
+
+export const Description = styled.p`
+  position: absolute;
+  top: 70%;
+  right: -30%;
+  width: 200px;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: left;
+  background-color: ${(props) => props.theme.colors.black};
+  color: ${(props) => props.theme.colors.white};
+  font-size: ${(props) => props.theme.fontSizes.small};
+`;
+
+export const Icon = styled.img`
+  width: 12px;
+  height: 12px;
+`;
