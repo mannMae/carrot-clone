@@ -103,7 +103,7 @@ export const PostBottom = styled.div`
 `;
 
 export const PostInfomations = styled.span`
-  color: ${(props) => props.theme.colors.gray};
+  color: ${(props) => props.theme.colors.lightGray};
 `;
 
 export const PostMark = styled.span`
