@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import {
-  AccentBadge,
   AdBanner,
   AdBannerAnchor,
   AdBannerContent,
-  CarAddtionalInfo,
-  CarName,
-  CarPrice,
-  CarType,
   Categories,
   Category,
   CategoryIcon,
@@ -15,29 +10,17 @@ import {
   DescriptionBubble,
   FoldButton,
   Icon,
-  JobLocation,
-  JobPay,
-  JobPost,
-  JobRank,
-  JobTitle,
-  PropertyCategory,
-  PropertyInfomation,
-  PropertyLocation,
-  PropertyPrice,
   ReadMore,
   Section,
   SectionDescriptionWrapper,
   SectionSubtitle,
   SectionTitle,
-  SliderItem,
-  SliderItemImage,
-  SliderItemInfomation,
-  SliderWrapper,
   Wrapper,
 } from './Around.style';
 
 import DownArrowIcon from 'assets/icons/down-arrow-square.svg';
 import InfomationIcon from 'assets/icons/infomation.svg';
+import { Slider } from '../components/Slider';
 
 export const Around = () => {
   const [isFoldedCategories, setIsFoldedCategories] = useState(true);
@@ -76,62 +59,18 @@ export const Around = () => {
       </Categories>
       <Section>
         <SectionTitle>새로 올라온 부동산 매물</SectionTitle>
-        <SliderWrapper>
-          {properties.map((item, i) => {
-            return (
-              <SliderItem key={i}>
-                <SliderItemImage src={item.image} />
-                <SliderItemInfomation>
-                  <PropertyCategory>{item.category}</PropertyCategory>
-                  <PropertyInfomation>{item.size}</PropertyInfomation>
-                  <PropertyPrice>{item.price}</PropertyPrice>
-                  <PropertyLocation>{item.location}</PropertyLocation>
-                </SliderItemInfomation>
-              </SliderItem>
-            );
-          })}
-        </SliderWrapper>
+        <Slider items={properties} type="property" />
         <ReadMore>더보기 〉</ReadMore>
       </Section>
       <Section>
         <SectionTitle>오늘의 인기 알바</SectionTitle>
-        <SliderWrapper>
-          {jobList.map((job, i) => {
-            return (
-              <SliderItem key={i}>
-                <JobPost>
-                  <JobTitle>
-                    <JobRank>{i + 1}위</JobRank> {job.title}
-                  </JobTitle>
-                  <JobLocation>
-                    {job.name} ・ {job.location}
-                  </JobLocation>
-                  <JobPay>{job.pay}</JobPay>
-                </JobPost>
-              </SliderItem>
-            );
-          })}
-        </SliderWrapper>
+        <Slider items={jobList} type="job" />
         <ReadMore>더보기 〉</ReadMore>
       </Section>
       <Section>
         <SectionTitle>지금 인기있는 중고차 매물</SectionTitle>
         <SectionSubtitle>오늘 381명이 거래했어요</SectionSubtitle>
-        <SliderWrapper>
-          {usedCars.map((car, i) => {
-            return (
-              <SliderItem key={i}>
-                <SliderItemImage src={car.image} />
-                <SliderItemInfomation>
-                  <CarType>{car.type}</CarType>
-                  <CarName>{car.name}</CarName>
-                  <CarPrice>{car.price}</CarPrice>
-                  <CarAddtionalInfo>{car.views}명이 보는 중</CarAddtionalInfo>
-                </SliderItemInfomation>
-              </SliderItem>
-            );
-          })}
-        </SliderWrapper>
+        <Slider items={usedCars} type="usedCar" />
         <ReadMore>더보기 〉</ReadMore>
       </Section>
       <Section>
@@ -141,21 +80,7 @@ export const Around = () => {
             딜러 매도비와 알선 수수료를 아껴, 저렴하게 구매할 수 있어요.
           </SectionDescription>
         </SectionTitle>
-        <SliderWrapper>
-          {directUsedCars.map((car, i) => {
-            return (
-              <SliderItem key={i}>
-                <SliderItemImage src={car.image} />
-                <SliderItemInfomation>
-                  <CarType>{car.type}</CarType>
-                  <CarName>{car.name}</CarName>
-                  <CarPrice>{car.price}</CarPrice>
-                  <AccentBadge>{car.savedMoney} 절약</AccentBadge>
-                </SliderItemInfomation>
-              </SliderItem>
-            );
-          })}
-        </SliderWrapper>
+        <Slider items={directUsedCars} type="directUsedCar" />
         <ReadMore>더보기 〉</ReadMore>
       </Section>
       <Section>
@@ -163,21 +88,7 @@ export const Around = () => {
         <SectionSubtitle>
           오라형님이 봤던 상품을 바탕으로 제안해요.
         </SectionSubtitle>
-        <SliderWrapper>
-          {directUsedCars.map((car, i) => {
-            return (
-              <SliderItem key={i}>
-                <SliderItemImage src={car.image} />
-                <SliderItemInfomation>
-                  <CarType>{car.type}</CarType>
-                  <CarName>{car.name}</CarName>
-                  <CarPrice>{car.price}</CarPrice>
-                  <AccentBadge>{car.savedMoney} 절약</AccentBadge>
-                </SliderItemInfomation>
-              </SliderItem>
-            );
-          })}
-        </SliderWrapper>
+        <Slider items={products} type="product" />
       </Section>
     </Wrapper>
   );
@@ -595,5 +506,111 @@ const directUsedCars = [
     name: 'IS XE20 IS 250 프리미엄',
     price: '590만원',
     savedMoney: '53만원',
+  },
+];
+
+const products = [
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    shopName: '손수담떡공방',
+    distance: '1.6km',
+    productName: '수제 화과자 세트',
+    discount: '20%',
+    price: 40000,
+    likes: 31,
+    badge: '배송',
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    shopName: '손수담떡공방',
+    distance: '1.6km',
+    productName: '수제 화과자 세트',
+    discount: '20%',
+    price: 40000,
+    likes: 31,
+    badge: '무료배송',
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    shopName: '손수담떡공방',
+    distance: '1.6km',
+    productName: '수제 화과자 세트',
+    discount: '20%',
+    price: 40000,
+    likes: 31,
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    shopName: '손수담떡공방',
+    distance: '1.6km',
+    productName: '수제 화과자 세트',
+    discount: '20%',
+    price: 40000,
+    likes: 31,
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    shopName: '손수담떡공방',
+    distance: '1.6km',
+    productName: '수제 화과자 세트',
+    discount: '20%',
+    price: 40000,
+    likes: 31,
+    badge: '무료배송',
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    shopName: '손수담떡공방',
+    distance: '1.6km',
+    productName: '수제 화과자 세트',
+    discount: '20%',
+    price: 40000,
+    likes: 31,
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    shopName: '손수담떡공방',
+    distance: '1.6km',
+    productName: '수제 화과자 세트',
+    discount: '20%',
+    price: 40000,
+    likes: 31,
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    shopName: '손수담떡공방',
+    distance: '1.6km',
+    productName: '수제 화과자 세트',
+    discount: '20%',
+    price: 40000,
+    likes: 31,
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    shopName: '손수담떡공방',
+    distance: '1.6km',
+    productName: '수제 화과자 세트',
+    discount: '20%',
+    price: 40000,
+    likes: 31,
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    shopName: '손수담떡공방',
+    distance: '1.6km',
+    productName: '수제 화과자 세트',
+    discount: '20%',
+    price: 40000,
+    likes: 31,
   },
 ];

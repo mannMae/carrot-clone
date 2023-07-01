@@ -1,7 +1,8 @@
 import { Spinner } from 'components/Elements';
 import { MainLayout } from 'components/Layout/MainLayout';
+import { AroundRoutes } from 'features/around';
 import { ChatRoutes } from 'features/chat';
-import { Around, Home, TownLife } from 'features/misc';
+import { Home, TownLife } from 'features/misc';
 import { UserRoutes } from 'features/users';
 import { Suspense } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
@@ -29,7 +30,7 @@ export const protectedRoutes = [
     children: [
       { path: '/', element: <Home /> },
       { path: '/town-life', element: <TownLife /> },
-      { path: '/around', element: <Around /> },
+      { path: '/around', element: <AroundRoutes /> },
       { path: '/chat/*', element: <ChatRoutes /> },
       { path: '/user/*', element: <UserRoutes /> },
       { path: '*', element: <Navigate to="." /> },
