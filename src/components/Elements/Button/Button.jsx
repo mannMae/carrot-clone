@@ -26,6 +26,10 @@ const variants = {
     backgroundColor: 'primary',
     color: 'white',
   },
+  primaryLight: {
+    backgroundColor: 'primaryLight',
+    color: 'primary',
+  },
   inverse: {
     backgroundColor: 'white',
     color: 'primary',

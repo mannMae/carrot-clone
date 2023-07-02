@@ -1,4 +1,7 @@
+import { Button } from 'components/Elements';
 import { Image, Item, Wrapper, Infomation, Box } from './Slider.style';
+
+import DownloadIcon from 'assets/icons/download.svg';
 
 export const Slider = ({ items, type }) => {
   return (
@@ -47,6 +50,44 @@ export const SliderItem = ({ item, type, rank }) => {
           <Infomation fontSize="xsmall" color="primary">
             {item.views}명이 보는 중
           </Infomation>
+        </Box>
+      </Item>
+    );
+  }
+
+  if (type === 'coupon') {
+    return (
+      <Item>
+        <Box width="200px" height="220px" borderColor="lightGray" padding="0">
+          <Image
+            src={item.image}
+            width="100%"
+            height="100px"
+            borderRadius="0px"
+          />
+          <Box padding="10px">
+            <Box flexDirection="row" alignItems="center">
+              <Image
+                src={item.profileImage}
+                width="20px"
+                height="20px"
+                borderRadius="50%"
+              />
+              <Infomation fontSize="small">{item.userName}</Infomation>
+              <Infomation fontSize="small">{item.category}</Infomation>
+            </Box>
+            <Infomation fontSize="medium">{item.title}</Infomation>
+            <Infomation fontSize="xsmall">{item.deadline}</Infomation>
+            <Button
+              startIcon={DownloadIcon}
+              size="large"
+              width="100%"
+              borderRadius="5px"
+              variant="primaryLight"
+            >
+              쿠폰 받기
+            </Button>
+          </Box>
         </Box>
       </Item>
     );

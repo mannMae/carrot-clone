@@ -8,13 +8,17 @@ export const Wrapper = styled.button`
   right: ${(props) => (props.right ? props.right : null)};
 
   display: flex;
-  jutify-content: center;
+  justify-content: center;
   align-items: center;
+
+  width: ${(props) => (props.width ? props.width : null)};
+  height: ${(props) => (props.height ? props.height : null)};
   border: ${(props) =>
     props?.variant?.backgroundColor === 'white'
       ? `1px solid ${props.theme.colors[props.variant.color]}`
       : 'none'};
-  border-radius: 15px;
+  border-radius: ${(props) =>
+    props.borderRadius ? props.borderRadius : '15px'};
 
   padding: ${(props) => (props.size ? props.size.padding : '2px 6px')};
   font-size: ${(props) =>

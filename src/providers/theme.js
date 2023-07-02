@@ -7,6 +7,7 @@ const fontSizes = {
 
 const colors = {
   primary: '#ff6f0f',
+  primaryLight: '#ffe2d2',
   white: '#fff',
   black: '#000',
   gray: '#999',

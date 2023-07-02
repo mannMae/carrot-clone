@@ -91,6 +91,8 @@ export const SectionSubtitle = styled.p`
   color: ${(props) => props.theme.colors.gray};
 `;
 
+export const SectionHeader = styled.div``;
+
 export const ReadMore = styled.button`
   border-top: ${(props) => `0.5px solid ${props.theme.colors.gray}`};
   padding-top: 10px;

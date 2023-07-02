@@ -23,14 +23,16 @@ export const Image = styled.img`
   height: ${(props) => (props.height ? props.height : '140px')};
   width: ${(props) => (props.width ? props.width : '140px')};
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: ${(props) =>
+    props.borderRadius ? props.borderRadius : '10px'};
 `;
 
 export const Box = styled.div`
   display: flex;
   width: 100%;
-  flex-direction: column;
-  align-items: start;
+  flex-direction: ${(props) =>
+    props.flexDirection ? props.flexDirection : 'column'};
+  align-items: ${(props) => (props.alignItems ? props.alignItems : 'start')};
   gap: 5px;
   width: ${(props) => (props.width ? props.width : null)};
   height: ${(props) => (props.height ? props.height : null)};
@@ -40,6 +42,7 @@ export const Box = styled.div`
       : null};
   border-radius: 5px;
   padding: ${(props) => (props.padding ? props.padding : null)};
+  overflow: hidden;
 `;
 
 export const Infomation = styled.span`
