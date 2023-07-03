@@ -93,6 +93,71 @@ export const SliderItem = ({ item, type, rank }) => {
     );
   }
 
+  if (type === 'store') {
+    return (
+      <Item>
+        <Box width="200px" height="220px" borderColor="lightGray" padding="0">
+          {item.images.length == 1 ? (
+            <Box flexDirection="row" height="100px">
+              <Image
+                src={item.images[0]}
+                width="100%"
+                height="100px"
+                borderRadius="0px"
+              />
+            </Box>
+          ) : (
+            <Box flexDirection="row" height="100px">
+              <Image
+                src={item.images[0]}
+                width="50%"
+                height="100px"
+                borderRadius="0px"
+              />
+              <Image
+                src={item.images[1]}
+                width="50%"
+                height="100px"
+                borderRadius="0px"
+              />
+            </Box>
+          )}
+          <Box padding="10px">
+            <Box>
+              <Infomation fontSize="small" fontWeight="700">
+                {item.name}
+              </Infomation>
+              <Infomation
+                fontSize="small"
+                whiteSpace="nowrap"
+                textOverflow="ellipsis"
+              >
+                {item.introduce}
+              </Infomation>
+              <Infomation fontSize="xsmall" color="gray">
+                {item.distance} ・ 후기 {item.comments} ・ 단골 {item.likes}
+              </Infomation>
+            </Box>
+            <Box backgroundColor="lightGray" padding="5px" display="block">
+              <Infomation fontSize="small" fontWeight="700">
+                {item.recentComment.userName}
+              </Infomation>{' '}
+              <Infomation
+                display="-webkit-box"
+                fontSize="small"
+                textOverflow="ellipsis"
+                webkitLineClamp={2}
+                webkitBoxOrient="vertical"
+              >
+                {item.recentComment.comment}
+              </Infomation>
+            </Box>
+          </Box>
+        </Box>
+      </Item>
+    );
+  }
+
   if (type === 'directUsedCar') {
     return (
       <Item>

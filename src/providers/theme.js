@@ -3,6 +3,7 @@ const fontSizes = {
   small: '12px',
   medium: '14px',
   large: '18px',
+  xlarge: '24px',
 };
 
 const colors = {

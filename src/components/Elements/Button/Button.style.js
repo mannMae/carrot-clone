@@ -19,12 +19,13 @@ export const Wrapper = styled.button`
       : 'none'};
   border-radius: ${(props) =>
     props.borderRadius ? props.borderRadius : '15px'};
-
-  padding: ${(props) => (props.size ? props.size.padding : '2px 6px')};
-  font-size: ${(props) =>
-    props.size
-      ? props.theme.fontSizes[props.size.fontSize]
-      : props.theme.fontSizes['medium']};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : null)};
+  padding: ${(props) =>
+    props.padding
+      ? props.padding
+      : props.size
+      ? props.size.padding
+      : '2px 6px'};
   background-color: ${(props) =>
     props.variant
       ? props.theme.colors[props.variant.backgroundColor]
@@ -42,6 +43,10 @@ export const Content = styled.span`
   width: ${(props) => (props.contentWidth ? props.contentWidth : null)};
   overflow: hidden;
   white-space: nowrap;
+  font-size: ${(props) =>
+    props.size
+      ? props.theme.fontSizes[props.size.fontSize]
+      : props.theme.fontSizes['medium']};
   transition: all ease 1s 0s;
 `;
 

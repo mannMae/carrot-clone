@@ -28,7 +28,7 @@ export const Image = styled.img`
 `;
 
 export const Box = styled.div`
-  display: flex;
+  display: ${(props) => (props.display ? props.display : 'flex')};
   width: 100%;
   flex-direction: ${(props) =>
     props.flexDirection ? props.flexDirection : 'column'};
@@ -42,14 +42,18 @@ export const Box = styled.div`
       : null};
   border-radius: 5px;
   padding: ${(props) => (props.padding ? props.padding : null)};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : null};
   overflow: hidden;
 `;
 
 export const Infomation = styled.span`
+  display: ${(props) => (props.display ? props.display : 'inline')};
+  width: ${(props) =>
+    props.width ? props.width : props.textOverflow ? '100%' : null};
+  padding: ${(props) => (props.padding ? props.padding : null)};
   background-color: ${(props) =>
-    props.backgroundColor
-      ? props.theme.colors[props.backgroundColor]
-      : props.theme.colors.white};
+    props.backgroundColor ? props.theme.colors[props.backgroundColor] : null};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : 400)};
   font-size: ${(props) =>
     props.fontSize
@@ -57,6 +61,13 @@ export const Infomation = styled.span`
       : props.theme.fontSizes.medium};
   color: ${(props) =>
     props.color ? props.theme.colors[props.color] : props.theme.colors.black};
-  padding: ${(props) => (props.padding ? props.padding : null)};
   border-radius: ${(props) => (props.backgroundColor ? '3px' : null)};
+  white-space: ${(props) => (props.whiteSpace ? props.whiteSpace : null)};
+  overflow: ${(props) =>
+    props.overflow ? props.overflow : props.textOverflow ? 'hidden' : null};
+  text-overflow: ${(props) => (props.textOverflow ? props.textOverflow : null)};
+  -webkit-line-clamp: ${(props) =>
+    props.webkitLineClamp ? props.webkitLineClamp : null};
+  -webkit-box-orient: ${(props) =>
+    props.webkitBoxOrient ? props.webkitBoxOrient : null};
 `;

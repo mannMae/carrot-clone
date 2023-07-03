@@ -91,10 +91,14 @@ export const SectionSubtitle = styled.p`
   color: ${(props) => props.theme.colors.gray};
 `;
 
-export const SectionHeader = styled.div``;
+export const SectionHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
 
 export const ReadMore = styled.button`
-  border-top: ${(props) => `0.5px solid ${props.theme.colors.gray}`};
+  border-top: ${(props) => `1px solid ${props.theme.colors.lightGray}`};
   padding-top: 10px;
   font-weight: 500;
   cursor: pointer;

@@ -42,6 +42,10 @@ const variants = {
     backgroundColor: 'white',
     color: 'gray',
   },
+  transparent: {
+    backgroundColor: 'transparent',
+    color: 'gray',
+  },
 };
 
 const sizes = {
@@ -56,5 +60,9 @@ const sizes = {
   large: {
     padding: '6px 8px',
     fontSize: 'large',
+  },
+  xlarge: {
+    padding: '6px 8px',
+    fontSize: 'xlarge',
   },
 };
