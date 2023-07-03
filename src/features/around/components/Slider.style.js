@@ -12,6 +12,7 @@ export const Wrapper = styled.ul`
 `;
 
 export const Item = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +33,8 @@ export const Box = styled.div`
   width: 100%;
   flex-direction: ${(props) =>
     props.flexDirection ? props.flexDirection : 'column'};
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : null};
   align-items: ${(props) => (props.alignItems ? props.alignItems : 'start')};
   gap: 5px;
   width: ${(props) => (props.width ? props.width : null)};
@@ -70,4 +73,5 @@ export const Infomation = styled.span`
     props.webkitLineClamp ? props.webkitLineClamp : null};
   -webkit-box-orient: ${(props) =>
     props.webkitBoxOrient ? props.webkitBoxOrient : null};
+  text-align: ${(props) => (props.textAlign ? props.textAlign : null)};
 `;

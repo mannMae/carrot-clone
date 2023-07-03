@@ -120,7 +120,8 @@ export const DescriptionBubble = styled.div`
 export const Description = styled.p`
   position: absolute;
   top: 70%;
-  right: -30%;
+  left: ${(props) => (props.direction === 'right' ? '-30%' : null)};
+  right: ${(props) => (props.direction === 'right' ? null : '-30%')};
   width: 200px;
   border-radius: 5px;
   padding: 5px;

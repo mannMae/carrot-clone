@@ -181,6 +181,41 @@ export const SliderItem = ({ item, type, rank }) => {
     );
   }
 
+  if (type === 'recent') {
+    return (
+      <Item>
+        <Box
+          width="120px"
+          height="140px"
+          borderColor="lightGray"
+          padding="0"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Image
+            src={item.profileImage}
+            width="60px"
+            height="60px"
+            borderRadius="50%"
+          />
+          <Infomation fontWeight="500">{item.name}</Infomation>
+          <Infomation
+            fontSize="small"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            textAlign="center"
+            color="gray"
+          >
+            {item.category}
+          </Infomation>
+        </Box>
+        <Button position="absolute" variant="transparent" top="5%" right="5%">
+          ✕
+        </Button>
+      </Item>
+    );
+  }
+
   if (type === 'product') {
     return (
       <Item>

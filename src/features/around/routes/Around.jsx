@@ -105,6 +105,15 @@ export const Around = () => {
         <ReadMore>더보기 〉</ReadMore>
       </Section>
       <Section>
+        <SectionTitle>
+          최근 본 가게
+          <SectionDescription direction="right">
+            최근에 소식, 상품, 쿠폰을 조회한 가게예요.
+          </SectionDescription>
+        </SectionTitle>
+        <Slider items={recendViewedStores} type="recent" />
+      </Section>
+      <Section>
         <SectionTitle>이런 상품은 어떠세요?</SectionTitle>
         <SectionSubtitle>
           오라형님이 봤던 상품을 바탕으로 제안해요.
@@ -115,13 +124,13 @@ export const Around = () => {
   );
 };
 
-const SectionDescription = ({ children }) => {
+const SectionDescription = ({ children, direction }) => {
   const [isShowing, setIsShowing] = useState(false);
   return (
     <SectionDescriptionWrapper onClick={() => setIsShowing((prev) => !prev)}>
       <Icon src={InfomationIcon} />
       <DescriptionBubble isShowing={isShowing}>
-        ▲<Description>{children}</Description>
+        ▲<Description direction={direction}>{children}</Description>
       </DescriptionBubble>
     </SectionDescriptionWrapper>
   );
@@ -744,6 +753,57 @@ const directUsedCars = [
     name: 'IS XE20 IS 250 프리미엄',
     price: '590만원',
     savedMoney: '53만원',
+  },
+];
+
+const recendViewedStores = [
+  {
+    profileImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfEDukwIjHIyFDeMuejlwHmFSRaG6Ta8mWoA&usqp=CAU',
+    name: '번하트',
+    category: '조향/캔들/비누클래스',
+  },
+  {
+    profileImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfEDukwIjHIyFDeMuejlwHmFSRaG6Ta8mWoA&usqp=CAU',
+    name: '번하트',
+    category: '조향/캔들/비누클래스',
+  },
+  {
+    profileImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfEDukwIjHIyFDeMuejlwHmFSRaG6Ta8mWoA&usqp=CAU',
+    name: '번하트',
+    category: '조향/캔들/비누클래스',
+  },
+  {
+    profileImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfEDukwIjHIyFDeMuejlwHmFSRaG6Ta8mWoA&usqp=CAU',
+    name: '번하트',
+    category: '조향/캔들/비누클래스',
+  },
+  {
+    profileImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfEDukwIjHIyFDeMuejlwHmFSRaG6Ta8mWoA&usqp=CAU',
+    name: '번하트',
+    category: '조향/캔들/비누클래스',
+  },
+  {
+    profileImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfEDukwIjHIyFDeMuejlwHmFSRaG6Ta8mWoA&usqp=CAU',
+    name: '번하트',
+    category: '조향/캔들/비누클래스',
+  },
+  {
+    profileImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfEDukwIjHIyFDeMuejlwHmFSRaG6Ta8mWoA&usqp=CAU',
+    name: '번하트',
+    category: '조향/캔들/비누클래스',
+  },
+  {
+    profileImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfEDukwIjHIyFDeMuejlwHmFSRaG6Ta8mWoA&usqp=CAU',
+    name: '번하트',
+    category: '조향/캔들/비누클래스',
   },
 ];
 
