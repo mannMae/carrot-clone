@@ -98,7 +98,10 @@ export const SectionHeader = styled.div`
 `;
 
 export const ReadMore = styled.button`
-  border-top: ${(props) => `1px solid ${props.theme.colors.lightGray}`};
+  border-top: ${(props) =>
+    props.borderTop
+      ? props.borderTop
+      : `1px solid ${props.theme.colors.lightGray}`};
   padding-top: 10px;
   font-weight: 500;
   cursor: pointer;

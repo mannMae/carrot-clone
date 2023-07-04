@@ -97,7 +97,7 @@ export const SliderItem = ({ item, type, rank }) => {
     return (
       <Item>
         <Box width="200px" height="220px" borderColor="lightGray" padding="0">
-          {item.images.length == 1 ? (
+          {item.images.length === 1 ? (
             <Box flexDirection="row" height="100px">
               <Image
                 src={item.images[0]}

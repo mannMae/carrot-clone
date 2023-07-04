@@ -23,6 +23,7 @@ import DownArrowIcon from 'assets/icons/down-arrow-square.svg';
 import InfomationIcon from 'assets/icons/infomation.svg';
 import { Slider } from '../components/Slider';
 import { Button } from 'components/Elements';
+import { Swiper } from '../components/Swiper';
 
 export const Around = () => {
   const [isFoldedCategories, setIsFoldedCategories] = useState(true);
@@ -103,6 +104,11 @@ export const Around = () => {
         </SectionTitle>
         <Slider items={directUsedCars} type="directUsedCar" />
         <ReadMore>더보기 〉</ReadMore>
+      </Section>
+      <Section>
+        <SectionTitle>걸어서 갈 수 있는 동네 알바</SectionTitle>
+        <Swiper items={aroundJobs} itemsPerSlide={3}></Swiper>
+        <ReadMore borderTop={'0px'}>더보기 〉</ReadMore>
       </Section>
       <Section>
         <SectionTitle>
@@ -753,6 +759,89 @@ const directUsedCars = [
     name: 'IS XE20 IS 250 프리미엄',
     price: '590만원',
     savedMoney: '53만원',
+  },
+];
+
+const aroundJobs = [
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    name: '레알짱',
+    location: '노량진동',
+    distance: '46m',
+    content: '레알짱 홀 아르바이트 구합니다!',
+    pay: '건당 320,000원',
+    badges: ['걸어서 10분'],
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    name: '레알짱',
+    location: '노량진동',
+    distance: '46m',
+    content: '레알짱 홀 아르바이트 구합니다!',
+    pay: '건당 320,000원',
+    badges: ['걸어서 10분'],
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    name: '레알짱',
+    location: '노량진동',
+    distance: '46m',
+    content: '레알짱 홀 아르바이트 구합니다!',
+    pay: '건당 320,000원',
+    badges: ['걸어서 10분'],
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    name: '레알짱',
+    location: '노량진동',
+    distance: '46m',
+    content: '레알짱 홀 아르바이트 구합니다!',
+    pay: '건당 320,000원',
+    badges: ['걸어서 10분'],
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    name: '레알짱',
+    location: '노량진동',
+    distance: '46m',
+    content: '레알짱 홀 아르바이트 구합니다!',
+    pay: '건당 320,000원',
+    badges: ['걸어서 10분'],
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    name: '레알짱',
+    location: '노량진동',
+    distance: '46m',
+    content: '레알짱 홀 아르바이트 구합니다!',
+    pay: '건당 320,000원',
+    badges: ['걸어서 10분'],
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    name: '레알짱',
+    location: '노량진동',
+    distance: '46m',
+    content: '레알짱 홀 아르바이트 구합니다!',
+    pay: '건당 320,000원',
+    badges: ['걸어서 10분'],
+  },
+  {
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPsWEDgqaGl-hgEXDY_b-2kU2pcTHUXpPH0b7EY5SwQ&s',
+    name: '레알짱',
+    location: '노량진동',
+    distance: '46m',
+    content: '레알짱 홀 아르바이트 구합니다!',
+    pay: '건당 320,000원',
+    badges: ['걸어서 10분'],
   },
 ];
 
