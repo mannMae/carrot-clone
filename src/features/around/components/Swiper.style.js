@@ -6,9 +6,9 @@ export const Wrapper = styled.div`
   z-index: 0;
 `;
 
-export const ItemWrapper = styled.div`
-  background-color: ${(props) => props.theme.colors.primary};
-`;
+// export const ItemWrapper = styled.div`
+//   background-color: ${(props) => props.theme.colors.primary};
+// `;
 
 export const Item = styled.li`
   position: relative;
@@ -18,7 +18,10 @@ export const Item = styled.li`
   gap: 10px;
   max-width: 50%;
   min-width: 90%;
-  margin: 0 auto;
+  margin: ${(props) => (props.margin ? props.margin : '0 auto')};
+  border-radius: ${(props) => (props.borderRadius ? props.borderRadius : null)};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : props.theme.colors.white};
   cursor: pointer;
 `;
 
@@ -40,7 +43,6 @@ export const Box = styled.div`
   align-items: ${(props) => (props.alignItems ? props.alignItems : 'start')};
   gap: 5px;
   width: ${(props) => (props.width ? props.width : null)};
-  height: ${(props) => (props.height ? props.height : null)};
   border: ${(props) =>
     props.borderColor
       ? `1px solid ${props.theme.colors[props.borderColor]}`
