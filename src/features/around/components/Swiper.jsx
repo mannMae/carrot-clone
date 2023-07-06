@@ -5,6 +5,7 @@ import { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Box, Image, Infomation, Item, Wrapper } from './Swiper.style';
+import { theme } from 'providers/theme';
 
 export const Swiper = ({ items, itemsPerSlide }) => {
   const [pages, setPages] = useState([]);
@@ -25,6 +26,7 @@ export const Swiper = ({ items, itemsPerSlide }) => {
   return (
     <Wrapper>
       <SwiperComponent
+        style={{ '--swiper-pagination-color': theme.colors.primary }}
         modules={[Pagination]}
         slidesPerView={1}
         spaceBetween={50}

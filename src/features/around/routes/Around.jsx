@@ -108,7 +108,7 @@ export const Around = () => {
       <Section>
         <SectionTitle>걸어서 갈 수 있는 동네 알바</SectionTitle>
         <Swiper items={aroundJobs} itemsPerSlide={3}></Swiper>
-        <ReadMore borderTop={'0px'}>더보기 〉</ReadMore>
+        <ReadMore>더보기 〉</ReadMore>
       </Section>
       <Section>
         <SectionTitle>
