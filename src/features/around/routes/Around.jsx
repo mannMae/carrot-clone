@@ -22,10 +22,8 @@ import {
 import DownArrowIcon from 'assets/icons/down-arrow-square.svg';
 import InfomationIcon from 'assets/icons/infomation.svg';
 import { Slider } from '../components/Slider';
-import { Button } from 'components/Elements';
-import { Swiper } from '../components/Swiper';
+import { Button, CategorySwiper, Swiper } from 'components/Elements';
 import { theme } from 'providers/theme';
-import { CategorySwiper } from '../components/CategorySwiper';
 
 export const Around = () => {
   const [isFoldedCategories, setIsFoldedCategories] = useState(true);

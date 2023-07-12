@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-import { Button, Slider } from 'components/Elements';
+import { Button } from 'components/Elements';
 import {
   Badge,
   Badges,

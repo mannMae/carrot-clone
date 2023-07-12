@@ -80,7 +80,7 @@ export const SliderItem = ({ item, type, rank }) => {
             <Infomation fontSize="xsmall">{item.deadline}</Infomation>
             <Button
               startIcon={DownloadIcon}
-              size="large"
+              size="small"
               width="100%"
               borderRadius="5px"
               variant="primaryLight"

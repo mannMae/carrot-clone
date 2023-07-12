@@ -1,3 +1,4 @@
 export * from './Button';
-export * from './Spinner';
 export * from './Dropdown';
+export * from './Spinner';
+export * from './Swiper';
