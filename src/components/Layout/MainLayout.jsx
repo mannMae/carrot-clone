@@ -22,12 +22,12 @@ import SettingIcon from 'assets/icons/settings.svg';
 
 import HomeOutlinedIcon from 'assets/icons/home-outlined.svg';
 import DocumentOutlinedIcon from 'assets/icons/document-outlined.svg';
-import LocationOutlinedIcon from 'assets/icons/location-outlined.svg';
+import LocationOutlinedIcon from 'assets/icons/location-on-map-outlined.svg';
 import ChatBubbleOutlinedIcon from 'assets/icons/chat-bubble-outlined.svg';
 import UserOutlinedIcon from 'assets/icons/user-outlined.svg';
 import HomeFilledIcon from 'assets/icons/home-filled.svg';
 import DocumentFilledIcon from 'assets/icons/document-filled.svg';
-import LocationFilledIcon from 'assets/icons/location-fiiled.svg';
+import LocationFilledIcon from 'assets/icons/location-on-map-fiiled.svg';
 import ChatBubbleFilledIcon from 'assets/icons/chat-bubble-fiiled.svg';
 import UserFilledIcon from 'assets/icons/user-filled.svg';
 

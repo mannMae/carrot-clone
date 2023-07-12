@@ -3,7 +3,7 @@ import { MainLayout } from 'components/Layout/MainLayout';
 import { AroundRoutes } from 'features/around';
 import { ChatRoutes } from 'features/chat';
 import { Home, TownLife } from 'features/misc';
-import { UserRoutes } from 'features/users';
+import { UserRoutes } from 'features/user';
 import { Suspense } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 

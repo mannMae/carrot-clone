@@ -15,7 +15,9 @@ export const Button = ({
   return (
     <Wrapper variant={variants[variant]} size={sizes[size]} {...props}>
       {isLoading ? <Spinner /> : startIcon ? <Icon src={startIcon} /> : null}
-      <Content contentWidth={contentWidth}>{children}</Content>
+      <Content size={sizes[size]} contentWidth={contentWidth}>
+        {children}
+      </Content>
       {!isLoading && endIcon ? <Icon src={endIcon} /> : null}
     </Wrapper>
   );
@@ -41,6 +43,10 @@ const variants = {
   gray: {
     backgroundColor: 'white',
     color: 'gray',
+  },
+  blackLightGray: {
+    backgroundColor: 'lightGray',
+    color: 'black',
   },
   transparent: {
     backgroundColor: 'transparent',

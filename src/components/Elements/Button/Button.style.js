@@ -9,7 +9,8 @@ export const Wrapper = styled.button`
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
+  gap: ${(props) => (props.gap ? props.gap : null)};
 
   width: ${(props) => (props.width ? props.width : null)};
   height: ${(props) => (props.height ? props.height : null)};
@@ -46,7 +47,10 @@ export const Content = styled.span`
   font-size: ${(props) =>
     props.size
       ? props.theme.fontSizes[props.size.fontSize]
+      : props.fontSize
+      ? props.fontSize
       : props.theme.fontSizes['medium']};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : null)};
   transition: all ease 1s 0s;
 `;
 
