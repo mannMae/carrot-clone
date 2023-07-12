@@ -7,31 +7,61 @@ import 'swiper/css/pagination';
 import { Box, Image, Infomation, Item, Wrapper } from './Swiper.style';
 import { theme } from 'providers/theme';
 
-export const Swiper = ({ items, itemsPerSlide, type }) => {
+export const Swiper = ({
+  items,
+  itemsPerSlide,
+  type,
+  categoryItems,
+  setIndex,
+  index,
+}) => {
+  const [swiper, setSwiper] = useState(null);
   const [pages, setPages] = useState([]);
 
   useEffect(() => {
     const newPages = [];
 
-    if (itemsPerSlide) {
-      for (let i = 0; i < Math.round(items.length / itemsPerSlide); i++) {
-        newPages.push(items.slice(i, i + itemsPerSlide));
+    if (items) {
+      if (itemsPerSlide) {
+        for (let i = 0; i < Math.round(items.length / itemsPerSlide); i++) {
+          newPages.push(items.slice(i, i + itemsPerSlide));
+        }
+      } else {
+        newPages.push(items);
       }
-    } else {
-      newPages.push(items);
+      setPages(newPages);
     }
-    setPages(newPages);
-  }, []);
+    if (categoryItems) {
+      setPages(categoryItems);
+      console.log(categoryItems);
+    }
+  }, [items, categoryItems]);
+
+  const handleSlideChange = (e) => {
+    if (setIndex) {
+      setIndex(e.realIndex);
+    }
+  };
+
+  useEffect(() => {
+    if (swiper) {
+      swiper.slideTo(index);
+    }
+  }, [index]);
+
+  console.log(pages, type);
 
   return (
     <Wrapper>
       <SwiperComponent
         style={{ '--swiper-pagination-color': theme.colors.primary }}
-        modules={[Pagination]}
+        modules={items ? [Pagination] : categoryItems ? null : null}
         slidesPerView={1}
         spaceBetween={50}
         autoHeight={true}
         pagination={true}
+        onSlideChange={handleSlideChange}
+        onSwiper={setSwiper}
       >
         {pages.map((page, i) => {
           return (
@@ -48,7 +78,36 @@ export const Swiper = ({ items, itemsPerSlide, type }) => {
 };
 
 const SwiperItem = ({ item, order, type }) => {
+  if (type === 'aroundStore') {
+    return (
+      <Item>
+        <Box
+          flexDirection="row"
+          padding="15px"
+          borderRadius="0"
+          borderTopColor={order === 0 ? null : 'lightGray'}
+          gap="15px"
+        >
+          <Image src={item.image} width="80px" height="80px" />
+          <Box padding="5px 0">
+            <Infomation fontSize="small">
+              {item.name}{' '}
+              <Infomation color="gray" fontSize="small">
+                {item.categoryDetail}
+              </Infomation>
+            </Infomation>
+            <Infomation>{item.news}</Infomation>
+            <Infomation fontSize="small" color="gray">
+              {item.postedAt}
+            </Infomation>
+          </Box>
+        </Box>
+      </Item>
+    );
+  }
+
   if (type === 'aroundJob') {
+    console.log('aroundJob');
     return (
       <Item>
         <Box

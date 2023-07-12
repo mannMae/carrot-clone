@@ -6,10 +6,6 @@ export const Wrapper = styled.div`
   z-index: 0;
 `;
 
-// export const ItemWrapper = styled.div`
-//   background-color: ${(props) => props.theme.colors.primary};
-// `;
-
 export const Item = styled.li`
   position: relative;
   display: flex;
@@ -41,7 +37,7 @@ export const Box = styled.div`
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : null};
   align-items: ${(props) => (props.alignItems ? props.alignItems : 'start')};
-  gap: 5px;
+  gap: ${(props) => (props.gap ? props.gap : '5px')};
   width: ${(props) => (props.width ? props.width : null)};
   border: ${(props) =>
     props.borderColor
