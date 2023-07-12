@@ -24,122 +24,130 @@ import InfomationIcon from 'assets/icons/infomation.svg';
 import { Slider } from '../components/Slider';
 import { Button, CategorySwiper, Swiper } from 'components/Elements';
 import { theme } from 'providers/theme';
+import { Head } from 'components/Head';
 
 export const Around = () => {
   const [isFoldedCategories, setIsFoldedCategories] = useState(true);
   return (
-    <Wrapper>
-      <Categories isFoldedCategories={isFoldedCategories}>
-        {categories.map((category, i) => {
-          if (isFoldedCategories) {
-            if (i >= 11) {
-              return;
+    <>
+      <Head title="내 근처" />
+      <Wrapper>
+        <Categories isFoldedCategories={isFoldedCategories}>
+          {categories.map((category, i) => {
+            if (isFoldedCategories) {
+              if (i >= 11) {
+                return;
+              }
             }
-          }
-          return (
-            <Category key={i}>
-              <CategoryIcon src={category.image} />
-              {category.name}
+            return (
+              <Category key={i}>
+                <CategoryIcon src={category.image} />
+                {category.name}
+              </Category>
+            );
+          })}
+          {isFoldedCategories ? (
+            <Category onClick={() => setIsFoldedCategories(false)}>
+              <CategoryIcon src={DownArrowIcon} />
+              더보기
             </Category>
-          );
-        })}
-        {isFoldedCategories ? (
-          <Category onClick={() => setIsFoldedCategories(false)}>
-            <CategoryIcon src={DownArrowIcon} />
-            더보기
-          </Category>
-        ) : (
-          <FoldButton onClick={() => setIsFoldedCategories(true)}>
-            접기 ⌃
-          </FoldButton>
-        )}
-        <AdBanner>
-          <AdBannerContent>
-            싸움 잘하는 분 우대! 에버랜드에 나타난 악당을 물리칠 알바 모집중!
-          </AdBannerContent>
-          <AdBannerAnchor>지원하기 〉</AdBannerAnchor>
-        </AdBanner>
-      </Categories>
-      <Section>
-        <SectionTitle>새로 올라온 부동산 매물</SectionTitle>
-        <Slider items={properties} type="property" />
-        <ReadMore>더보기 〉</ReadMore>
-      </Section>
-      <Section>
-        <SectionTitle>우리동네 가게 소식</SectionTitle>
-        <CategorySwiper
-          items={aroundStores}
-          itemsPerSlide={3}
-          type="aroundStore"
-        />
-        <ReadMore>더보기 〉</ReadMore>
-      </Section>
-      <Section>
-        <SectionTitle>오늘의 인기 알바</SectionTitle>
-        <Slider items={jobList} type="job" />
-        <ReadMore>더보기 〉</ReadMore>
-      </Section>
-      <Section>
-        <SectionTitle>지금 인기있는 중고차 매물</SectionTitle>
-        <SectionSubtitle>오늘 381명이 거래했어요</SectionSubtitle>
-        <Slider items={usedCars} type="usedCar" />
-        <ReadMore>더보기 〉</ReadMore>
-      </Section>
-      <Section>
-        <SectionHeader>
-          <SectionTitle>우리동네 인기쿠폰</SectionTitle>
-          <Button
-            variant="transparent"
-            size="large"
-            fontWeight="700"
-            padding="0 10px 0 0"
-          >
-            받은 쿠폰함 〉
-          </Button>
-        </SectionHeader>
-        <Slider items={coupons} type="coupon" />
-        <ReadMore>쿠폰 더보기 〉</ReadMore>
-      </Section>
-      <Section>
-        <SectionTitle>이웃들의 추천 가게</SectionTitle>
-        <Slider items={stores} type="store"></Slider>
-      </Section>
-      <Section>
-        <SectionTitle>
-          직거래로 딜러 수수료를 아껴보세요
-          <SectionDescription>
-            딜러 매도비와 알선 수수료를 아껴, 저렴하게 구매할 수 있어요.
-          </SectionDescription>
-        </SectionTitle>
-        <Slider items={directUsedCars} type="directUsedCar" />
-        <ReadMore>더보기 〉</ReadMore>
-      </Section>
-      <Section>
-        <SectionTitle>걸어서 갈 수 있는 동네 알바</SectionTitle>
-        <Swiper items={aroundJobs} itemsPerSlide={3} type="aroundJob"></Swiper>
-        <ReadMore>더보기 〉</ReadMore>
-      </Section>
-      <Section>
-        <SectionTitle>
-          최근 본 가게
-          <SectionDescription direction="right">
-            최근에 소식, 상품, 쿠폰을 조회한 가게예요.
-          </SectionDescription>
-        </SectionTitle>
-        <Slider items={recendViewedStores} type="recent" />
-      </Section>
-      <Section>
-        <SectionTitle>이런 상품은 어떠세요?</SectionTitle>
-        <SectionSubtitle>
-          오라형님이 봤던 상품을 바탕으로 제안해요.
-        </SectionSubtitle>
-        <Slider items={products} type="product" />
-      </Section>
-      <Section>
-        <SectionTitle>나의 당근 이야기</SectionTitle>
-        <Swiper items={myStories} type="myStory" itemsPerSlide={1}></Swiper>
-      </Section>
-    </Wrapper>
+          ) : (
+            <FoldButton onClick={() => setIsFoldedCategories(true)}>
+              접기 ⌃
+            </FoldButton>
+          )}
+          <AdBanner>
+            <AdBannerContent>
+              싸움 잘하는 분 우대! 에버랜드에 나타난 악당을 물리칠 알바 모집중!
+            </AdBannerContent>
+            <AdBannerAnchor>지원하기 〉</AdBannerAnchor>
+          </AdBanner>
+        </Categories>
+        <Section>
+          <SectionTitle>새로 올라온 부동산 매물</SectionTitle>
+          <Slider items={properties} type="property" />
+          <ReadMore>더보기 〉</ReadMore>
+        </Section>
+        <Section>
+          <SectionTitle>우리동네 가게 소식</SectionTitle>
+          <CategorySwiper
+            items={aroundStores}
+            itemsPerSlide={3}
+            type="aroundStore"
+          />
+          <ReadMore>더보기 〉</ReadMore>
+        </Section>
+        <Section>
+          <SectionTitle>오늘의 인기 알바</SectionTitle>
+          <Slider items={jobList} type="job" />
+          <ReadMore>더보기 〉</ReadMore>
+        </Section>
+        <Section>
+          <SectionTitle>지금 인기있는 중고차 매물</SectionTitle>
+          <SectionSubtitle>오늘 381명이 거래했어요</SectionSubtitle>
+          <Slider items={usedCars} type="usedCar" />
+          <ReadMore>더보기 〉</ReadMore>
+        </Section>
+        <Section>
+          <SectionHeader>
+            <SectionTitle>우리동네 인기쿠폰</SectionTitle>
+            <Button
+              variant="transparent"
+              size="large"
+              fontWeight="700"
+              padding="0 10px 0 0"
+            >
+              받은 쿠폰함 〉
+            </Button>
+          </SectionHeader>
+          <Slider items={coupons} type="coupon" />
+          <ReadMore>쿠폰 더보기 〉</ReadMore>
+        </Section>
+        <Section>
+          <SectionTitle>이웃들의 추천 가게</SectionTitle>
+          <Slider items={stores} type="store"></Slider>
+        </Section>
+        <Section>
+          <SectionTitle>
+            직거래로 딜러 수수료를 아껴보세요
+            <SectionDescription>
+              딜러 매도비와 알선 수수료를 아껴, 저렴하게 구매할 수 있어요.
+            </SectionDescription>
+          </SectionTitle>
+          <Slider items={directUsedCars} type="directUsedCar" />
+          <ReadMore>더보기 〉</ReadMore>
+        </Section>
+        <Section>
+          <SectionTitle>걸어서 갈 수 있는 동네 알바</SectionTitle>
+          <Swiper
+            items={aroundJobs}
+            itemsPerSlide={3}
+            type="aroundJob"
+          ></Swiper>
+          <ReadMore>더보기 〉</ReadMore>
+        </Section>
+        <Section>
+          <SectionTitle>
+            최근 본 가게
+            <SectionDescription direction="right">
+              최근에 소식, 상품, 쿠폰을 조회한 가게예요.
+            </SectionDescription>
+          </SectionTitle>
+          <Slider items={recendViewedStores} type="recent" />
+        </Section>
+        <Section>
+          <SectionTitle>이런 상품은 어떠세요?</SectionTitle>
+          <SectionSubtitle>
+            오라형님이 봤던 상품을 바탕으로 제안해요.
+          </SectionSubtitle>
+          <Slider items={products} type="product" />
+        </Section>
+        <Section>
+          <SectionTitle>나의 당근 이야기</SectionTitle>
+          <Swiper items={myStories} type="myStory" itemsPerSlide={1}></Swiper>
+        </Section>
+      </Wrapper>
+    </>
   );
 };
 

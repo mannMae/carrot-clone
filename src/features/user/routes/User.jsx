@@ -1,4 +1,5 @@
 import { Button } from 'components/Elements';
+import { Head } from 'components/Head';
 import {
   Box,
   List,
@@ -32,132 +33,137 @@ import MailIcon from 'assets/icons/mail.svg';
 
 export const User = () => {
   return (
-    <Wrapper>
-      <Box padding="20px" gap="15px">
-        <Box flexDirection="row">
-          <Box flexDirection="row" gap="10px" justifyContent="start">
-            <ProfileImage src={user.profileImage} />
-            <UserName>{user.name}</UserName>
+    <>
+      <Head title="나의 당근" />
+      <Wrapper>
+        <Box padding="20px" gap="15px">
+          <Box flexDirection="row">
+            <Box flexDirection="row" gap="10px" justifyContent="start">
+              <ProfileImage src={user.profileImage} />
+              <UserName>{user.name}</UserName>
+            </Box>
+            <Button
+              variant="blackLightGray"
+              borderRadius="3px"
+              padding="4px"
+              size="small"
+              fontWeight="500"
+            >
+              프로필 보기
+            </Button>
           </Box>
-          <Button
-            variant="blackLightGray"
-            borderRadius="3px"
-            padding="4px"
-            size="small"
-            fontWeight="500"
+          <Box
+            borderColor="lightGray"
+            padding="15px"
+            gap="20px"
+            borderRadius="5px"
           >
-            프로필 보기
-          </Button>
-        </Box>
-        <Box
-          borderColor="lightGray"
-          padding="15px"
-          gap="20px"
-          borderRadius="5px"
-        >
-          <Box flexDirection="row" justifyContent="space-between">
-            <PayIcon>pay</PayIcon>
-            <PayDescription>당근하는 새로운 방법, 당근페이! 〉</PayDescription>
-          </Box>
-          <Box flexDirection="row" gap="10px">
-            <Button
-              variant="blackLightGray"
-              startIcon={PlusIcon}
-              width="100%"
-              borderRadius="3px"
-              padding="5px"
-              gap="5px"
-            >
-              충전
-            </Button>
-            <Button
-              variant="blackLightGray"
-              startIcon={WonIcon}
-              width="100%"
-              borderRadius="3px"
-              padding="5px"
-              gap="5px"
-            >
-              계좌송금
-            </Button>
+            <Box flexDirection="row" justifyContent="space-between">
+              <PayIcon>pay</PayIcon>
+              <PayDescription>
+                당근하는 새로운 방법, 당근페이! 〉
+              </PayDescription>
+            </Box>
+            <Box flexDirection="row" gap="10px">
+              <Button
+                variant="blackLightGray"
+                startIcon={PlusIcon}
+                width="100%"
+                borderRadius="3px"
+                padding="5px"
+                gap="5px"
+              >
+                충전
+              </Button>
+              <Button
+                variant="blackLightGray"
+                startIcon={WonIcon}
+                width="100%"
+                borderRadius="3px"
+                padding="5px"
+                gap="5px"
+              >
+                계좌송금
+              </Button>
+            </Box>
           </Box>
         </Box>
-      </Box>
-      <List>
-        <ListTitle>나의 거래</ListTitle>
-        <ListItem>
-          <ListItemIcon src={HeartIcon} />
-          관심목록
-        </ListItem>
-        <ListItem>
-          <ListItemIcon src={BillIcon} />
-          판매내역
-        </ListItem>
-        <ListItem>
-          <ListItemIcon src={HandbagIcon} />
-          구매내역
-        </ListItem>
-        <ListItem>
-          <ListItemIcon src={BookIcon} />
-          중고거래 가계부
-        </ListItem>
-      </List>
-      <List>
-        <ListTitle>나의 동네생활</ListTitle>
-        <ListItem>
-          <ListItemIcon src={WrittingIcon} />
-          동네생활 글/댓글
-        </ListItem>
-      </List>
-      <List>
-        <ListTitle>동네 가게</ListTitle>
-        <ListItem>
-          <ListItemIcon src={ReviewIcon} />
-          동네 가게 후기
-        </ListItem>
-      </List>
-      <List>
-        <ListTitle>나의 비즈니스</ListTitle>
-        <ListItem>
-          <ListItemIcon src={HomeIcon} />
-          비즈프로필 관리
-        </ListItem>
-        <ListItem>
-          <ListItemIcon src={MagaphoneIcon} />
-          광고
-        </ListItem>
-        <ListItem>
-          <ListItemIcon src={ArticleIcon} />
-          동네홍보 글
-        </ListItem>
-      </List>
-      <List>
-        <ListTitle>기타</ListTitle>
-        <ListItem>
-          <ListItemIcon src={LocationIcon} />내 동네 설정
-        </ListItem>
-        <ListItem>
-          <ListItemIcon src={TargetIcon} />
-          동네 인증하기
-        </ListItem>
-        <ListItem>
-          <ListItemIcon src={FaderIcon} />
-          중고거래 카테고리 설정
-        </ListItem>
-        <ListItem>
-          <ListItemIcon src={TagIcon} />
-          알림 키워드 설정
-        </ListItem>
-        <ListItem>
-          <ListItemIcon src={TelemarketerIcon} />
-          자주 묻는 질문
-        </ListItem>
-        <ListItem>
-          <ListItemIcon src={MailIcon} />
-          친구초대
-        </ListItem>
-      </List>
-    </Wrapper>
+        <List>
+          <ListTitle>나의 거래</ListTitle>
+          <ListItem>
+            <ListItemIcon src={HeartIcon} />
+            관심목록
+          </ListItem>
+          <ListItem>
+            <ListItemIcon src={BillIcon} />
+            판매내역
+          </ListItem>
+          <ListItem>
+            <ListItemIcon src={HandbagIcon} />
+            구매내역
+          </ListItem>
+          <ListItem>
+            <ListItemIcon src={BookIcon} />
+            중고거래 가계부
+          </ListItem>
+        </List>
+        <List>
+          <ListTitle>나의 동네생활</ListTitle>
+          <ListItem>
+            <ListItemIcon src={WrittingIcon} />
+            동네생활 글/댓글
+          </ListItem>
+        </List>
+        <List>
+          <ListTitle>동네 가게</ListTitle>
+          <ListItem>
+            <ListItemIcon src={ReviewIcon} />
+            동네 가게 후기
+          </ListItem>
+        </List>
+        <List>
+          <ListTitle>나의 비즈니스</ListTitle>
+          <ListItem>
+            <ListItemIcon src={HomeIcon} />
+            비즈프로필 관리
+          </ListItem>
+          <ListItem>
+            <ListItemIcon src={MagaphoneIcon} />
+            광고
+          </ListItem>
+          <ListItem>
+            <ListItemIcon src={ArticleIcon} />
+            동네홍보 글
+          </ListItem>
+        </List>
+        <List>
+          <ListTitle>기타</ListTitle>
+          <ListItem>
+            <ListItemIcon src={LocationIcon} />내 동네 설정
+          </ListItem>
+          <ListItem>
+            <ListItemIcon src={TargetIcon} />
+            동네 인증하기
+          </ListItem>
+          <ListItem>
+            <ListItemIcon src={FaderIcon} />
+            중고거래 카테고리 설정
+          </ListItem>
+          <ListItem>
+            <ListItemIcon src={TagIcon} />
+            알림 키워드 설정
+          </ListItem>
+          <ListItem>
+            <ListItemIcon src={TelemarketerIcon} />
+            자주 묻는 질문
+          </ListItem>
+          <ListItem>
+            <ListItemIcon src={MailIcon} />
+            친구초대
+          </ListItem>
+        </List>
+      </Wrapper>
+    </>
   );
 };
 

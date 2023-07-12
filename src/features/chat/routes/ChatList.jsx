@@ -1,3 +1,4 @@
+import { Head } from 'components/Head';
 import {
   Chat,
   Box,
@@ -11,23 +12,26 @@ import {
 
 export const ChatList = () => {
   return (
-    <Wrapper>
-      {chatList.map((chat, i) => (
-        <Chat key={i}>
-          <ProfileImage src={chat.profileImage} />
-          <Box>
-            <div>
-              <UserName>{chat.userName}</UserName>{' '}
-              <ChatInfo>
-                {chat.location} ・ {chat.lastChatDate}
-              </ChatInfo>
-            </div>
-            <RecentMessage>{chat.recentChat}</RecentMessage>
-          </Box>
-          {chat.postImage && <PostImage src={chat.postImage} />}
-        </Chat>
-      ))}
-    </Wrapper>
+    <>
+      <Head title="채팅" />
+      <Wrapper>
+        {chatList.map((chat, i) => (
+          <Chat key={i}>
+            <ProfileImage src={chat.profileImage} />
+            <Box>
+              <div>
+                <UserName>{chat.userName}</UserName>{' '}
+                <ChatInfo>
+                  {chat.location} ・ {chat.lastChatDate}
+                </ChatInfo>
+              </div>
+              <RecentMessage>{chat.recentChat}</RecentMessage>
+            </Box>
+            {chat.postImage && <PostImage src={chat.postImage} />}
+          </Chat>
+        ))}
+      </Wrapper>
+    </>
   );
 };
 

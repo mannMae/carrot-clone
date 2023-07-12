@@ -25,6 +25,7 @@ import HamburgerIcon from 'assets/icons/hamburger.svg';
 import LikeIcon from 'assets/icons/like.svg';
 import CommentIcon from 'assets/icons/comment.svg';
 import { useObserver } from 'hooks/useObserver';
+import { Head } from 'components/Head';
 
 export const TownLife = () => {
   const [postingList, setPostingList] = useState([]);
@@ -40,64 +41,67 @@ export const TownLife = () => {
   }, []);
 
   return (
-    <Wrapper>
-      <Groups>
-        <Group>
-          <GroupImage src={groups[0].img} />
-          <GroupName>모임</GroupName>
-        </Group>
-        {groups.map((group, i) => (
-          <Group key={i}>
-            <GroupImage src={group.img} />
-            <GroupName>{group.name}</GroupName>
+    <>
+      <Head title="동네 생활" />
+      <Wrapper>
+        <Groups>
+          <Group>
+            <GroupImage src={groups[0].img} />
+            <GroupName>모임</GroupName>
           </Group>
-        ))}
-      </Groups>
-
-      <Posts>
-        <Categories>
-          <Button variant="gray" startIcon={HamburgerIcon}>
-            주제
-          </Button>
-          {categories.map((category, i) => (
-            <Button key={i} variant="gray">
-              {category.content}
-            </Button>
+          {groups.map((group, i) => (
+            <Group key={i}>
+              <GroupImage src={group.img} />
+              <GroupName>{group.name}</GroupName>
+            </Group>
           ))}
-        </Categories>
-        {postingList.map((post, i) => (
-          <Post key={i}>
-            <Badges>
-              {post.categories.map((badge, j) => (
-                <Badge key={j}>{badge}</Badge>
-              ))}
-            </Badges>
-            <PostTitle>{post.title}</PostTitle>
-            <PostContent>{post.content}</PostContent>
-            <PostBottom>
-              <PostInfomations>
-                {post.location} ・ {post.postedAt} ・ 조회 {post.views}
-              </PostInfomations>
-              <PostMark>
-                {post.likes && (
-                  <>
-                    <PostIcon src={LikeIcon} />
-                    {post.likes}
-                  </>
-                )}{' '}
-                {post.comments && (
-                  <>
-                    <PostIcon src={CommentIcon} />
-                    {post.comments}
-                  </>
-                )}
-              </PostMark>
-            </PostBottom>
-          </Post>
-        ))}
-        <div ref={target}></div>
-      </Posts>
-    </Wrapper>
+        </Groups>
+
+        <Posts>
+          <Categories>
+            <Button variant="gray" startIcon={HamburgerIcon}>
+              주제
+            </Button>
+            {categories.map((category, i) => (
+              <Button key={i} variant="gray">
+                {category.content}
+              </Button>
+            ))}
+          </Categories>
+          {postingList.map((post, i) => (
+            <Post key={i}>
+              <Badges>
+                {post.categories.map((badge, j) => (
+                  <Badge key={j}>{badge}</Badge>
+                ))}
+              </Badges>
+              <PostTitle>{post.title}</PostTitle>
+              <PostContent>{post.content}</PostContent>
+              <PostBottom>
+                <PostInfomations>
+                  {post.location} ・ {post.postedAt} ・ 조회 {post.views}
+                </PostInfomations>
+                <PostMark>
+                  {post.likes && (
+                    <>
+                      <PostIcon src={LikeIcon} />
+                      {post.likes}
+                    </>
+                  )}{' '}
+                  {post.comments && (
+                    <>
+                      <PostIcon src={CommentIcon} />
+                      {post.comments}
+                    </>
+                  )}
+                </PostMark>
+              </PostBottom>
+            </Post>
+          ))}
+          <div ref={target}></div>
+        </Posts>
+      </Wrapper>
+    </>
   );
 };
 

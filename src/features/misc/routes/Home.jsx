@@ -13,6 +13,7 @@ import {
 
 import HeartIcon from 'assets/icons/heart-outlined.svg';
 import { useObserver } from 'hooks/useObserver';
+import { Head } from 'components/Head';
 
 export const Home = () => {
   const [postingList, setPostingList] = useState([]);
@@ -28,25 +29,28 @@ export const Home = () => {
   }, []);
 
   return (
-    <Wrapper>
-      {postingList.map((p, i) => (
-        <Posting key={i}>
-          <Image src={p.image} />
-          <Infomation>
-            <Title>{p.title}</Title>
-            <TimeAndPlace>
-              {p.location}・{p.postedAt}
-            </TimeAndPlace>
-            <Price>{p.price}원</Price>
-            <Likes>
-              <Icon src={HeartIcon} />
-              {p.likes}
-            </Likes>
-          </Infomation>
-        </Posting>
-      ))}
-      <div ref={target}></div>
-    </Wrapper>
+    <>
+      <Head title="홈" />
+      <Wrapper>
+        {postingList.map((p, i) => (
+          <Posting key={i}>
+            <Image src={p.image} />
+            <Infomation>
+              <Title>{p.title}</Title>
+              <TimeAndPlace>
+                {p.location}・{p.postedAt}
+              </TimeAndPlace>
+              <Price>{p.price}원</Price>
+              <Likes>
+                <Icon src={HeartIcon} />
+                {p.likes}
+              </Likes>
+            </Infomation>
+          </Posting>
+        ))}
+        <div ref={target}></div>
+      </Wrapper>
+    </>
   );
 };
 
