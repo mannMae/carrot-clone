@@ -48,8 +48,9 @@ export const MainLayout = ({ children }) => {
 
 const Header = () => {
   const location = useLocation();
+  console.log(location.pathname.split('/'));
 
-  if (location.pathname === '/') {
+  if (location.pathname === '/home') {
     return (
       <HeaderWrapper>
         <Dropdown options={['역삼동', '노량진동']} />
@@ -110,7 +111,7 @@ const BottomNavigation = () => {
     {
       name: 'Home',
       value: '홈',
-      to: './',
+      to: './home',
       icon: [HomeOutlinedIcon, HomeFilledIcon],
     },
     {
