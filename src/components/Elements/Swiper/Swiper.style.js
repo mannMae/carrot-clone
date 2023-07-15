@@ -80,3 +80,13 @@ export const Infomation = styled.span`
     props.webkitBoxOrient ? props.webkitBoxOrient : null};
   text-align: ${(props) => (props.textAlign ? props.textAlign : null)};
 `;
+
+export const InnerShadow = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 40px 40px -40px #333, inset 0 -40px 40px -40px #333;
+`;

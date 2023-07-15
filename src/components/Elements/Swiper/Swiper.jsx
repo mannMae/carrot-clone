@@ -4,7 +4,14 @@ import { Swiper as SwiperComponent, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Box, Image, Infomation, Item, Wrapper } from './Swiper.style';
+import {
+  Box,
+  Image,
+  Infomation,
+  InnerShadow,
+  Item,
+  Wrapper,
+} from './Swiper.style';
 import { theme } from 'providers/theme';
 
 export const Swiper = ({
@@ -48,8 +55,6 @@ export const Swiper = ({
       swiper.slideTo(index);
     }
   }, [index]);
-
-  console.log(pages, type);
 
   return (
     <Wrapper>
@@ -107,7 +112,6 @@ const SwiperItem = ({ item, order, type }) => {
   }
 
   if (type === 'aroundJob') {
-    console.log('aroundJob');
     return (
       <Item>
         <Box
@@ -173,6 +177,18 @@ const SwiperItem = ({ item, order, type }) => {
           <Image src={item.image} borderRadius="10px 0 0 10px" width="200px" />
         </Box>
       </Item>
+    );
+  }
+
+  if (type === 'image') {
+    console.log(item);
+    return (
+      <>
+        <Item>
+          <Image src={item} width="100%" height="100%" />
+        </Item>
+        <InnerShadow />
+      </>
     );
   }
 };

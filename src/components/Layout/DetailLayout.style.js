@@ -12,7 +12,8 @@ export const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: transparent;
+  background-color: ${(props) =>
+    props.hasTopImage ? 'transparent' : props.theme.colors.white};
 `;
 
 export const Heading = styled.h2`
@@ -31,4 +32,5 @@ export const Icon = styled.img`
   width: ${(props) => (props.width ? props.width : '24px')};
   height: ${(props) => (props.height ? props.height : '24px')};
   cursor: pointer;
+  filter: ${(props) => (props.hasTopImage ? 'invert(100%)' : null)};
 `;

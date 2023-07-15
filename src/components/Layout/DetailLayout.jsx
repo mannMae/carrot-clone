@@ -8,7 +8,14 @@ import {
 } from './DetailLayout.style';
 import { Dropdown } from 'components/Elements';
 
+import LeftArrowIcon from 'assets/icons/left-arrow.svg';
+import HomeIcon from 'assets/icons/home-outlined.svg';
+import ShareIcon from 'assets/icons/share.svg';
+import HamburgerIcon from 'assets/icons/hamburger-dots.svg';
+import { useState } from 'react';
+
 export const DetailLayout = ({ children }) => {
+  console.log(children);
   return (
     <Wrapper>
       <Header />
@@ -18,11 +25,18 @@ export const DetailLayout = ({ children }) => {
 };
 
 const Header = () => {
+  const [hasTopImage, setHasTopImage] = useState(true);
   const location = useLocation();
   return (
-    <HeaderWrapper>
-      <Icons></Icons>
-      <Icons></Icons>
+    <HeaderWrapper hasTopImage={hasTopImage}>
+      <Icons>
+        <Icon src={LeftArrowIcon} hasTopImage={hasTopImage} />
+        <Icon src={HomeIcon} hasTopImage={hasTopImage} />
+      </Icons>
+      <Icons>
+        <Icon src={ShareIcon} hasTopImage={hasTopImage} />
+        <Icon src={HamburgerIcon} hasTopImage={hasTopImage} />
+      </Icons>
     </HeaderWrapper>
   );
 
