@@ -1,11 +1,105 @@
 import { Swiper } from 'components/Elements';
 import { Wrapper } from './Market.style';
-import { Box, PostImage } from './MarketDetail.style';
+import {
+  Box,
+  Description,
+  Infomation,
+  MannerTemperatureBar,
+  MannerTemperatureBarGauge,
+  MannerTemperatureDescription,
+  MannerTemperatureIcon,
+  MannerTemperatureNumber,
+  Title,
+  UserLocation,
+  UserProfileImage,
+  Username,
+} from './MarketDetail.style';
+
+import SmileIcon from 'assets/icons/smile.svg';
 
 export const MarketDetail = () => {
   return (
     <Wrapper>
       <Swiper items={details.images} type="image" itemsPerSlide={1}></Swiper>
+      <Box padding="15px" width="100%">
+        <Box
+          flexDirection="row"
+          justifyContent="space-between"
+          borderBottomColor="lightGray"
+          padding="0 0 15px 0"
+          width="100%"
+          height="70px"
+        >
+          <Box flexDirection="row" height="100%">
+            <UserProfileImage src={details.profileImage} />
+            <Box justifyContent="center" height="100%">
+              <Username>{details.username}</Username>
+              <UserLocation>{details.location}</UserLocation>
+            </Box>
+          </Box>
+          <Box alignItems="end">
+            <Box flexDirection="row" alignItems="center">
+              <Box alignItems="end">
+                <MannerTemperatureNumber>
+                  {details.temperature}℃
+                </MannerTemperatureNumber>
+                <MannerTemperatureBar>
+                  <MannerTemperatureBarGauge
+                    width={`${details.temperature}%`}
+                  />
+                </MannerTemperatureBar>
+              </Box>
+              <MannerTemperatureIcon src={SmileIcon} />
+            </Box>
+            <MannerTemperatureDescription>
+              매너온도
+            </MannerTemperatureDescription>
+          </Box>
+        </Box>
+        <Box>
+          <Box padding="20px 0 30px" gap="15px" borderBottomColor="lightGray">
+            <Title>{details.title}</Title>
+            <Infomation fontSize="small" color="gray">
+              <Infomation
+                fontSize="small"
+                color="gray"
+                textDecoration="underline"
+                cursor="pointer"
+              >
+                {details.category}
+              </Infomation>{' '}
+              ・{' '}
+              <Infomation fontSize="small" color="gray">
+                {details.updatedAt}
+              </Infomation>
+            </Infomation>
+            <Description>{details.description}</Description>
+            <Box>
+              <Infomation fontSize="small" color="gray">
+                <Infomation fontSize="small" color="gray">
+                  채팅 {details.chats}
+                </Infomation>{' '}
+                ・{' '}
+                <Infomation fontSize="small" color="gray">
+                  관심 {details.likes}
+                </Infomation>{' '}
+                ・{' '}
+                <Infomation fontSize="small" color="gray">
+                  조회 {details.views}
+                </Infomation>
+              </Infomation>
+            </Box>
+            <Infomation
+              fontSize="small"
+              color="gray"
+              textDecoration="underline"
+              cursor="pointer"
+            >
+              이 게시글 신고하기
+            </Infomation>
+          </Box>
+        </Box>
+      </Box>
     </Wrapper>
   );
 };
@@ -25,7 +119,7 @@ const details = {
 
   category: '디지털기기',
   updatedAt: '끌올 1시간 전',
-  descipriont:
+  description:
     'CPU : Intel i5\nGPU : AMD RRRadeon HD 4850\nRAM : 4G (확장 가능)\n용량 : 500G (SAMSUNG)\nODD : LG\nOS : Windows 10\n\n포맷 후 MS Office와 한글 설치해놓았고 파워포인트(ppt), 엑셀, 워드, 한글2022 모두 영구적으로 사용 가능합니다.\n(원래는 율료라 1년에 약 14만원의 사용료를 내야하는데 무료로 쓰실 수 있게 설치완료)',
   chats: 2,
   likes: 13,

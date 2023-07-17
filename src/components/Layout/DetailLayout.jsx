@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   HeaderWrapper,
   Heading,
@@ -12,26 +12,34 @@ import LeftArrowIcon from 'assets/icons/left-arrow.svg';
 import HomeIcon from 'assets/icons/home-outlined.svg';
 import ShareIcon from 'assets/icons/share.svg';
 import HamburgerIcon from 'assets/icons/hamburger-dots.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const DetailLayout = ({ children }) => {
+  const [hasTopImage, setHasTopImage] = useState(true);
   console.log(children);
+  useEffect(() => {
+    setHasTopImage();
+  }, []);
+
   return (
     <Wrapper>
-      <Header />
+      <Header hasTopImage={true} />
       {children}
     </Wrapper>
   );
 };
 
-const Header = () => {
-  const [hasTopImage, setHasTopImage] = useState(true);
+const Header = ({ hasTopImage }) => {
   const location = useLocation();
   return (
     <HeaderWrapper hasTopImage={hasTopImage}>
       <Icons>
-        <Icon src={LeftArrowIcon} hasTopImage={hasTopImage} />
-        <Icon src={HomeIcon} hasTopImage={hasTopImage} />
+        <Link to={-1}>
+          <Icon src={LeftArrowIcon} hasTopImage={hasTopImage} />
+        </Link>
+        <Link to="/home">
+          <Icon src={HomeIcon} hasTopImage={hasTopImage} />
+        </Link>
       </Icons>
       <Icons>
         <Icon src={ShareIcon} hasTopImage={hasTopImage} />
@@ -39,58 +47,4 @@ const Header = () => {
       </Icons>
     </HeaderWrapper>
   );
-
-  //   if (location.pathname === '/home') {
-  //     return (
-  //       <HeaderWrapper>
-  //         <Dropdown options={['역삼동', '노량진동']} />
-  //         <Icons>
-  //           <Icon src={SearchIcon} />
-  //           <Icon src={HamburgerIcon} />
-  //           <Icon src={BellIcon} />
-  //         </Icons>
-  //       </HeaderWrapper>
-  //     );
-  //   } else if (location.pathname === '/town-life') {
-  //     return (
-  //       <HeaderWrapper>
-  //         <Dropdown options={['역삼동', '노량진동']} />
-  //         <Icons>
-  //           <Icon src={SearchIcon} />
-  //           <Icon src={UserCicleIcon} />
-  //           <Icon src={BellIcon} />
-  //         </Icons>
-  //       </HeaderWrapper>
-  //     );
-  //   } else if (location.pathname === '/around') {
-  //     return (
-  //       <HeaderWrapper>
-  //         <Dropdown options={['역삼동', '노량진동']} />
-  //         <Icons>
-  //           <Icon src={SearchIcon} />
-  //           <Icon src={QrReadIcon} />
-  //           <Icon src={BellIcon} />
-  //         </Icons>
-  //       </HeaderWrapper>
-  //     );
-  //   } else if (location.pathname === '/chat') {
-  //     return (
-  //       <HeaderWrapper>
-  //         <Heading>채팅</Heading>
-  //         <Icons>
-  //           <Icon src={QrReadIcon} />
-  //           <Icon src={BellIcon} />
-  //         </Icons>
-  //       </HeaderWrapper>
-  //     );
-  //   } else if (location.pathname === '/user') {
-  //     return (
-  //       <HeaderWrapper>
-  //         <Heading>나의 당근</Heading>
-  //         <Icons>
-  //           <Icon src={SettingIcon} />
-  //         </Icons>
-  //       </HeaderWrapper>
-  //     );
-  //   }
 };
