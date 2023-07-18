@@ -9,7 +9,7 @@ import {
   PriceOffer,
   Wrapper,
 } from './DetailLayout.style';
-import { Button } from 'components/Elements';
+import { Button, ShareButton } from 'components/Elements';
 
 import LeftArrowIcon from 'assets/icons/left-arrow.svg';
 import HomeIcon from 'assets/icons/home-outlined.svg';
@@ -39,7 +39,14 @@ export const DetailLayout = ({ children }) => {
 
 const Header = ({ hasTopImage }) => {
   const { open } = useBottomSheet();
-  const location = useLocation();
+  const buttons = [
+    { clickEvent: () => {}, content: '신고' },
+    { clickEvent: () => {}, content: '이 사용자의 글 보지 않기' },
+  ];
+
+  // const location = useLocation();
+  const currentUrl = document.location.href;
+
   return (
     <HeaderWrapper hasTopImage={hasTopImage}>
       <Icons>
@@ -51,11 +58,15 @@ const Header = ({ hasTopImage }) => {
         </Link>
       </Icons>
       <Icons>
-        <Icon src={ShareIcon} hasTopImage={hasTopImage} />
+        <ShareButton
+          title={details.title}
+          text={details.description}
+          url={currentUrl}
+        />
         <Icon
           src={HamburgerIcon}
           hasTopImage={hasTopImage}
-          onClick={() => open()}
+          onClick={() => open(buttons)}
         />
       </Icons>
     </HeaderWrapper>
