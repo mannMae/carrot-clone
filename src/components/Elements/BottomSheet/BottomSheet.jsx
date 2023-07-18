@@ -2,13 +2,19 @@ import { useQuery } from 'react-query';
 import { Button, Buttons, Overlay, Wrapper } from './BottomSheet.style';
 import { useBottomSheet } from 'hooks/useBottomSheet';
 
-export const BottomSheet = ({ buttons }) => {
-  const sheet = useQuery(['bottomSheet']).data;
+export const BottomSheet = () => {
   const { close } = useBottomSheet();
-  console.log(sheet);
+
+  const { data } = useQuery(['bottomSheet']);
+  if (!data) {
+    return;
+  }
+  const { isActive, buttons } = data;
+  console.log(data, buttons);
+
   return (
     <>
-      <Wrapper isActive={sheet?.isActive}>
+      <Wrapper isActive={isActive}>
         {buttons && (
           <Buttons>
             {buttons.map((props, i) => (
@@ -24,7 +30,7 @@ export const BottomSheet = ({ buttons }) => {
           </Button>
         </Buttons>
       </Wrapper>
-      <Overlay isActive={sheet?.isActive} onClick={() => close()} />
+      <Overlay isActive={isActive} onClick={() => close()} />
     </>
   );
 };
