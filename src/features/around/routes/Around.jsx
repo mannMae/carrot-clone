@@ -22,7 +22,7 @@ import {
 import DownArrowIcon from 'assets/icons/down-arrow-square.svg';
 import InfomationIcon from 'assets/icons/infomation.svg';
 import { Slider } from '../components/Slider';
-import { Button, CategorySwiper, Swiper } from 'components/Elements';
+import { Button, CategorySwiper, Swiper, Tooltip } from 'components/Elements';
 import { theme } from 'providers/theme';
 import { Head } from 'components/Head';
 
@@ -110,9 +110,10 @@ export const Around = () => {
         <Section>
           <SectionTitle>
             직거래로 딜러 수수료를 아껴보세요
-            <SectionDescription>
-              딜러 매도비와 알선 수수료를 아껴, 저렴하게 구매할 수 있어요.
-            </SectionDescription>
+            <Tooltip
+              buttonContent={<Icon src={InfomationIcon} />}
+              tooltipContent="딜러 매도비와 알선 수수료를 아껴, 저렴하게 구매할 수 있어요."
+            />
           </SectionTitle>
           <Slider items={directUsedCars} type="directUsedCar" />
           <ReadMore>더보기 〉</ReadMore>
@@ -129,9 +130,11 @@ export const Around = () => {
         <Section>
           <SectionTitle>
             최근 본 가게
-            <SectionDescription direction="right">
-              최근에 소식, 상품, 쿠폰을 조회한 가게예요.
-            </SectionDescription>
+            <Tooltip
+              direction="right"
+              buttonContent={<Icon src={InfomationIcon} />}
+              tooltipContent="최근에 소식, 상품, 쿠폰을 조회한 가게예요."
+            />
           </SectionTitle>
           <Slider items={recendViewedStores} type="recent" />
         </Section>
@@ -148,18 +151,6 @@ export const Around = () => {
         </Section>
       </Wrapper>
     </>
-  );
-};
-
-const SectionDescription = ({ children, direction }) => {
-  const [isShowing, setIsShowing] = useState(false);
-  return (
-    <SectionDescriptionWrapper onClick={() => setIsShowing((prev) => !prev)}>
-      <Icon src={InfomationIcon} />
-      <DescriptionBubble isShowing={isShowing}>
-        ▲<Description direction={direction}>{children}</Description>
-      </DescriptionBubble>
-    </SectionDescriptionWrapper>
   );
 };
 

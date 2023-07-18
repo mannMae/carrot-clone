@@ -31,7 +31,7 @@ export const Box = styled.div`
   padding: ${(props) => (props.padding ? props.padding : null)};
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : null};
-  overflow: hidden;
+  overflow: ${(props) => (props.overflow ? props.overflow : null)};
 `;
 
 export const UserProfileImage = styled.img`
