@@ -231,7 +231,7 @@ export const SliderItem = ({ item, type, rank }) => {
             <Infomation fontSize="small" fontWeight="700" color="primary">
               {item.discount}
             </Infomation>{' '}
-            {item.price}원
+            {item.price.toLocaleString('en-US')}원
           </Infomation>
           {item.badge && (
             <Infomation

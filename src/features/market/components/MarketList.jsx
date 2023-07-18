@@ -39,7 +39,7 @@ export const MarketList = () => {
               <TimeAndPlace>
                 {post.location}・{post.postedAt}
               </TimeAndPlace>
-              <Price>{post.price}원</Price>
+              <Price>{post.price.toLocaleString('en-US')}원</Price>
               <Likes>
                 <Icon src={HeartIcon} />
                 {post.likes}

@@ -14,6 +14,7 @@ const colors = {
   gray: '#999',
   lightGray: '#ddd',
   danger: '#ff0000',
+  safe: '#2962f6',
 };
 
 export const theme = {

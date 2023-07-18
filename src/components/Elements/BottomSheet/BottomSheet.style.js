@@ -1,0 +1,51 @@
+import { styled } from 'styled-components';
+
+export const Wrapper = styled.div`
+  position: fixed;
+  bottom: ${(props) => (props.isActive ? '5%' : '-50%')};
+  left: 0;
+  z-index: 200;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  transition: bottom ease 0.5s 0s;
+`;
+
+export const Buttons = styled.div`
+  width: 90%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  overflow: hidden;
+  gap: 1px;
+`;
+
+export const Button = styled.button`
+  width: 100%;
+  padding: 20px;
+  background-color: ${(props) =>
+    props.isStrong ? props.theme.colors.white : props.theme.colors.lightGray};
+  color: ${(props) => props.theme.colors.safe};
+  font-size: ${(props) => props.theme.fontSizes.large};
+  font-weight: ${(props) => (props.isStrong ? '600' : '400')};
+  cursor: pointer;
+  &:active {
+    background-color: ${(props) => props.theme.colors.gray};
+  }
+`;
+
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 199;
+  width: 100%;
+  height: 100%;
+  display: ${(props) => (props.isActive ? 'block' : 'none')};
+  background-color: ${(props) => props.theme.colors.black};
+  opacity: 0.2;
+`;

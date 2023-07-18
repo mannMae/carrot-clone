@@ -3,14 +3,13 @@ import {
   BottomNavigationWrapper,
   Box,
   HeaderWrapper,
-  Heading,
   Icon,
   Icons,
   Price,
   PriceOffer,
   Wrapper,
 } from './DetailLayout.style';
-import { Button, Dropdown } from 'components/Elements';
+import { Button } from 'components/Elements';
 
 import LeftArrowIcon from 'assets/icons/left-arrow.svg';
 import HomeIcon from 'assets/icons/home-outlined.svg';
@@ -19,6 +18,7 @@ import HamburgerIcon from 'assets/icons/hamburger-dots.svg';
 import { useEffect, useState } from 'react';
 import { details } from 'features/market/routes/MarketDetail';
 import { LikeButton } from 'features/like';
+import { useBottomSheet } from 'hooks/useBottomSheet';
 
 export const DetailLayout = ({ children }) => {
   const [hasTopImage, setHasTopImage] = useState(false);
@@ -38,6 +38,7 @@ export const DetailLayout = ({ children }) => {
 };
 
 const Header = ({ hasTopImage }) => {
+  const { open } = useBottomSheet();
   const location = useLocation();
   return (
     <HeaderWrapper hasTopImage={hasTopImage}>
@@ -51,7 +52,11 @@ const Header = ({ hasTopImage }) => {
       </Icons>
       <Icons>
         <Icon src={ShareIcon} hasTopImage={hasTopImage} />
-        <Icon src={HamburgerIcon} hasTopImage={hasTopImage} />
+        <Icon
+          src={HamburgerIcon}
+          hasTopImage={hasTopImage}
+          onClick={() => open()}
+        />
       </Icons>
     </HeaderWrapper>
   );
@@ -59,17 +64,16 @@ const Header = ({ hasTopImage }) => {
 
 const BottomNavigation = () => {
   const location = useLocation();
-  const userId = 3;
   return (
     <BottomNavigationWrapper>
       <Box flexDirection="row" height="40px" alignItems="center" gap="30px">
-        <LikeButton userId={userId} />
+        <LikeButton userId={details.userId} />
         <Box>
           <Price>{details.price.toLocaleString('en-US')}원</Price>
           <PriceOffer>가격 제안 불가</PriceOffer>
         </Box>
       </Box>
-      <Link to={`/chat/${userId}`}>
+      <Link to={`/chat/${details.userId}`}>
         <Button
           borderRadius="5px"
           padding="6px 12px"
