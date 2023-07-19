@@ -18,6 +18,10 @@ export const Box = styled.div`
     props.justifyContent ? props.justifyContent : null};
   align-items: ${(props) => (props.alignItems ? props.alignItems : 'start')};
   gap: ${(props) => (props.gap ? props.gap : '5px')};
+
+  grid-template-columns: ${(props) =>
+    props.gridTemplateColumns ? props.gridTemplateColumns : null};
+
   border: ${(props) =>
     props.borderColor
       ? `1px solid ${props.theme.colors[props.borderColor]}`
@@ -121,4 +125,39 @@ export const Description = styled.span`
   font-weight: 400;
   line-height: 18px;
   white-space: pre-wrap;
+`;
+
+export const SectionTitle = styled.h3`
+  font-size: ${(props) => props.theme.fontSizes.medium};
+  font-weight: 600;
+`;
+
+export const Sale = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 250px;
+  cursor: pointer;
+`;
+
+export const SaleImage = styled.img`
+  width: 250px;
+  border-radius: 10px;
+  background-color: #000;
+  aspect-ratio: 7/5;
+  object-fit: cover;
+`;
+
+export const SaleTitle = styled.h4`
+  width: 100%;
+  font-size: ${(props) => props.theme.fontSizes.medium};
+  font-weight: 400;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+export const SalePrice = styled.span`
+  font-size: ${(props) => props.theme.fontSizes.medium};
+  font-weight: 700;
 `;
