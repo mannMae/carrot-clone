@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
   border-radius: 10px;
   padding: 20px;
   background-color: ${(props) => props.theme.colors.white};
-  opacity: ${(props) => (props.isActive ? 1 : 0.5)};
+  opacity: ${(props) => (props.isActive ? 1 : 0)};
   transition: opacity ease 0.5s 0s, transform ease 0.5s 0s;
 `;
 
