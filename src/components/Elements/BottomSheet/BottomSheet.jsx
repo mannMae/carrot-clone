@@ -10,7 +10,6 @@ export const BottomSheet = () => {
     return;
   }
   const { isActive, buttons } = data;
-  console.log(data, buttons);
 
   return (
     <>

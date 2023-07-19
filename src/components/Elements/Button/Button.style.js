@@ -9,7 +9,7 @@ export const Wrapper = styled.button`
 
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: ${(props) => (props.alignItems ? props.alignItems : 'start')};
   gap: ${(props) => (props.gap ? props.gap : null)};
 
   width: ${(props) => (props.width ? props.width : null)};
@@ -17,6 +17,8 @@ export const Wrapper = styled.button`
   border: ${(props) =>
     props?.variant?.backgroundColor === 'white'
       ? `1px solid ${props.theme.colors[props.variant.color]}`
+      : props.borderColor
+      ? `1px solid ${props.theme.colors[props.borderColor]}`
       : 'none'};
   border-radius: ${(props) =>
     props.borderRadius ? props.borderRadius : '15px'};
@@ -30,10 +32,14 @@ export const Wrapper = styled.button`
   background-color: ${(props) =>
     props.variant
       ? props.theme.colors[props.variant.backgroundColor]
+      : props.backgroundColor
+      ? props.theme.colors[props.backgroundColor]
       : props.theme.colors['primary']};
   color: ${(props) =>
     props.variant
       ? props.theme.colors[props.variant.color]
+      : props.color
+      ? props.theme.colors[props.color]
       : props.theme.colors['white']};
   cursor: pointer;
   outline: none;

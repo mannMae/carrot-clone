@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   BottomNavigationWrapper,
   Box,
@@ -19,6 +19,7 @@ import { useEffect, useState } from 'react';
 import { details } from 'features/market/routes/MarketDetail';
 import { LikeButton } from 'features/like';
 import { useBottomSheet } from 'hooks/useBottomSheet';
+import { useModal } from 'hooks/useModal';
 
 export const DetailLayout = ({ children }) => {
   const [hasTopImage, setHasTopImage] = useState(false);
@@ -38,11 +39,44 @@ export const DetailLayout = ({ children }) => {
 };
 
 const Header = ({ hasTopImage }) => {
-  const { open } = useBottomSheet();
+  const bottomSheet = useBottomSheet();
+  const modal = useModal();
+
+  const navigate = useNavigate();
+
   const buttons = [
-    { clickEvent: () => {}, content: '신고' },
-    { clickEvent: () => {}, content: '이 사용자의 글 보지 않기' },
+    {
+      clickEvent: () => {
+        navigate('/declaration');
+        bottomSheet.close();
+      },
+      content: '신고',
+    },
+    {
+      clickEvent: () => {
+        modal.open(modalOptions);
+        bottomSheet.close();
+      },
+      content: '이 사용자의 글 보지 않기',
+    },
   ];
+
+  const modalOptions = {
+    title: '',
+    content: `${details.username}님의 모든 게시글을 보지 않으시겠어요?\n게시글 목록에서 ${details.username}님의 게시글이 더는 보이지 않아요.`,
+    button: (
+      <Button
+        variant=""
+        width="100%"
+        height="30px"
+        borderRadius="5px"
+        fontWeight="600"
+        alignItems="center"
+      >
+        네, 안 볼게요
+      </Button>
+    ),
+  };
 
   // const location = useLocation();
   const currentUrl = document.location.href;
@@ -66,7 +100,7 @@ const Header = ({ hasTopImage }) => {
         <Icon
           src={HamburgerIcon}
           hasTopImage={hasTopImage}
-          onClick={() => open(buttons)}
+          onClick={() => bottomSheet.open(buttons)}
         />
       </Icons>
     </HeaderWrapper>

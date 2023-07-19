@@ -1,6 +1,9 @@
 import { styled } from 'styled-components';
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  position: relative;
+  background-color: ${(props) => props.theme.colors.white};
+`;
 
 export const HeaderWrapper = styled.header`
   position: fixed;
