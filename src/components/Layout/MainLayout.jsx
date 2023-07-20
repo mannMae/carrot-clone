@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 
-import { Button, Dropdown } from 'components/Elements';
+import { Button, Dropdown, Spinner } from 'components/Elements';
 import {
   BottomNavigationItem,
   BottomNavigationWrapper,
@@ -34,13 +34,22 @@ import QuestionMarkIcon from 'assets/icons/question-mark.svg';
 
 import PlusIcon from 'assets/icons/plus.svg';
 import XIcon from 'assets/icons/x.svg';
+import { usePullToRefresh } from 'hooks/usePullToRefresh';
 
 export const MainLayout = ({ children }) => {
   const location = useLocation();
+  const { ref, handleTouchStart, handleTouchMove, handleTouchEnd } =
+    usePullToRefresh();
+
   return (
     <>
       <Header />
-      <Contents>
+      <Contents
+        ref={ref}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {children}
         {(location.pathname === '/home' ||
           location.pathname === '/town-life' ||

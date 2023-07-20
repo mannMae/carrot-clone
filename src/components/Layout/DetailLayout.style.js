@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export const Wrapper = styled.div`
   position: relative;
   background-color: ${(props) => props.theme.colors.white};
-  padding-top: 50px;
+  padding: ${(props) => (props.padding ? props.padding : '50px 0 0')};
 `;
 
 export const HeaderWrapper = styled.header`

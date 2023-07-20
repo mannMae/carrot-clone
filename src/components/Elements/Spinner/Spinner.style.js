@@ -1,13 +1,11 @@
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
   svg {
     animation: rotate 2s linear infinite;
-    z-index: 2;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -25px 0 0 -25px;
+    // margin: -25px 0 0 -25px;
     width: ${(props) => (props.size ? props.size : '8px')};
     height: ${(props) => (props.size ? props.size : '8px')};
     color: ${(props) => (props.variant ? props.theme[props.variant] : '#000')};

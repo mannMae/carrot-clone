@@ -31,7 +31,7 @@ export const DetailLayout = ({ children }) => {
   }, []);
 
   return (
-    <Wrapper>
+    <Wrapper padding="0">
       <Header hasTopImage={hasTopImage} />
       {children}
       <BottomNavigation />

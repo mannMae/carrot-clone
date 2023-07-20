@@ -9,7 +9,7 @@ export const Wrapper = styled.button`
 
   display: flex;
   justify-content: center;
-  align-items: ${(props) => (props.alignItems ? props.alignItems : 'start')};
+  align-items: ${(props) => (props.alignItems ? props.alignItems : 'center')};
   gap: ${(props) => (props.gap ? props.gap : null)};
 
   width: ${(props) => (props.width ? props.width : null)};

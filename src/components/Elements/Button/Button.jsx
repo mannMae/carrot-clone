@@ -14,7 +14,11 @@ export const Button = ({
 }) => {
   return (
     <Wrapper variant={variants[variant]} size={sizes[size]} {...props}>
-      {isLoading ? <Spinner /> : startIcon ? <Icon src={startIcon} /> : null}
+      {isLoading ? (
+        <Spinner size={size} variant={variant} />
+      ) : startIcon ? (
+        <Icon src={startIcon} />
+      ) : null}
       <Content size={sizes[size]} contentWidth={contentWidth}>
         {children}
       </Content>
