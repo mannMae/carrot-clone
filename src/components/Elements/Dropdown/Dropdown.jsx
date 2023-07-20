@@ -8,6 +8,7 @@ import {
   Select,
   Wrapper,
 } from './Dropdown.style';
+import { Link } from 'react-router-dom';
 
 export const Dropdown = ({ options }) => {
   const [isActive, setIsActive] = useState(false);
@@ -34,7 +35,9 @@ export const Dropdown = ({ options }) => {
               />
             </Label>
           ))}
-          <Label>내 동네 설정하기</Label>
+          <Link to="/location" style={{ display: 'flex' }}>
+            <Label>내 동네 설정하기</Label>
+          </Link>
         </Options>
       </Wrapper>
       {isActive && <Overlay onClick={() => setIsActive(!isActive)} />}

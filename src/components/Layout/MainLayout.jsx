@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { Button, Dropdown } from 'components/Elements';
 import {
@@ -30,16 +30,21 @@ import DocumentFilledIcon from 'assets/icons/document-filled.svg';
 import LocationFilledIcon from 'assets/icons/location-on-map-fiiled.svg';
 import ChatBubbleFilledIcon from 'assets/icons/chat-bubble-fiiled.svg';
 import UserFilledIcon from 'assets/icons/user-filled.svg';
+import QuestionMarkIcon from 'assets/icons/question-mark.svg';
 
 import PlusIcon from 'assets/icons/plus.svg';
+import XIcon from 'assets/icons/x.svg';
 
 export const MainLayout = ({ children }) => {
+  const location = useLocation();
   return (
     <>
       <Header />
       <Contents>
         {children}
-        <WriteButton size="medium" />
+        {(location.pathname === '/home' ||
+          location.pathname === '/town-life' ||
+          location.pathname === '/around') && <WriteButton size="medium" />}
       </Contents>
       <BottomNavigation />
     </>
@@ -48,15 +53,14 @@ export const MainLayout = ({ children }) => {
 
 const Header = () => {
   const location = useLocation();
-  console.log(location.pathname.split('/'));
-
+  const navigate = useNavigate();
   if (location.pathname === '/home') {
     return (
       <HeaderWrapper>
         <Dropdown options={['역삼동', '노량진동']} />
         <Icons>
-          <Icon src={SearchIcon} />
           <Icon src={HamburgerIcon} />
+          <Icon src={SearchIcon} />
           <Icon src={BellIcon} />
         </Icons>
       </HeaderWrapper>
@@ -102,6 +106,20 @@ const Header = () => {
         </Icons>
       </HeaderWrapper>
     );
+  } else if (location.pathname === '/location') {
+    return (
+      <HeaderWrapper>
+        <Icons>
+          <Icon src={XIcon} onClick={() => navigate(-1)} />
+        </Icons>
+        <Heading>내 동네 설정</Heading>
+        <Icons>
+          <Link to="/service-center/location">
+            <Icon src={QuestionMarkIcon} />
+          </Link>
+        </Icons>
+      </HeaderWrapper>
+    );
   }
 };
 
@@ -139,6 +157,9 @@ const BottomNavigation = () => {
       icon: [UserOutlinedIcon, UserFilledIcon],
     },
   ];
+  if (location.pathname === '/location') {
+    return;
+  }
   return (
     <BottomNavigationWrapper>
       {navigation.map((p, i) => (

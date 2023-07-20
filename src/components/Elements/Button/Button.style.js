@@ -46,8 +46,12 @@ export const Wrapper = styled.button`
 `;
 
 export const Content = styled.span`
-  display: inline-block;
+  display: flex;
   width: ${(props) => (props.contentWidth ? props.contentWidth : null)};
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
   overflow: hidden;
   white-space: nowrap;
   font-size: ${(props) =>

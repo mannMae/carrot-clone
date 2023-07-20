@@ -6,8 +6,8 @@ import { Button } from '../Button';
 export const Modal = () => {
   const { close } = useModal();
 
-  const { data } = useQuery(['modal']);
-  if (!data) {
+  const { data, isLoading } = useQuery(['modal']);
+  if (!data || isLoading) {
     return;
   }
 

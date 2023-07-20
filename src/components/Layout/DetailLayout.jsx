@@ -13,7 +13,6 @@ import { Button, ShareButton } from 'components/Elements';
 
 import LeftArrowIcon from 'assets/icons/left-arrow.svg';
 import HomeIcon from 'assets/icons/home-outlined.svg';
-import ShareIcon from 'assets/icons/share.svg';
 import HamburgerIcon from 'assets/icons/hamburger-dots.svg';
 import { useEffect, useState } from 'react';
 import { details } from 'features/market/routes/MarketDetail';
@@ -63,7 +62,7 @@ const Header = ({ hasTopImage }) => {
 
   const modalOptions = {
     title: '',
-    content: `${details.username}님의 모든 게시글을 보지 않으시겠어요?\n게시글 목록에서 ${details.username}님의 게시글이 더는 보이지 않아요.`,
+    content: `${details.user.username}님의 모든 게시글을 보지 않으시겠어요?\n게시글 목록에서 ${details.user.username}님의 게시글이 더는 보이지 않아요.`,
     button: (
       <Button
         variant=""
