@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 export const Wrapper = styled.div`
   position: relative;
   background-color: ${(props) => props.theme.colors.white};
+  padding-top: 50px;
 `;
 
 export const HeaderWrapper = styled.header`
@@ -17,6 +18,8 @@ export const HeaderWrapper = styled.header`
   padding: 10px;
   background-color: ${(props) =>
     props.hasTopImage ? 'transparent' : props.theme.colors.white};
+  border-bottom: ${(props) =>
+    props.borderBottomColor ? `1px solid ${props.borderBottomColor}` : null};
 `;
 
 export const Heading = styled.h2`

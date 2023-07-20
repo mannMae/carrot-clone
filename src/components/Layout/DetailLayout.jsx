@@ -1,8 +1,9 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
   BottomNavigationWrapper,
   Box,
   HeaderWrapper,
+  Heading,
   Icon,
   Icons,
   Price,
@@ -19,6 +20,7 @@ import { details } from 'features/market/routes/MarketDetail';
 import { LikeButton } from 'features/like';
 import { useBottomSheet } from 'hooks/useBottomSheet';
 import { useModal } from 'hooks/useModal';
+import { locationData } from 'features/location/routes/Location';
 
 export const DetailLayout = ({ children }) => {
   const [hasTopImage, setHasTopImage] = useState(false);
@@ -38,6 +40,8 @@ export const DetailLayout = ({ children }) => {
 };
 
 const Header = ({ hasTopImage }) => {
+  const location = useLocation();
+
   const bottomSheet = useBottomSheet();
   const modal = useModal();
 
@@ -79,54 +83,76 @@ const Header = ({ hasTopImage }) => {
 
   // const location = useLocation();
   const currentUrl = document.location.href;
+  if (location.pathname.split('/')[1] === 'home') {
+    return (
+      <HeaderWrapper hasTopImage={hasTopImage}>
+        <Icons>
+          <Link to={-1}>
+            <Icon src={LeftArrowIcon} hasTopImage={hasTopImage} />
+          </Link>
+          <Link to="/home">
+            <Icon src={HomeIcon} hasTopImage={hasTopImage} />
+          </Link>
+        </Icons>
+        <Icons>
+          <ShareButton
+            title={details.title}
+            text={details.description}
+            url={currentUrl}
+          />
+          <Icon
+            src={HamburgerIcon}
+            hasTopImage={hasTopImage}
+            onClick={() => bottomSheet.open(buttons)}
+          />
+        </Icons>
+      </HeaderWrapper>
+    );
+  }
 
-  return (
-    <HeaderWrapper hasTopImage={hasTopImage}>
-      <Icons>
-        <Link to={-1}>
-          <Icon src={LeftArrowIcon} hasTopImage={hasTopImage} />
-        </Link>
-        <Link to="/home">
-          <Icon src={HomeIcon} hasTopImage={hasTopImage} />
-        </Link>
-      </Icons>
-      <Icons>
-        <ShareButton
-          title={details.title}
-          text={details.description}
-          url={currentUrl}
-        />
-        <Icon
-          src={HamburgerIcon}
-          hasTopImage={hasTopImage}
-          onClick={() => bottomSheet.open(buttons)}
-        />
-      </Icons>
-    </HeaderWrapper>
+  const locationName = decodeURI(
+    decodeURIComponent(location.pathname.split('/')[3])
   );
+
+  if (location.pathname.split('/')[1] === 'location') {
+    return (
+      <HeaderWrapper borderBottomColor="lightGray">
+        <Icons>
+          <Link to={-1}>
+            <Icon src={LeftArrowIcon} />
+          </Link>
+        </Icons>
+        <Heading>{`${locationName}과 근처 동네 ${locationData[locationName]['count'][3]}개`}</Heading>
+        <Icons></Icons>
+      </HeaderWrapper>
+    );
+  }
 };
 
 const BottomNavigation = () => {
   const location = useLocation();
-  return (
-    <BottomNavigationWrapper>
-      <Box flexDirection="row" height="40px" alignItems="center" gap="30px">
-        <LikeButton userId={details.userId} />
-        <Box>
-          <Price>{details.price.toLocaleString('en-US')}원</Price>
-          <PriceOffer>가격 제안 불가</PriceOffer>
+
+  if (location.pathname.split('/')[1] === 'home') {
+    return (
+      <BottomNavigationWrapper>
+        <Box flexDirection="row" height="40px" alignItems="center" gap="30px">
+          <LikeButton userId={details.userId} />
+          <Box>
+            <Price>{details.price.toLocaleString('en-US')}원</Price>
+            <PriceOffer>가격 제안 불가</PriceOffer>
+          </Box>
         </Box>
-      </Box>
-      <Link to={`/chat/${details.userId}`}>
-        <Button
-          borderRadius="5px"
-          padding="6px 12px"
-          size="medium"
-          fontWeight="500"
-        >
-          채팅하기
-        </Button>
-      </Link>
-    </BottomNavigationWrapper>
-  );
+        <Link to={`/chat/${details.userId}`}>
+          <Button
+            borderRadius="5px"
+            padding="6px 12px"
+            size="medium"
+            fontWeight="500"
+          >
+            채팅하기
+          </Button>
+        </Link>
+      </BottomNavigationWrapper>
+    );
+  }
 };

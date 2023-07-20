@@ -2,6 +2,7 @@ import { Spinner } from 'components/Elements';
 import { DetailLayout, MainLayout } from 'components/Layout';
 import { AroundRoutes } from 'features/around';
 import { ChatRoutes } from 'features/chat';
+import { LocationRoutes } from 'features/location';
 import { MarketRoutes } from 'features/market';
 import { TownLife } from 'features/misc';
 import { UserRoutes } from 'features/user';
@@ -51,6 +52,7 @@ export const protectedRoutes = [
       { path: '/around', element: <AroundRoutes /> },
       { path: '/chat/*', element: <ChatRoutes /> },
       { path: '/user/*', element: <UserRoutes /> },
+      { path: '/location/*', element: <LocationRoutes /> },
       { path: '*', element: <Navigate to="." /> },
     ],
   },

@@ -47,8 +47,7 @@ export const Location = () => {
             ))}
           </Box>
           <Link
-            to={`./infomation
-            ?data=${encodeURI(encodeURIComponent(selectedLocation))}
+            to={`./infomation/${encodeURI(encodeURIComponent(selectedLocation))}
             `}
           >
             <Infomation>{`${selectedLocation}과 근처 동네 ${locationData[selectedLocation]?.count[locationLevel]}개`}</Infomation>
@@ -70,7 +69,7 @@ export const Location = () => {
 
 const locations = ['역삼동', '노량진동'];
 
-const locationData = {
+export const locationData = {
   역삼동: {
     position: { lat: 37.5013187, lng: 127.0420784 },
     count: [3, 16, 28, 39],
