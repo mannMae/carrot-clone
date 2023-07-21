@@ -6,9 +6,11 @@ export const Wrapper = styled.button`
   bottom: ${(props) => (props.bottom ? props.bottom : null)};
   left: ${(props) => (props.left ? props.left : null)};
   right: ${(props) => (props.right ? props.right : null)};
+  z-index: ${(props) => (props.zIndex ? props.zIndex : null)};
 
   display: flex;
-  justify-content: center;
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : 'center'};
   align-items: ${(props) => (props.alignItems ? props.alignItems : 'center')};
   gap: ${(props) => (props.gap ? props.gap : null)};
 
@@ -43,6 +45,7 @@ export const Wrapper = styled.button`
       : props.theme.colors['white']};
   cursor: pointer;
   outline: none;
+  transition: all ease 0.5s 0s;
 `;
 
 export const Content = styled.span`
@@ -61,10 +64,11 @@ export const Content = styled.span`
       ? props.fontSize
       : props.theme.fontSizes['medium']};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : null)};
-  transition: all ease 1s 0s;
+  transition: all ease 0.5s 0s;
 `;
 
 export const Icon = styled.img`
   width: ${(props) => (props.size ? props.size : '14px')};
   height: ${(props) => (props.size ? props.size : '14px')};
+  filter: ${(props) => (props.filter ? props.filter : null)};
 `;

@@ -10,6 +10,7 @@ export const Button = ({
   size,
   isShowingText,
   contentWidth,
+  iconColor,
   ...props
 }) => {
   return (
@@ -17,12 +18,14 @@ export const Button = ({
       {isLoading ? (
         <Spinner size={size} variant={variant} />
       ) : startIcon ? (
-        <Icon src={startIcon} />
+        <Icon size={sizes[size]?.iconSize} src={startIcon} filter={iconColor} />
       ) : null}
       <Content size={sizes[size]} contentWidth={contentWidth}>
         {children}
       </Content>
-      {!isLoading && endIcon ? <Icon src={endIcon} /> : null}
+      {!isLoading && endIcon ? (
+        <Icon size={sizes[size]?.iconSize} src={endIcon} filter={iconColor} />
+      ) : null}
     </Wrapper>
   );
 };
@@ -48,6 +51,10 @@ const variants = {
     backgroundColor: 'white',
     color: 'gray',
   },
+  dark: {
+    backgroundColor: 'black',
+    color: 'white',
+  },
   blackLightGray: {
     backgroundColor: 'lightGray',
     color: 'black',
@@ -62,17 +69,21 @@ const sizes = {
   small: {
     padding: '2px 4px',
     fontSize: 'small',
+    iconSize: '12px',
   },
   medium: {
     padding: '4px 6px',
     fontSize: 'medium',
+    iconSize: '14px',
   },
   large: {
     padding: '6px 8px',
     fontSize: 'large',
+    iconSize: '18px',
   },
   xlarge: {
     padding: '6px 8px',
     fontSize: 'xlarge',
+    iconSize: '24px',
   },
 };

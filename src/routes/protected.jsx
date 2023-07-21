@@ -6,6 +6,7 @@ import { LocationRoutes } from 'features/location';
 import { MarketRoutes } from 'features/market';
 import { TownLife } from 'features/misc';
 import { UserRoutes } from 'features/user';
+import { WriteRoutes } from 'features/write/routes';
 
 import { Suspense } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
@@ -53,6 +54,7 @@ export const protectedRoutes = [
       { path: '/chat/*', element: <ChatRoutes /> },
       { path: '/user/*', element: <UserRoutes /> },
       { path: '/location/*', element: <LocationRoutes /> },
+      { path: '/write/*', element: <WriteRoutes /> },
       { path: '*', element: <Navigate to="." /> },
     ],
   },

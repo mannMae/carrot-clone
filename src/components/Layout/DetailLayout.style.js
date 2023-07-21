@@ -48,7 +48,10 @@ export const BottomNavigationWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: ${(props) => `0.5px solid ${props.theme.colors.gray}`};
+  border-top: ${(props) =>
+    props.borderTopColor
+      ? `0.5px solid ${props.theme.colors[props.borderTopColor]}`
+      : null};
   padding: 15px;
   background-color: #fff;
 `;

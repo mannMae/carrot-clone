@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 
-import { Button, Dropdown, Spinner } from 'components/Elements';
+import { Dropdown } from 'components/Elements';
+import { WriteButton } from 'features/write';
 import {
   BottomNavigationItem,
   BottomNavigationWrapper,
@@ -11,7 +11,6 @@ import {
   Icon,
   Icons,
 } from './MainLayout.style';
-import { useScroll } from 'hooks/useScroll';
 
 import SearchIcon from 'assets/icons/search.svg';
 import HamburgerIcon from 'assets/icons/hamburger.svg';
@@ -32,7 +31,6 @@ import ChatBubbleFilledIcon from 'assets/icons/chat-bubble-fiiled.svg';
 import UserFilledIcon from 'assets/icons/user-filled.svg';
 import QuestionMarkIcon from 'assets/icons/question-mark.svg';
 
-import PlusIcon from 'assets/icons/plus.svg';
 import XIcon from 'assets/icons/x.svg';
 import { usePullToRefresh } from 'hooks/usePullToRefresh';
 
@@ -53,7 +51,7 @@ export const MainLayout = ({ children }) => {
         {children}
         {(location.pathname === '/home' ||
           location.pathname === '/town-life' ||
-          location.pathname === '/around') && <WriteButton size="medium" />}
+          location.pathname === '/around') && <WriteButton size="large" />}
       </Contents>
       <BottomNavigation />
     </>
@@ -184,32 +182,5 @@ const BottomNavigation = () => {
         </NavLink>
       ))}
     </BottomNavigationWrapper>
-  );
-};
-
-const WriteButton = ({ contentScrollY, ...props }) => {
-  const [isShowingText, setIsShowingText] = useState(true);
-  const { scrollY } = useScroll();
-
-  useEffect(() => {
-    if (scrollY >= 20) {
-      setIsShowingText(false);
-    } else {
-      setIsShowingText(true);
-    }
-  }, [scrollY]);
-  return (
-    <>
-      <Button
-        startIcon={PlusIcon}
-        {...props}
-        contentWidth={isShowingText ? '38px' : '0px'}
-        position="fixed"
-        bottom="10%"
-        right="10%"
-      >
-        글쓰기
-      </Button>
-    </>
   );
 };

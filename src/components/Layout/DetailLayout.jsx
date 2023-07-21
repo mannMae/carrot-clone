@@ -11,16 +11,17 @@ import {
   Wrapper,
 } from './DetailLayout.style';
 import { Button, ShareButton } from 'components/Elements';
-
-import LeftArrowIcon from 'assets/icons/left-arrow.svg';
-import HomeIcon from 'assets/icons/home-outlined.svg';
-import HamburgerIcon from 'assets/icons/hamburger-dots.svg';
 import { useEffect, useState } from 'react';
 import { details } from 'features/market/routes/MarketDetail';
 import { LikeButton } from 'features/like';
 import { useBottomSheet } from 'hooks/useBottomSheet';
 import { useModal } from 'hooks/useModal';
 import { locationData } from 'features/location/routes/Location';
+
+import LeftArrowIcon from 'assets/icons/left-arrow.svg';
+import HomeIcon from 'assets/icons/home-outlined.svg';
+import HamburgerIcon from 'assets/icons/hamburger-dots.svg';
+import XIcon from 'assets/icons/x.svg';
 
 export const DetailLayout = ({ children }) => {
   const [hasTopImage, setHasTopImage] = useState(false);
@@ -81,7 +82,6 @@ const Header = ({ hasTopImage }) => {
     ),
   };
 
-  // const location = useLocation();
   const currentUrl = document.location.href;
   if (location.pathname.split('/')[1] === 'home') {
     return (
@@ -127,6 +127,22 @@ const Header = ({ hasTopImage }) => {
       </HeaderWrapper>
     );
   }
+
+  if (location.pathname.split('/')[1] === 'write') {
+    return (
+      <HeaderWrapper borderBottomColor="lightGray">
+        <Icons>
+          <Link to={-1}>
+            <Icon src={XIcon} />
+          </Link>
+        </Icons>
+        <Heading>내 물건 팔기</Heading>
+        <Button backgroundColor="transparent" color="black">
+          임시저장
+        </Button>
+      </HeaderWrapper>
+    );
+  }
 };
 
 const BottomNavigation = () => {
@@ -134,7 +150,7 @@ const BottomNavigation = () => {
 
   if (location.pathname.split('/')[1] === 'home') {
     return (
-      <BottomNavigationWrapper>
+      <BottomNavigationWrapper borderTopColor="gray">
         <Box flexDirection="row" height="40px" alignItems="center" gap="30px">
           <LikeButton userId={details.userId} />
           <Box>
@@ -152,6 +168,21 @@ const BottomNavigation = () => {
             채팅하기
           </Button>
         </Link>
+      </BottomNavigationWrapper>
+    );
+  }
+  if (location.pathname.split('/')[1] === 'write') {
+    return (
+      <BottomNavigationWrapper>
+        <Button
+          borderRadius="5px"
+          padding="15px"
+          size="large"
+          fontWeight="500"
+          width="100%"
+        >
+          작성 완료
+        </Button>
       </BottomNavigationWrapper>
     );
   }

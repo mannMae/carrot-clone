@@ -28,8 +28,9 @@ export const Spinner = ({ size = 'medium', variant, isPaused = false }) => {
 };
 
 const sizes = {
-  small: '4px',
-  medium: '12px',
-  large: '16px',
+  xsmall: '10px',
+  small: '12px',
+  medium: '14px',
+  large: '18px',
   xlarge: '24px',
 };
