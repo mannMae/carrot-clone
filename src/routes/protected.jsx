@@ -11,7 +11,7 @@ import { WriteRoutes } from 'features/write/routes';
 import { Suspense } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
-const App = () => {
+const App = (props) => {
   const location = useLocation();
   if (location.pathname.split('/').length === 2) {
     return (

@@ -11,7 +11,7 @@ import {
   Wrapper,
 } from './DetailLayout.style';
 import { Button, ShareButton } from 'components/Elements';
-import { useEffect, useState } from 'react';
+import React, { cloneElement, createElement, useEffect, useState } from 'react';
 import { details } from 'features/market/routes/MarketDetail';
 import { LikeButton } from 'features/like';
 import { useBottomSheet } from 'hooks/useBottomSheet';
@@ -22,14 +22,36 @@ import LeftArrowIcon from 'assets/icons/left-arrow.svg';
 import HomeIcon from 'assets/icons/home-outlined.svg';
 import HamburgerIcon from 'assets/icons/hamburger-dots.svg';
 import XIcon from 'assets/icons/x.svg';
+import { Form } from 'components/Form';
 
 export const DetailLayout = ({ children }) => {
+  const location = useLocation();
   const [hasTopImage, setHasTopImage] = useState(false);
+
   useEffect(() => {
     if (details.images.length) {
       setHasTopImage(true);
     }
   }, []);
+
+  if (location.pathname.split('/')[1] === 'write') {
+    const handleSubmit = (value) => {
+      console.log(value);
+    };
+    return (
+      <Wrapper padding="0">
+        <Form onSubmit={(value) => handleSubmit(value)}>
+          {() => (
+            <>
+              <Header hasTopImage={hasTopImage} />
+              {children}
+              <BottomNavigation />
+            </>
+          )}
+        </Form>
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper padding="0">
@@ -103,7 +125,7 @@ const Header = ({ hasTopImage }) => {
           <Icon
             src={HamburgerIcon}
             hasTopImage={hasTopImage}
-            onClick={() => bottomSheet.open(buttons)}
+            onClick={() => bottomSheet.open({ type: 'select', buttons })}
           />
         </Icons>
       </HeaderWrapper>
@@ -171,6 +193,7 @@ const BottomNavigation = () => {
       </BottomNavigationWrapper>
     );
   }
+
   if (location.pathname.split('/')[1] === 'write') {
     return (
       <BottomNavigationWrapper>

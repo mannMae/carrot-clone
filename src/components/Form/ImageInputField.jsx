@@ -18,9 +18,10 @@ import XIcon from 'assets/icons/x.svg';
 
 let newFiles = [];
 
-export const ImageInputField = () => {
+export const ImageInputField = ({ registraion }) => {
   const [images, setImages] = useState([]);
   const [isEncoding, setIsEncoding] = useState(false);
+
   const addImage = (e) => {
     newFiles = [];
     for (let file of e.target.files) {
@@ -37,15 +38,14 @@ export const ImageInputField = () => {
         newFiles.push(reader.result);
         console.log(newFiles);
         setIsEncoding(false);
-        // setImages([...images, reader.result]);
       };
       resolve();
     });
   };
   useEffect(() => {
     if (isEncoding === false) {
-      console.log(newFiles);
       setImages([...images, ...newFiles]);
+      // onChange([...images, ...newFiles]);
     }
   }, [isEncoding]);
 
@@ -71,6 +71,7 @@ export const ImageInputField = () => {
               type="file"
               multiple="multiple"
               accept="image/jpeg, image/png"
+              {...registraion}
             />
           </Label>
         ) : (
@@ -79,7 +80,7 @@ export const ImageInputField = () => {
             <Text>
               <Text disabled={true}>{images.length}</Text>/10
             </Text>
-            <Input type="file" multiple="multiple" disabled />
+            <Input type="file" multiple="multiple" disabled {...registraion} />
           </Label>
         )}
       </InputWrapper>
@@ -96,6 +97,7 @@ export const ImageInputField = () => {
             iconColor="invert(100%)"
             padding="2px"
             onClick={() => deleteImage(i)}
+            type="button"
           />
         </ImageWrapper>
       ))}
