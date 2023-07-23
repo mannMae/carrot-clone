@@ -1,4 +1,4 @@
-import { Anchor, BoxTitle, Description, Wrapper } from './Write.style';
+import { Anchor, BoxTitle, Description, List, Wrapper } from './Write.style';
 import { ImageInputField } from 'components/Form/ImageInputField';
 import { Box, Button } from 'components/Elements';
 import { CheckboxField, InputField, TextareaField } from 'components/Form';
@@ -8,6 +8,7 @@ import { useState } from 'react';
 import RightArrowIcon from 'assets/icons/right-arrow.svg';
 import { useQuery } from 'react-query';
 import { useBottomSheet } from 'hooks/useBottomSheet';
+import { OftenPharse } from '..';
 
 export const Write = () => {
   const bottomSheet = useBottomSheet();
@@ -66,7 +67,39 @@ export const Write = () => {
             >
               나눔 이벤트 열기
             </CheckboxField>
-            <Description onClick={() => bottomSheet.open()}>
+            <Description
+              onClick={() =>
+                bottomSheet.open({
+                  type: 'content',
+                  title: '나눔 신청을 받으면 이런 점이 달라요.',
+                  content: (
+                    <>
+                      <List>
+                        <li>채팅 대신 이웃의 신청을 받아요.</li>
+                        <li>
+                          신청한 이웃 중에서 나눔하고 싶은 이웃을 선택해요.
+                        </li>
+                        <li>판매자가 먼저 채팅을 시작해요.</li>
+                      </List>
+                    </>
+                  ),
+                  buttons: [
+                    <Button
+                      variant="primary"
+                      width="100%"
+                      height="50px"
+                      borderRadius="5px"
+                      fontWeight="600"
+                      alignItems="center"
+                      size="large"
+                      onClick={() => bottomSheet.close()}
+                    >
+                      확인
+                    </Button>,
+                  ],
+                })
+              }
+            >
               알아보기
             </Description>
           </Box>
@@ -84,6 +117,12 @@ export const Write = () => {
           padding="6px 12px"
           borderRadius="5px"
           type="button"
+          onClick={() =>
+            bottomSheet.open({
+              type: 'content',
+              content: <OftenPharse></OftenPharse>,
+            })
+          }
         >
           자주 쓰는 문구
         </Button>

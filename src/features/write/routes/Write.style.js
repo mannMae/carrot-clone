@@ -24,3 +24,18 @@ export const Anchor = styled.span`
   color: ${(props) => props.theme.colors.gray};
   cursor: pointer;
 `;
+
+export const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: inside;
+
+  li::marker {
+    color: ${(props) => props.theme.colors.primary};
+  }
+
+  li {
+    font-size: ${(props) => props.theme.fontSizes.medium};
+  }
+`;
