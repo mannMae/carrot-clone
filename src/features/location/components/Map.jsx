@@ -7,9 +7,9 @@ import {
   MarkerClusterer,
 } from 'react-kakao-maps-sdk';
 
-export const Map = ({ locationLevel, locationData }) => {
+export const Map = ({ locationLevel, defaultCenter = { lat: 0, lng: 0 } }) => {
   const [userPosition, setUserPosition] = useState({ lat: 0, lng: 0 });
-  const [center, setCenter] = useState(locationData.position);
+  const [center, setCenter] = useState();
   const [level, setLevel] = useState(4);
   const [circleRadius, setCircleRadius] = useState(250);
 
@@ -26,8 +26,8 @@ export const Map = ({ locationLevel, locationData }) => {
   }, []);
 
   useEffect(() => {
-    setCenter(locationData.position);
-  }, [locationData]);
+    setCenter(defaultCenter);
+  }, [center]);
 
   useEffect(() => {
     if (locationLevel === 0) {
@@ -47,15 +47,15 @@ export const Map = ({ locationLevel, locationData }) => {
 
   return (
     <KakaoMap
-      center={{ lat: center.lat, lng: center.lng }}
+      center={{ lat: center?.lat, lng: center?.lng }}
       style={{ width: '100%', height: '55vh' }}
       draggable={false}
       level={level}
     >
       <Circle
         center={{
-          lat: center.lat,
-          lng: center.lng,
+          lat: center?.lat,
+          lng: center?.lng,
         }}
         radius={circleRadius}
         strokeWeight={1.5}

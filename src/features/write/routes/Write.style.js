@@ -19,6 +19,13 @@ export const Description = styled.span`
   cursor: pointer;
 `;
 
+export const DeleteLocation = styled.span`
+  font-size: ${(props) => props.theme.fontSizes.medium};
+  color: ${(props) => props.theme.colors.gray};
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 export const Anchor = styled.span`
   font-size: ${(props) => props.theme.fontSizes.small};
   color: ${(props) => props.theme.colors.gray};

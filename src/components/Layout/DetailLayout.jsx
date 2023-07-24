@@ -11,10 +11,9 @@ import {
   Wrapper,
 } from './DetailLayout.style';
 import { Button, ShareButton } from 'components/Elements';
-import React, { cloneElement, createElement, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { details } from 'features/market/routes/MarketDetail';
 import { LikeButton } from 'features/like';
-import { useBottomSheet } from 'hooks/useBottomSheet';
 import { useModal } from 'hooks/useModal';
 import { locationData } from 'features/location/routes/Location';
 
@@ -23,6 +22,7 @@ import HomeIcon from 'assets/icons/home-outlined.svg';
 import KebabIcon from 'assets/icons/kebab.svg';
 import XIcon from 'assets/icons/x.svg';
 import { Form } from 'components/Form';
+import { useDialog } from 'hooks/useDialog';
 
 export const DetailLayout = ({ children }) => {
   const location = useLocation();
@@ -65,7 +65,7 @@ export const DetailLayout = ({ children }) => {
 const Header = ({ hasTopImage }) => {
   const location = useLocation();
 
-  const bottomSheet = useBottomSheet();
+  const dialog = useDialog();
   const modal = useModal();
 
   const navigate = useNavigate();
@@ -74,14 +74,14 @@ const Header = ({ hasTopImage }) => {
     {
       clickEvent: () => {
         navigate('/declaration');
-        bottomSheet.close();
+        dialog.close();
       },
       content: '신고',
     },
     {
       clickEvent: () => {
         modal.open(modalOptions);
-        bottomSheet.close();
+        dialog.close();
       },
       content: '이 사용자의 글 보지 않기',
     },
@@ -125,7 +125,7 @@ const Header = ({ hasTopImage }) => {
           <Icon
             src={KebabIcon}
             hasTopImage={hasTopImage}
-            onClick={() => bottomSheet.open({ type: 'select', buttons })}
+            onClick={() => dialog.open({ type: 'select', buttons })}
           />
         </Icons>
       </HeaderWrapper>

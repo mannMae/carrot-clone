@@ -12,7 +12,7 @@ export const TextareaField = ({
   setDescription,
 }) => {
   const [length, setLength] = useState(defaultValue ? defaultValue.length : 0);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState('');
   const handleChange = (e) => {
     getValue(e.target.value);
     setValue(e.target.value);
@@ -21,7 +21,11 @@ export const TextareaField = ({
 
   useEffect(() => {
     if (addedValue) {
-      setValue((prev) => prev + '\n' + addedValue);
+      if (value === '') {
+        setValue(addedValue);
+      } else {
+        setValue((prev) => prev + '\n' + addedValue);
+      }
       setDescription(null);
     }
   }, [addedValue]);

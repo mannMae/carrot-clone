@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   bottom: ${(props) =>
     props.isActive && props.bottom ? props.bottom : '-100%'};
   left: 0;
-  z-index: 200;
+  z-index: ${(props) => (props.layer ? props.layer * 5 + 200 : 200)};
 
   width: 100%;
   display: flex;
@@ -67,7 +67,7 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 199;
+  z-index: ${(props) => (props.layer ? props.layer * 5 + 199 : 199)};
 
   width: 100%;
   height: 100%;

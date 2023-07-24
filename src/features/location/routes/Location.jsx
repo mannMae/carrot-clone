@@ -19,7 +19,7 @@ export const Location = () => {
       <Wrapper>
         <Map
           locationLevel={locationLevel}
-          locationData={locationData[selectedLocation]}
+          defaultCenter={locationData[selectedLocation].position}
         />
         <Box padding="30px 15px" gap="15px">
           <SectionTitle>내 동네</SectionTitle>

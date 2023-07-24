@@ -1,4 +1,11 @@
-import { Anchor, BoxTitle, Description, List, Wrapper } from './Write.style';
+import {
+  Anchor,
+  BoxTitle,
+  DeleteLocation,
+  Description,
+  List,
+  Wrapper,
+} from './Write.style';
 import { ImageInputField } from 'components/Form/ImageInputField';
 import { Box, Button } from 'components/Elements';
 import { CheckboxField, InputField, TextareaField } from 'components/Form';
@@ -9,6 +16,7 @@ import RightArrowIcon from 'assets/icons/right-arrow.svg';
 import { useQuery } from 'react-query';
 import { useBottomSheet } from 'hooks/useBottomSheet';
 import { OftenPhrase } from '..';
+import { LocationSelect } from 'features/location';
 
 export const Write = () => {
   const bottomSheet = useBottomSheet();
@@ -18,6 +26,7 @@ export const Write = () => {
   const { register, formState } = data?.methods;
 
   const [description, setDescription] = useState('');
+  const [wantedLocation, setWantedLocation] = useState();
   return (
     <Wrapper>
       <ImageInputField registraion={register('images')} />
@@ -132,7 +141,14 @@ export const Write = () => {
         </Button>
       </Box>
       <Box gap="15px">
-        <BoxTitle>거래 희망 장소</BoxTitle>
+        <Box flexDirection="row" width="100%" justifyContent="space-between">
+          <BoxTitle>거래 희망 장소</BoxTitle>
+          {wantedLocation && (
+            <DeleteLocation onClick={() => setWantedLocation()}>
+              삭제
+            </DeleteLocation>
+          )}
+        </Box>
         <Button
           endIcon={RightArrowIcon}
           size="medium"
@@ -142,6 +158,12 @@ export const Write = () => {
           borderRadius="5px"
           justifyContent="space-between"
           type="button"
+          onClick={() =>
+            bottomSheet.open({
+              type: 'content',
+              content: <LocationSelect />,
+            })
+          }
         >
           위치 추가
         </Button>

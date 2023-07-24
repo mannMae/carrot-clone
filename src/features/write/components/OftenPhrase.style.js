@@ -27,6 +27,7 @@ export const ListItem = styled.li`
   align-items: center;
   border-bottom: ${(props) => `1px solid ${props.theme.colors.lightGray}`};
   padding: 10px 5px;
+  cursor: pointer;
 `;
 
 export const Phrase = styled.span`

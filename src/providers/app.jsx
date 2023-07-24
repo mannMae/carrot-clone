@@ -4,7 +4,7 @@ import { theme } from './theme';
 import { GlobalStyles } from './GlobalStyles';
 import { HelmetProvider } from 'react-helmet-async';
 import { BottomSheet, Dialog, Modal } from 'components/Elements';
-import { QueryClientProvider } from 'react-query';
+import { QueryClientProvider, useQuery } from 'react-query';
 import { queryClient } from 'library/react-query';
 
 export const AppProvider = ({ children }) => {
@@ -15,7 +15,6 @@ export const AppProvider = ({ children }) => {
           <GlobalStyles />
           <Router>{children}</Router>
           <Dialog />
-          <BottomSheet />
           <Modal />
         </ThemeProvider>
       </QueryClientProvider>

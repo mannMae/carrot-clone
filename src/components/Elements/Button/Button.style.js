@@ -46,6 +46,7 @@ export const Wrapper = styled.button`
   cursor: pointer;
   outline: none;
   transition: all ease 0.5s 0s;
+  transform: ${(props) => (props.transform ? props.transform : null)};
 `;
 
 export const Content = styled.span`
