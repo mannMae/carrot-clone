@@ -16,7 +16,7 @@ import RightArrowIcon from 'assets/icons/right-arrow.svg';
 import { useQuery } from 'react-query';
 import { useBottomSheet } from 'hooks/useBottomSheet';
 import { OftenPhrase } from '..';
-import { LocationSelect } from 'features/location';
+import { LocationSelect, useRemoveLocation } from 'features/location';
 
 export const Write = () => {
   const bottomSheet = useBottomSheet();
@@ -26,7 +26,10 @@ export const Write = () => {
   const { register, formState } = data?.methods;
 
   const [description, setDescription] = useState('');
-  const [wantedLocation, setWantedLocation] = useState();
+
+  const location = useQuery(['location']);
+  const { remove } = useRemoveLocation();
+
   return (
     <Wrapper>
       <ImageInputField registraion={register('images')} />
@@ -143,16 +146,15 @@ export const Write = () => {
       <Box gap="15px">
         <Box flexDirection="row" width="100%" justifyContent="space-between">
           <BoxTitle>거래 희망 장소</BoxTitle>
-          {wantedLocation && (
-            <DeleteLocation onClick={() => setWantedLocation()}>
-              삭제
-            </DeleteLocation>
+          {location.data?.name && (
+            <DeleteLocation onClick={() => remove()}>삭제</DeleteLocation>
           )}
         </Box>
         <Button
           endIcon={RightArrowIcon}
           size="medium"
           variant="gray"
+          color={location.data?.name && 'black'}
           width="100%"
           padding="10px"
           borderRadius="5px"
@@ -161,11 +163,15 @@ export const Write = () => {
           onClick={() =>
             bottomSheet.open({
               type: 'content',
-              content: <LocationSelect />,
+              content: (
+                <LocationSelect
+                  location={location.data?.name ? location.data : null}
+                />
+              ),
             })
           }
         >
-          위치 추가
+          {location.data?.name ? location.data?.name : '위치 추가'}
         </Button>
       </Box>
       <Anchor>보여줄 동네 선택 〉</Anchor>

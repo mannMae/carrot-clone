@@ -19,6 +19,8 @@ import { useRemoveOftenPhrase } from '../api/removeOftenPhrase';
 export const OftenPhrase = ({ getValue }) => {
   const dialog = useDialog();
   const { remove } = useRemoveOftenPhrase();
+  const bottomSheetParent = useBottomSheet(0);
+  const bottomSheet = useBottomSheet(1);
   const handleKebabButton = (i, phrase) => {
     const buttons = [
       {
@@ -44,7 +46,6 @@ export const OftenPhrase = ({ getValue }) => {
     ];
     dialog.open({ type: 'select', buttons });
   };
-  const bottomSheet = useBottomSheet();
 
   const { data, isLoading } = useQuery(['oftenPhrase']);
   // if (isLoading) {
@@ -54,7 +55,7 @@ export const OftenPhrase = ({ getValue }) => {
 
   const handleClickPhrase = (phrase) => {
     getValue(phrase);
-    bottomSheet.close();
+    bottomSheetParent.close();
   };
   return (
     <Wrapper>

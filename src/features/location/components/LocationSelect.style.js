@@ -24,3 +24,14 @@ export const Description = styled.p`
 export const Tip = styled.p`
   font-size: ${(props) => props.theme.fontSizes.small};
 `;
+
+export const MarkerName = styled.div`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 148px;
+  height: 30px;
+  background-color: ${(props) => props.theme.colors.black};
+  font-size: ${(props) => props.theme.fontSizes.medium};
+  color: ${(props) => props.theme.colors.white};
+`;

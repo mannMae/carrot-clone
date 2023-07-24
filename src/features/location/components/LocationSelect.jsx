@@ -1,18 +1,30 @@
 import { useEffect, useRef, useState } from 'react';
 import { Box, Button } from 'components/Elements';
-import { Description, Header, Tip, Wrapper } from './LocationSelect.style';
+import {
+  Description,
+  Header,
+  MarkerName,
+  Tip,
+  Wrapper,
+} from './LocationSelect.style';
 
 import XIcon from 'assets/icons/x.svg';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useBottomSheet } from 'hooks/useBottomSheet';
 
 import LocationIcon from 'assets/icons/location-filled-primary.svg';
+import { LocationName } from '.';
+import { useUpdateLocation } from '../api/useUpdateLocation';
 
-export const LocationSelect = ({ getValue }) => {
+export const LocationSelect = ({ location }) => {
+  console.log(location?.position);
   const { close } = useBottomSheet();
   const { open } = useBottomSheet(1);
   const [userPosition, setUserPosition] = useState({ lat: 0, lng: 0 });
-  const [center, setCenter] = useState({ lat: 0, lng: 0 });
+  const [position, setPosition] = useState({ lat: 0, lng: 0 });
+  const [name, setName] = useState('');
+
+  const { update } = useUpdateLocation();
 
   const mapRef = useRef();
 
@@ -28,8 +40,15 @@ export const LocationSelect = ({ getValue }) => {
     );
   }, []);
 
+  useEffect(() => {
+    if (name) {
+      update(name, position);
+      close();
+    }
+  }, [name]);
+
   const handleCenterChange = (e) => {
-    setCenter({
+    setPosition({
       lat: mapRef.current.getCenter().getLat(),
       lng: mapRef.current.getCenter().getLng(),
     });
@@ -59,10 +78,10 @@ export const LocationSelect = ({ getValue }) => {
         onCenterChanged={handleCenterChange}
       >
         <MapMarker
-          position={{ lat: userPosition.lat, lng: userPosition.lng }}
+          position={{ lat: userPosition?.lat, lng: userPosition.lng }}
         ></MapMarker>
         <MapMarker
-          position={{ lat: center.lat, lng: center.lng }}
+          position={{ lat: position?.lat, lng: position?.lng }}
           image={{
             src: LocationIcon,
             size: {
@@ -71,6 +90,22 @@ export const LocationSelect = ({ getValue }) => {
             },
           }}
         ></MapMarker>
+        {location?.name && (
+          <MapMarker
+            position={
+              location?.position ? location?.position : { lat: 0, lng: 0 }
+            }
+            image={{
+              src: LocationIcon,
+              size: {
+                width: 50,
+                height: 50,
+              },
+            }}
+          >
+            <MarkerName>{location?.name}</MarkerName>
+          </MapMarker>
+        )}
       </Map>
       <Button
         position="fixed"
@@ -86,6 +121,7 @@ export const LocationSelect = ({ getValue }) => {
           e.stopPropagation();
           open({
             type: 'content',
+            content: <LocationName getValue={setName} />,
           });
         }}
       >

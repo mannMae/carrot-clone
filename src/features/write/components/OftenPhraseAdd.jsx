@@ -3,19 +3,18 @@ import { Header, Title, Wrapper } from './OftenPhraseAdd.style';
 
 import XIcon from 'assets/icons/x.svg';
 import { useBottomSheet } from 'hooks/useBottomSheet';
-import { OftenPhrase } from '..';
-import { Form, TextareaField } from 'components/Form';
+import { TextareaField } from 'components/Form';
 import { useState } from 'react';
 import { useCreateOftenPhrase } from '../api/createOftenPhrase';
 import { useUpdateOftenPhrase } from '../api/updateOftenPhrase';
 
 export const OftenPhraseAdd = ({ method, index, prevPhrase }) => {
-  const bottomSheet = useBottomSheet();
+  const bottomSheet = useBottomSheet(1);
   const [phrase, setPhrase] = useState(prevPhrase ? prevPhrase : '');
   const { create } = useCreateOftenPhrase();
   const { update } = useUpdateOftenPhrase();
 
-  const createOftenPhrase = () => {
+  const updateOftenPhrase = () => {
     if (phrase.length === 0) {
       return;
     }
@@ -60,7 +59,7 @@ export const OftenPhraseAdd = ({ method, index, prevPhrase }) => {
           size="large"
           borderRadius="5px"
           backgroundColor={phrase.length === 0 ? 'lightGray' : 'primary'}
-          onClick={createOftenPhrase}
+          onClick={updateOftenPhrase}
         >
           저장
         </Button>
