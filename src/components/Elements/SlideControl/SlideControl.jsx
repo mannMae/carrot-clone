@@ -19,14 +19,14 @@ export const SlideControl = ({ points = 3, defaultValue = 0, getValue }) => {
 
   useEffect(() => {
     if (bar) {
-      setBodyOffset(bar.offsetWidth - bar.offsetLeft - 10);
+      setBodyOffset(bar.offsetWidth - bar.offsetLeft + 10);
     }
   }, []);
 
   const stopDragButton = (data) => {
     setBodyOffset(
       data.node.offsetParent.offsetWidth -
-        data.node.offsetParent.offsetLeft -
+        data.node.offsetParent.offsetLeft +
         10
     );
     const position = (data.x / bodyOffset) * 100;
@@ -37,7 +37,7 @@ export const SlideControl = ({ points = 3, defaultValue = 0, getValue }) => {
 
   useEffect(() => {
     if (bar) {
-      setBodyOffset(bar.offsetWidth - bar.offsetLeft - 10);
+      setBodyOffset(bar.offsetWidth - bar.offsetLeft + 10);
     }
     getValue(value);
     setX(value * (bodyOffset / points));

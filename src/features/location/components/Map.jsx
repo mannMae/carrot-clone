@@ -27,7 +27,7 @@ export const Map = ({ locationLevel, defaultCenter = { lat: 0, lng: 0 } }) => {
 
   useEffect(() => {
     setCenter(defaultCenter);
-  }, [center]);
+  }, [center, defaultCenter]);
 
   useEffect(() => {
     if (locationLevel === 0) {
