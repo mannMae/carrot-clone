@@ -1,5 +1,10 @@
 import { styled } from 'styled-components';
 
+export const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
 export const Textarea = styled.textarea`
   width: 100%;
   height: 110px;
@@ -11,4 +16,15 @@ export const Textarea = styled.textarea`
   &:focus {
     outline: ${(props) => `solid ${props.theme.colors.black}`};
   }
+`;
+
+export const Count = styled.span`
+  position: absolute;
+  bottom: 5%;
+  right: 2%;
+`;
+
+export const Value = styled.span`
+  color: ${(props) =>
+    props.color ? props.theme.colors[props.color] : props.theme.colors.gray};
 `;

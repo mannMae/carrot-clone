@@ -1,6 +1,7 @@
 export * from './BottomSheet';
 export * from './Box';
 export * from './Button';
+export * from './Dialog';
 export * from './Dropdown';
 export * from './Modal';
 export * from './SlideControl';

@@ -20,7 +20,7 @@ import { locationData } from 'features/location/routes/Location';
 
 import LeftArrowIcon from 'assets/icons/left-arrow.svg';
 import HomeIcon from 'assets/icons/home-outlined.svg';
-import HamburgerIcon from 'assets/icons/hamburger-dots.svg';
+import KebabIcon from 'assets/icons/kebab.svg';
 import XIcon from 'assets/icons/x.svg';
 import { Form } from 'components/Form';
 
@@ -123,7 +123,7 @@ const Header = ({ hasTopImage }) => {
             url={currentUrl}
           />
           <Icon
-            src={HamburgerIcon}
+            src={KebabIcon}
             hasTopImage={hasTopImage}
             onClick={() => bottomSheet.open({ type: 'select', buttons })}
           />

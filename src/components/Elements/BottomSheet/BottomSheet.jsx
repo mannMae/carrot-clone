@@ -24,51 +24,26 @@ export const BottomSheet = () => {
     return;
   }
   const { isActive, options } = data;
-  if (options?.type === 'select') {
-    return (
-      <>
-        <Wrapper isActive={isActive} bottom="5%">
-          {options.buttons && (
-            <Buttons>
-              {options.buttons.map((props, i) => (
-                <Button key={i} onClick={props.clickEvent}>
-                  {props.content}
-                </Button>
-              ))}
-            </Buttons>
-          )}
-          <Buttons>
-            <Button isStrong={true} onClick={() => close()}>
-              취소
-            </Button>
-          </Buttons>
-        </Wrapper>
-        <Overlay isActive={isActive} onClick={() => close()} />
-      </>
-    );
-  }
 
   const handleTouchStart = (e) => {
-    console.log(e);
     touchStartY.current = e.changedTouches[0].screenY;
     setDefaultHeight(content.current.offsetHeight);
-    console.log(content.current.offsetHeight);
-    console.log('TouchStart', touchStartY);
   };
+
   const handleTouchMove = (e) => {
     const screenY = e.changedTouches[0].screenY;
     const height = screenY - touchStartY.current;
     setHeight(-height);
-    console.log('TouchMove', height);
   };
+
   const handleTouchEnd = (e) => {
     setHeight(0);
-    console.log('end', height);
+    setDefaultHeight(null);
     if (-height * 2 >= defaultHeight) {
-      console.log('close');
       close();
     }
   };
+
   return (
     <>
       <Wrapper

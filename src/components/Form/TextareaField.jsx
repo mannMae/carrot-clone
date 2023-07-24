@@ -1,10 +1,46 @@
-import { Textarea } from './TextareaField.style';
+import { useEffect, useState } from 'react';
+import { Count, Textarea, Value, Wrapper } from './TextareaField.style';
 
-export const TextareaField = ({ placeholder, registration }) => {
+export const TextareaField = ({
+  placeholder,
+  count,
+  limit,
+  getValue = (value) => console.log(value),
+  registration,
+  defaultValue,
+  addedValue,
+  setDescription,
+}) => {
+  const [length, setLength] = useState(defaultValue ? defaultValue.length : 0);
+  const [value, setValue] = useState();
+  const handleChange = (e) => {
+    getValue(e.target.value);
+    setValue(e.target.value);
+    setLength(e.target.value.length);
+  };
+
+  useEffect(() => {
+    if (addedValue) {
+      setValue((prev) => prev + '\n' + addedValue);
+      setDescription(null);
+    }
+  }, [addedValue]);
+
   return (
-    <Textarea
-      placeholder={`노량진동에 올릴 게시글 내용을 작성해 주세요.\n(판매 금지 물품은 게시가 제한될 수 있어요.)\n\n신뢰할 수 있는 거래를 위해 자세히 적어주세요.\n과학기술정보통신부, 한국 인터넷진흥원과 함께해요.`}
-      {...registration}
-    />
+    <Wrapper>
+      <Textarea
+        placeholder={placeholder}
+        {...registration}
+        onChange={handleChange}
+        defaultValue={defaultValue && defaultValue}
+        value={value}
+      ></Textarea>
+      {count && (
+        <Count>
+          <Value color={length <= limit ? 'primary' : 'danger'}>{length}</Value>
+          /{limit}
+        </Count>
+      )}
+    </Wrapper>
   );
 };

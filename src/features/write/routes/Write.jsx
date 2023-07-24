@@ -8,7 +8,7 @@ import { useState } from 'react';
 import RightArrowIcon from 'assets/icons/right-arrow.svg';
 import { useQuery } from 'react-query';
 import { useBottomSheet } from 'hooks/useBottomSheet';
-import { OftenPharse } from '..';
+import { OftenPhrase } from '..';
 
 export const Write = () => {
   const bottomSheet = useBottomSheet();
@@ -17,6 +17,7 @@ export const Write = () => {
   const { data, isLoading } = useQuery(['form']);
   const { register, formState } = data?.methods;
 
+  const [description, setDescription] = useState('');
   return (
     <Wrapper>
       <ImageInputField registraion={register('images')} />
@@ -108,9 +109,12 @@ export const Write = () => {
       <Box gap="15px">
         <BoxTitle>자세한 설명</BoxTitle>
         <TextareaField
+          placeholder={`노량진동에 올릴 게시글 내용을 작성해 주세요.\n(판매 금지 물품은 게시가 제한될 수 있어요.)\n\n신뢰할 수 있는 거래를 위해 자세히 적어주세요.\n과학기술정보통신부, 한국 인터넷진흥원과 함께해요.`}
           required
           error={formState.errors['description']}
           registration={register('description')}
+          addedValue={description}
+          setDescription={setDescription}
         />
         <Button
           variant="blackLightGray"
@@ -120,7 +124,7 @@ export const Write = () => {
           onClick={() =>
             bottomSheet.open({
               type: 'content',
-              content: <OftenPharse></OftenPharse>,
+              content: <OftenPhrase getValue={setDescription} />,
             })
           }
         >
