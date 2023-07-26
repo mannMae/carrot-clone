@@ -15,6 +15,7 @@ const colors = {
   lightGray: '#ddd',
   danger: '#ff0000',
   safe: '#2962f6',
+  transparent: 'transparent',
 };
 
 export const theme = {

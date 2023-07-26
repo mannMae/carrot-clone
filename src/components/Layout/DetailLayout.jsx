@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
   BottomNavigationWrapper,
-  Box,
   HeaderWrapper,
   Heading,
   Icon,
@@ -10,19 +9,23 @@ import {
   PriceOffer,
   Wrapper,
 } from './DetailLayout.style';
-import { Button, ShareButton } from 'components/Elements';
+import { Box, Button, ShareButton } from 'components/Elements';
 import React, { useEffect, useState } from 'react';
 import { details } from 'features/market/routes/MarketDetail';
 import { LikeButton } from 'features/like';
 import { useModal } from 'hooks/useModal';
 import { locationData } from 'features/location/routes/Location';
+import { Form, InputField } from 'components/Form';
+import { useDialog } from 'hooks/useDialog';
 
 import LeftArrowIcon from 'assets/icons/left-arrow.svg';
 import HomeIcon from 'assets/icons/home-outlined.svg';
 import KebabIcon from 'assets/icons/kebab.svg';
 import XIcon from 'assets/icons/x.svg';
-import { Form } from 'components/Form';
-import { useDialog } from 'hooks/useDialog';
+import PhoneIcon from 'assets/icons/phone.svg';
+import PlusIcon from 'assets/icons/plus-black.svg';
+import AirplaneGrayIcon from 'assets/icons/airplane-gray.svg';
+import AirplanePrimaryIcon from 'assets/icons/airplane-primary.svg';
 
 export const DetailLayout = ({ children }) => {
   const location = useLocation();
@@ -84,6 +87,38 @@ const Header = ({ hasTopImage }) => {
         dialog.close();
       },
       content: '이 사용자의 글 보지 않기',
+    },
+  ];
+
+  const chatKebabButtons = [
+    {
+      clickEvent: () => {
+        navigate('/declaration');
+        dialog.close();
+      },
+      content: '알림끄기',
+    },
+    {
+      clickEvent: () => {
+        navigate('/declaration');
+        dialog.close();
+      },
+      content: '차단하기',
+    },
+    {
+      clickEvent: () => {
+        navigate('/declaration');
+        dialog.close();
+      },
+      content: '신고하기',
+    },
+    {
+      clickEvent: () => {
+        modal.open(modalOptions);
+        dialog.close();
+      },
+      content: '채팅방 나가기',
+      color: 'danger',
     },
   ];
 
@@ -165,10 +200,33 @@ const Header = ({ hasTopImage }) => {
       </HeaderWrapper>
     );
   }
+
+  if (location.pathname.split('/')[1] === 'chat') {
+    return (
+      <HeaderWrapper borderBottomColor="lightGray">
+        <Icons>
+          <Link to={-1}>
+            <Icon src={LeftArrowIcon} />
+          </Link>
+        </Icons>
+        <Heading>종호</Heading>
+        <Icons>
+          <Icon src={PhoneIcon} />
+          <Icon
+            src={KebabIcon}
+            onClick={() =>
+              dialog.open({ type: 'select', buttons: chatKebabButtons })
+            }
+          />
+        </Icons>
+      </HeaderWrapper>
+    );
+  }
 };
 
 const BottomNavigation = () => {
   const location = useLocation();
+  const [text, setText] = useState('');
 
   if (location.pathname.split('/')[1] === 'home') {
     return (
@@ -206,6 +264,55 @@ const BottomNavigation = () => {
         >
           작성 완료
         </Button>
+      </BottomNavigationWrapper>
+    );
+  }
+
+  if (location.pathname.split('/')[1] === 'chat') {
+    return (
+      <BottomNavigationWrapper>
+        <Box
+          width="100%"
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Button
+            startIcon={PlusIcon}
+            size="xlarge"
+            padding="0"
+            variant="transparent"
+          />
+          <Box
+            backgroundColor="lightGray"
+            width="100%"
+            padding="5px"
+            borderRadius="25px"
+          >
+            <InputField
+              placeholder="메세지 보내기"
+              backgroundColor="transparent"
+              border="none"
+              outline="none"
+              getValue={setText}
+            />
+          </Box>
+          {text.length === 0 ? (
+            <Button
+              startIcon={AirplaneGrayIcon}
+              size="xxlarge"
+              padding="0"
+              variant="transparent"
+            />
+          ) : (
+            <Button
+              startIcon={AirplanePrimaryIcon}
+              size="xxlarge"
+              padding="0"
+              variant="transparent"
+            />
+          )}
+        </Box>
       </BottomNavigationWrapper>
     );
   }

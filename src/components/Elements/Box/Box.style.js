@@ -26,8 +26,9 @@ export const Wrapper = styled.div`
 
   border-radius: ${(props) => (props.borderRadius ? props.borderRadius : null)};
   padding: ${(props) => (props.padding ? props.padding : null)};
+  color: ${(props) => (props.color ? props.theme.colors[props.color] : null)};
   background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : null};
+    props.backgroundColor ? props.theme.colors[props.backgroundColor] : null};
   overflow: ${(props) => (props.overflow ? props.overflow : null)};
   overflow-y: ${(props) => (props.overflowY ? props.overflowY : null)};
 `;

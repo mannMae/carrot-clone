@@ -7,7 +7,6 @@ import {
   Navigation,
 } from './CategorySwiper.style';
 import { Swiper } from './Swiper';
-import { Box } from '..';
 
 export const CategorySwiper = ({
   items,

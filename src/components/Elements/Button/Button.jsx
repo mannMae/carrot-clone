@@ -91,4 +91,9 @@ const sizes = {
     fontSize: 'xlarge',
     iconSize: '24px',
   },
+  xxlarge: {
+    padding: '6px 8px',
+    fontSize: 'xxlarge',
+    iconSize: '30px',
+  },
 };

@@ -9,6 +9,7 @@ import {
   ChatInfo,
   PostImage,
 } from './ChatList.style';
+import { Link } from 'react-router-dom';
 
 export const ChatList = () => {
   return (
@@ -16,19 +17,21 @@ export const ChatList = () => {
       <Head title="채팅" />
       <Wrapper>
         {chatList.map((chat, i) => (
-          <Chat key={i}>
-            <ProfileImage src={chat.profileImage} />
-            <Box>
-              <div>
-                <UserName>{chat.userName}</UserName>{' '}
-                <ChatInfo>
-                  {chat.location} ・ {chat.lastChatDate}
-                </ChatInfo>
-              </div>
-              <RecentMessage>{chat.recentChat}</RecentMessage>
-            </Box>
-            {chat.postImage && <PostImage src={chat.postImage} />}
-          </Chat>
+          <Link to={`${i}`}>
+            <Chat key={i}>
+              <ProfileImage src={chat.profileImage} />
+              <Box>
+                <div>
+                  <UserName>{chat.userName}</UserName>{' '}
+                  <ChatInfo>
+                    {chat.location} ・ {chat.lastChatDate}
+                  </ChatInfo>
+                </div>
+                <RecentMessage>{chat.recentChat}</RecentMessage>
+              </Box>
+              {chat.postImage && <PostImage src={chat.postImage} />}
+            </Chat>
+          </Link>
         ))}
       </Wrapper>
     </>
