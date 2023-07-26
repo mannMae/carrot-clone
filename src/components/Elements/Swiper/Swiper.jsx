@@ -13,6 +13,12 @@ import {
   Wrapper,
 } from './Swiper.style';
 import { theme } from 'providers/theme';
+import { Button } from '../Button';
+
+import XIcon from 'assets/icons/x.svg';
+import BellIcon from 'assets/icons/bell-filled.svg';
+import { useBottomSheet } from 'hooks/useBottomSheet';
+import { NotificationKeyword } from 'features/notification';
 
 export const Swiper = ({
   items,
@@ -21,6 +27,9 @@ export const Swiper = ({
   categoryItems,
   setIndex,
   index,
+  isContentScrollY,
+  categories,
+  toggleActiveDelete,
 }) => {
   const [swiper, setSwiper] = useState(null);
   const [pages, setPages] = useState([]);
@@ -55,7 +64,6 @@ export const Swiper = ({
       swiper.slideTo(index);
     }
   }, [index]);
-
   return (
     <Wrapper>
       <SwiperComponent
@@ -70,9 +78,43 @@ export const Swiper = ({
       >
         {pages.map((page, i) => {
           return (
-            <SwiperSlide key={i}>
+            <SwiperSlide
+              key={i}
+              style={
+                isContentScrollY && {
+                  height: '95vh',
+                  overflowY: 'scroll',
+                }
+              }
+            >
+              {categories && (
+                <SwiperSlideHeader
+                  category={categories[i]}
+                  isActiveDeleteButton={toggleActiveDelete}
+                />
+              )}
               {page.map((item, j) => {
-                return <SwiperItem item={item} key={j} order={j} type={type} />;
+                if (categories?.length) {
+                  return (
+                    <SwiperItem
+                      item={item}
+                      key={j}
+                      order={j}
+                      type={type}
+                      toggleActiveDelete={toggleActiveDelete}
+                      category={categories[i]}
+                    />
+                  );
+                }
+                return (
+                  <SwiperItem
+                    item={item}
+                    key={j}
+                    order={j}
+                    type={type}
+                    toggleActiveDelete={toggleActiveDelete}
+                  />
+                );
               })}
             </SwiperSlide>
           );
@@ -82,7 +124,69 @@ export const Swiper = ({
   );
 };
 
-const SwiperItem = ({ item, order, type }) => {
+const SwiperSlideHeader = ({ category, isActiveDeleteButton }) => {
+  const bottomSheet = useBottomSheet(1);
+  if (category === '키워드 알림') {
+    if (isActiveDeleteButton) {
+      return (
+        <Box
+          flexDirection="row"
+          backgroundColor="lightGray"
+          padding="10px"
+          borderRadius="0"
+          justifyContent="end"
+        >
+          <Button
+            variant="transparent"
+            size="medium"
+            padding="0"
+            fontWeight="500"
+          >
+            전체 삭제
+          </Button>
+        </Box>
+      );
+    } else {
+      return (
+        <Box
+          flexDirection="row"
+          padding="10px"
+          borderRadius="0"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Infomation>
+            <Image src={BellIcon} width="12px" height="12px" /> 알림 받는 키워드
+            1개
+          </Infomation>
+          <Button
+            variant="blackLightGray"
+            size="medium"
+            padding="6px 12px"
+            fontWeight="500"
+            borderRadius="5px"
+            onClick={() =>
+              bottomSheet.open({
+                type: 'content',
+                content: <NotificationKeyword />,
+              })
+            }
+          >
+            설정
+          </Button>
+        </Box>
+      );
+    }
+  }
+};
+
+const SwiperItem = ({
+  item,
+  order,
+  type,
+  toggleActiveDelete,
+  category = '',
+}) => {
   if (type === 'aroundStore') {
     return (
       <Item>
@@ -181,7 +285,6 @@ const SwiperItem = ({ item, order, type }) => {
   }
 
   if (type === 'image') {
-    console.log(item);
     return (
       <>
         <Item>
@@ -189,6 +292,86 @@ const SwiperItem = ({ item, order, type }) => {
         </Item>
         <InnerShadow />
       </>
+    );
+  }
+
+  if (type === 'notification' && category === '활동 알림') {
+    return (
+      <Item onClick={item.clickEvent}>
+        <Box flexDirection="row" padding="30px 0" gap="15px">
+          <Image
+            src={item.icon}
+            width="40px"
+            height="40px"
+            borderRadius="50%"
+          />
+          <Box>
+            {item.content && (
+              <Infomation fontSize="medium">{item.content} </Infomation>
+            )}
+            {item.tip && (
+              <Infomation fontSize="small" color="gray" fontWeight="600">
+                {item.tip}
+              </Infomation>
+            )}
+            {item.notificatedAt && (
+              <Infomation fontSize="small" color="gray">
+                {item.notificatedAt}
+              </Infomation>
+            )}
+          </Box>
+          {item?.image && (
+            <Image
+              src={item.icon}
+              width="70px"
+              height="70px"
+              borderRadius="5px"
+            />
+          )}
+          {toggleActiveDelete && (
+            <Button
+              startIcon={XIcon}
+              size="xlarge"
+              variant="transparent"
+              padding="0"
+              onClick={() => item.delete()}
+            />
+          )}
+        </Box>
+      </Item>
+    );
+  }
+
+  if (type === 'notification' && category === '키워드 알림') {
+    return (
+      <Item onClick={item.clickEvent}>
+        <Box flexDirection="row" padding="30px 0" gap="15px">
+          <Image
+            src={item.image}
+            width="70px"
+            height="70px"
+            borderRadius="5px"
+          />
+          <Box>
+            <Infomation fontSize="medium">
+              <Infomation fontWeight="700">{item.keyword}</Infomation> -{' '}
+              {item.title}
+            </Infomation>
+            <Infomation fontSize="small" color="gray">
+              {item.town} ・ {item.postedAt}
+            </Infomation>
+          </Box>
+          {toggleActiveDelete && (
+            <Button
+              startIcon={XIcon}
+              size="xlarge"
+              variant="transparent"
+              padding="0"
+              onClick={() => item.delete()}
+            />
+          )}
+        </Box>
+      </Item>
     );
   }
 };

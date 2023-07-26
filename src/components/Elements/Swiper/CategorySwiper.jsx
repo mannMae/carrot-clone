@@ -7,8 +7,15 @@ import {
   Navigation,
 } from './CategorySwiper.style';
 import { Swiper } from './Swiper';
+import { Box } from '..';
 
-export const CategorySwiper = ({ items, itemsPerSlide, type }) => {
+export const CategorySwiper = ({
+  items,
+  itemsPerSlide,
+  type,
+  isContentScrollY,
+  toggleActiveDelete,
+}) => {
   const [categories, setCategories] = useState([]);
   const [categoryItems, setCategoryItems] = useState([]);
   const [index, setIndex] = useState(0);
@@ -45,6 +52,9 @@ export const CategorySwiper = ({ items, itemsPerSlide, type }) => {
         type={type}
         setIndex={setIndex}
         index={index}
+        categories={categories}
+        isContentScrollY={isContentScrollY}
+        toggleActiveDelete={toggleActiveDelete}
       />
     </Wrapper>
   );

@@ -8,6 +8,10 @@ export const InputField = ({
   isDisabled,
   placeholder,
   getValue,
+  autoFocus,
+  outline,
+  border,
+  caretColor,
 }) => {
   const [value, setValue] = useState(defaultValue);
   const handleChange = (e) => {
@@ -28,6 +32,10 @@ export const InputField = ({
       disabled={isDisabled}
       placeholder={placeholder}
       onChange={handleChange}
+      autoFocus={autoFocus}
+      outline={outline}
+      border={border}
+      caretColor={caretColor}
     />
   );
 };

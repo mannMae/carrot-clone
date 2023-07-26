@@ -117,8 +117,8 @@ export const LocationSelect = ({ location }) => {
         padding="10px"
         size="large"
         transform="translateX(-50%)"
+        type="button"
         onClick={(e) => {
-          e.stopPropagation();
           open({
             type: 'content',
             content: <LocationName getValue={setName} />,

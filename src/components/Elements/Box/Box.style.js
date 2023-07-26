@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
     props.justifyContent ? props.justifyContent : null};
   align-items: ${(props) => (props.alignItems ? props.alignItems : 'start')};
   gap: ${(props) => (props.gap ? props.gap : '5px')};
+  flex-wrap: ${(props) => (props.flexWrap ? props.flexWrap : null)};
 
   grid-template-columns: ${(props) =>
     props.gridTemplateColumns ? props.gridTemplateColumns : null};
@@ -28,4 +29,5 @@ export const Wrapper = styled.div`
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : null};
   overflow: ${(props) => (props.overflow ? props.overflow : null)};
+  overflow-y: ${(props) => (props.overflowY ? props.overflowY : null)};
 `;

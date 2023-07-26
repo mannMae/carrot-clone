@@ -11,6 +11,7 @@ export const Button = ({
   isShowingText,
   contentWidth,
   iconColor,
+  clickEvent,
   ...props
 }) => {
   return (
@@ -60,6 +61,10 @@ const variants = {
     color: 'black',
   },
   transparent: {
+    backgroundColor: 'transparent',
+    color: 'black',
+  },
+  transparentGray: {
     backgroundColor: 'transparent',
     color: 'gray',
   },

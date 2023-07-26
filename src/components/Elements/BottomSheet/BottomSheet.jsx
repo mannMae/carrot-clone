@@ -24,7 +24,7 @@ export const BottomSheet = ({ query }) => {
   if (!data) {
     return;
   }
-  console.log(data);
+
   const { isActive, options } = data;
 
   const handleTouchStart = (e) => {

@@ -5,7 +5,12 @@ export const Label = styled.label`
   align-items: center;
   gap: 5px;
 
-  font-size: ${(props) => props.theme.fontSizes.small};
+  font-size: ${(props) =>
+    props.fontSize
+      ? props.theme.fontSizes[props.fontSize]
+      : props.theme.fontSizes.small};
 `;
 
-export const Input = styled.input.attrs({ type: 'checkbox' })``;
+export const Input = styled.input.attrs({ type: 'checkbox' })`
+  display: ${(props) => (props.isBoxVisible ? 'span' : 'none')};
+`;

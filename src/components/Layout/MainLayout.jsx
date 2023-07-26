@@ -33,6 +33,8 @@ import QuestionMarkIcon from 'assets/icons/question-mark.svg';
 
 import XIcon from 'assets/icons/x.svg';
 import { usePullToRefresh } from 'hooks/usePullToRefresh';
+import { useBottomSheet } from 'hooks/useBottomSheet';
+import { Notification } from 'features/notification';
 
 export const MainLayout = ({ children }) => {
   const location = useLocation();
@@ -61,6 +63,7 @@ export const MainLayout = ({ children }) => {
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const bottomSheet = useBottomSheet(0);
   if (location.pathname === '/home') {
     return (
       <HeaderWrapper>
@@ -68,7 +71,15 @@ const Header = () => {
         <Icons>
           <Icon src={HamburgerIcon} />
           <Icon src={SearchIcon} />
-          <Icon src={BellIcon} />
+          <Icon
+            src={BellIcon}
+            onClick={() =>
+              bottomSheet.open({
+                type: 'content',
+                content: <Notification close={() => bottomSheet.close()} />,
+              })
+            }
+          />
         </Icons>
       </HeaderWrapper>
     );
@@ -79,7 +90,15 @@ const Header = () => {
         <Icons>
           <Icon src={SearchIcon} />
           <Icon src={UserCicleIcon} />
-          <Icon src={BellIcon} />
+          <Icon
+            src={BellIcon}
+            onClick={() =>
+              bottomSheet.open({
+                type: 'content',
+                content: <Notification close={() => bottomSheet.close()} />,
+              })
+            }
+          />
         </Icons>
       </HeaderWrapper>
     );
@@ -90,7 +109,15 @@ const Header = () => {
         <Icons>
           <Icon src={SearchIcon} />
           <Icon src={QrReadIcon} />
-          <Icon src={BellIcon} />
+          <Icon
+            src={BellIcon}
+            onClick={() =>
+              bottomSheet.open({
+                type: 'content',
+                content: <Notification close={() => bottomSheet.close()} />,
+              })
+            }
+          />
         </Icons>
       </HeaderWrapper>
     );
@@ -100,7 +127,15 @@ const Header = () => {
         <Heading>채팅</Heading>
         <Icons>
           <Icon src={QrReadIcon} />
-          <Icon src={BellIcon} />
+          <Icon
+            src={BellIcon}
+            onClick={() =>
+              bottomSheet.open({
+                type: 'content',
+                content: <Notification close={() => bottomSheet.close()} />,
+              })
+            }
+          />
         </Icons>
       </HeaderWrapper>
     );
