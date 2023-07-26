@@ -5,6 +5,7 @@ import { ChatRoutes } from 'features/chat';
 import { LocationRoutes } from 'features/location';
 import { MarketRoutes } from 'features/market';
 import { TownLife } from 'features/misc';
+import { SearchRoutes } from 'features/search';
 import { UserRoutes } from 'features/user';
 import { WriteRoutes } from 'features/write/routes';
 
@@ -55,6 +56,7 @@ export const protectedRoutes = [
       { path: '/user/*', element: <UserRoutes /> },
       { path: '/location/*', element: <LocationRoutes /> },
       { path: '/write/*', element: <WriteRoutes /> },
+      { path: '/search/*', element: <SearchRoutes /> },
       { path: '*', element: <Navigate to="." /> },
     ],
   },

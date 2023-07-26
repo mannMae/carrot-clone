@@ -24,6 +24,10 @@ export const Wrapper = styled.button`
       : 'none'};
   border-radius: ${(props) =>
     props.borderRadius ? props.borderRadius : '15px'};
+  border-bottom: ${(props) =>
+    props.borderBottomColor
+      ? `1px solid ${props.theme.colors[props.borderBottomColor]}`
+      : null};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : null)};
   padding: ${(props) =>
     props.padding

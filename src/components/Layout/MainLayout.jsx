@@ -18,6 +18,9 @@ import BellIcon from 'assets/icons/bell.svg';
 import UserCicleIcon from 'assets/icons/user-circle.svg';
 import QrReadIcon from 'assets/icons/qr-read.svg';
 import SettingIcon from 'assets/icons/settings.svg';
+import { usePullToRefresh } from 'hooks/usePullToRefresh';
+import { useBottomSheet } from 'hooks/useBottomSheet';
+import { Notification } from 'features/notification';
 
 import HomeOutlinedIcon from 'assets/icons/home-outlined.svg';
 import DocumentOutlinedIcon from 'assets/icons/document-outlined.svg';
@@ -30,11 +33,9 @@ import LocationFilledIcon from 'assets/icons/location-on-map-fiiled.svg';
 import ChatBubbleFilledIcon from 'assets/icons/chat-bubble-fiiled.svg';
 import UserFilledIcon from 'assets/icons/user-filled.svg';
 import QuestionMarkIcon from 'assets/icons/question-mark.svg';
-
 import XIcon from 'assets/icons/x.svg';
-import { usePullToRefresh } from 'hooks/usePullToRefresh';
-import { useBottomSheet } from 'hooks/useBottomSheet';
-import { Notification } from 'features/notification';
+import LeftArrowIcon from 'assets/icons/left-arrow.svg';
+import { InputField } from 'components/Form';
 
 export const MainLayout = ({ children }) => {
   const location = useLocation();
@@ -70,7 +71,9 @@ const Header = () => {
         <Dropdown options={['역삼동', '노량진동']} />
         <Icons>
           <Icon src={HamburgerIcon} />
-          <Icon src={SearchIcon} />
+          <Link to="/search">
+            <Icon src={SearchIcon} />
+          </Link>
           <Icon
             src={BellIcon}
             onClick={() =>
@@ -88,8 +91,8 @@ const Header = () => {
       <HeaderWrapper>
         <Dropdown options={['역삼동', '노량진동']} />
         <Icons>
-          <Icon src={SearchIcon} />
           <Icon src={UserCicleIcon} />
+          <Icon src={SearchIcon} />
           <Icon
             src={BellIcon}
             onClick={() =>
@@ -107,8 +110,8 @@ const Header = () => {
       <HeaderWrapper>
         <Dropdown options={['역삼동', '노량진동']} />
         <Icons>
-          <Icon src={SearchIcon} />
           <Icon src={QrReadIcon} />
+          <Icon src={SearchIcon} />
           <Icon
             src={BellIcon}
             onClick={() =>
@@ -162,6 +165,21 @@ const Header = () => {
         </Icons>
       </HeaderWrapper>
     );
+  } else if (location.pathname === '/search') {
+    return (
+      <HeaderWrapper gap="30px">
+        <Icons>
+          <Icon src={LeftArrowIcon} onClick={() => navigate(-1)} />
+        </Icons>
+        <InputField
+          backgroundColor="lightGray"
+          color="gray"
+          outline="none"
+          placeholder="노량진동 근처에서 검색"
+          borderRadius="10px"
+        />
+      </HeaderWrapper>
+    );
   }
 };
 
@@ -199,7 +217,7 @@ const BottomNavigation = () => {
       icon: [UserOutlinedIcon, UserFilledIcon],
     },
   ];
-  if (location.pathname === '/location') {
+  if (location.pathname === '/location' || location.pathname === '/search') {
     return;
   }
   return (

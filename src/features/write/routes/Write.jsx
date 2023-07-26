@@ -73,6 +73,7 @@ export const Write = () => {
           <CheckboxField
             error={formState.errors['priceOffer']}
             registration={register('priceOffer')}
+            isBoxVisible={true}
           >
             가격 제안 받기
           </CheckboxField>
@@ -81,6 +82,7 @@ export const Write = () => {
             <CheckboxField
               error={formState.errors['shareEvent']}
               registration={register('shareEvent')}
+              isBoxVisible={true}
             >
               나눔 이벤트 열기
             </CheckboxField>

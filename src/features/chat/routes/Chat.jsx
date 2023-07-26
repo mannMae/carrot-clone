@@ -22,9 +22,11 @@ export const Chat = () => {
             ) : null}
             <Box flexDirection="row">
               <Box height="30px" width="30px">
-                {!message.isMine && prev.isMine && (
+                {!message.isMine && prev?.isMine ? (
                   <UserProfile src={UserIcon} />
-                )}
+                ) : !message.isMine && i === 0 ? (
+                  <UserProfile src={UserIcon} />
+                ) : null}
               </Box>
               <Message
                 message={message}
@@ -137,5 +139,17 @@ const chat = [
     content: '안녕하세요 :)',
     date: '2023년 7월 26일',
     time: '오전 10:11',
+  },
+  {
+    isMine: false,
+    content: '안녕하세요 :)',
+    date: '2023년 7월 26일',
+    time: '오전 10:12',
+  },
+  {
+    isMine: true,
+    content: '안녕하세요 :)',
+    date: '2023년 7월 26일',
+    time: '오전 10:12',
   },
 ];

@@ -12,6 +12,7 @@ export const Button = ({
   contentWidth,
   iconColor,
   clickEvent,
+  endIconClickEvent,
   ...props
 }) => {
   return (
@@ -25,7 +26,12 @@ export const Button = ({
         {children}
       </Content>
       {!isLoading && endIcon ? (
-        <Icon size={sizes[size]?.iconSize} src={endIcon} filter={iconColor} />
+        <Icon
+          size={sizes[size]?.iconSize}
+          src={endIcon}
+          filter={iconColor}
+          onClick={endIconClickEvent && endIconClickEvent}
+        />
       ) : null}
     </Wrapper>
   );

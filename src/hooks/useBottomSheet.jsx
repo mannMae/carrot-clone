@@ -12,7 +12,6 @@ export const useBottomSheet = (layer) => {
           options,
         });
   };
-  console.log(layer);
   const close = () => {
     layer
       ? queryClient.setQueryData(['bottomSheet', layer], {

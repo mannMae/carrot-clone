@@ -13,6 +13,8 @@ export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: ${(props) => (props.gap ? props.gap : null)};
+
   padding: 10px 20px;
   background-color: ${(props) => props.theme.colors.white};
 `;
