@@ -67,7 +67,7 @@ export const Location = () => {
   );
 };
 
-const locations = ['역삼동', '노량진동'];
+export const locations = ['역삼동', '노량진동'];
 
 export const locationData = {
   역삼동: {

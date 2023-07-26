@@ -12,10 +12,14 @@ export const InputField = ({
   const [value, setValue] = useState(defaultValue);
   const handleChange = (e) => {
     setValue(e.target.value);
-    getValue(e.target.value);
+    if (getValue) {
+      getValue(e.target.value);
+    }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
   return (
     <Input
       type={type}

@@ -16,7 +16,11 @@ import RightArrowIcon from 'assets/icons/right-arrow.svg';
 import { useQuery } from 'react-query';
 import { useBottomSheet } from 'hooks/useBottomSheet';
 import { OftenPhrase } from '..';
-import { LocationSelect, useRemoveLocation } from 'features/location';
+import {
+  LocationRagne,
+  LocationSelect,
+  useRemoveLocation,
+} from 'features/location';
 
 export const Write = () => {
   const bottomSheet = useBottomSheet();
@@ -61,7 +65,7 @@ export const Write = () => {
             required
             error={formState.errors['price']}
             registraion={register('price')}
-            value={0}
+            defaultValue={0}
             isDisabled={true}
           />
         )}
@@ -174,7 +178,16 @@ export const Write = () => {
           {location.data?.name ? location.data?.name : '위치 추가'}
         </Button>
       </Box>
-      <Anchor>보여줄 동네 선택 〉</Anchor>
+      <Anchor
+        onClick={() =>
+          bottomSheet.open({
+            type: 'content',
+            content: <LocationRagne />,
+          })
+        }
+      >
+        보여줄 동네 선택 〉
+      </Anchor>
     </Wrapper>
   );
 };
