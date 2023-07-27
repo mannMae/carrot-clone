@@ -222,6 +222,22 @@ const Header = ({ hasTopImage }) => {
       </HeaderWrapper>
     );
   }
+  if (location.pathname.split('/')[1] === 'search') {
+    return (
+      <HeaderWrapper gap="30px">
+        <Icons>
+          <Icon src={LeftArrowIcon} onClick={() => navigate(-1)} />
+        </Icons>
+        <InputField
+          backgroundColor="lightGray"
+          color="gray"
+          outline="none"
+          placeholder="노량진동 근처에서 검색"
+          borderRadius="10px"
+        />
+      </HeaderWrapper>
+    );
+  }
 };
 
 const BottomNavigation = () => {

@@ -12,9 +12,12 @@ export const HeaderWrapper = styled.header`
   left: 0;
   z-index: 1;
   width: 100%;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: ${(props) => (props.gap ? props.gap : null)};
+
   padding: 10px;
   background-color: ${(props) =>
     props.hasTopImage ? 'transparent' : props.theme.colors.white};

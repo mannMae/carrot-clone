@@ -15,6 +15,10 @@ export const Item = styled.li`
   max-width: 50%;
   min-width: 90%;
   margin: ${(props) => (props.margin ? props.margin : '0 auto')};
+  border-bottom: ${(props) =>
+    props.borderBottomColor
+      ? `1px solid ${props.theme.colors[props.borderBottomColor]}`
+      : null};
   border-radius: ${(props) => (props.borderRadius ? props.borderRadius : null)};
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : props.theme.colors.white};
@@ -89,4 +93,30 @@ export const InnerShadow = styled.div`
   width: 100%;
   height: 100%;
   box-shadow: inset 0 40px 40px -40px #333, inset 0 -40px 40px -40px #333;
+`;
+
+export const Icon = styled.img`
+  width: 12px;
+  height: 12px;
+`;
+
+export const Label = styled.label`
+  width: 130px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+  margin: 0 0 0 25px;
+`;
+
+export const CheckCircle = styled.span`
+  width: 25px;
+  height: 25px;
+  border: ${(props) => `2px solid ${props.theme.colors.lightGray}`};
+  border-radius: 50%;
+`;
+
+export const CheckedCircle = styled.img`
+  width: 25px;
+  height: 25px;
 `;

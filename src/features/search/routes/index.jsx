@@ -6,7 +6,7 @@ export const SearchRoutes = () => {
   return (
     <Routes>
       <Route path="" element={<Search />} />
-      <Route path="/result/:keyword" element={<SearchResult />} />
+      <Route path="/:keyword" element={<SearchResult />} />
       <Route path="*" element={<Navigate to="." />} />
     </Routes>
   );

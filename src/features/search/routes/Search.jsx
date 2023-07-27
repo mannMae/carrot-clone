@@ -3,9 +3,11 @@ import { Box, Button } from 'components/Elements';
 import { Buttons, SectionTitle, Wrapper } from './Search.style';
 
 import XIcon from 'assets/icons/x.svg';
+import { useNavigate } from 'react-router-dom';
 
 export const Search = () => {
   const [recentKeywords, setRecentKeywords] = useState('');
+  const navigate = useNavigate();
   const handleButtonClick = (keyword) => {
     if (recentKeywords.includes(keyword)) {
       const newRecentKeywords = recentKeywords.filter((v) => v !== keyword);
@@ -13,6 +15,7 @@ export const Search = () => {
     } else {
       setRecentKeywords([keyword, ...recentKeywords]);
     }
+    navigate(`./keyword=${keyword}`);
   };
   return (
     <Wrapper>

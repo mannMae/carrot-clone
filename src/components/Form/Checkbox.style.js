@@ -9,6 +9,7 @@ export const Label = styled.label`
     props.fontSize
       ? props.theme.fontSizes[props.fontSize]
       : props.theme.fontSizes.small};
+  cursor: pointer;
 `;
 
 export const Input = styled.input.attrs({ type: 'checkbox' })`

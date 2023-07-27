@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 export const Wrapper = styled.div`
   display: ${(props) => (props.display ? props.display : 'flex')};
   width: ${(props) => (props.width ? props.width : null)};
+  max-width: ${(props) => (props.maxWidth ? props.maxWidth : null)};
   height: ${(props) => (props.height ? props.height : null)};
   flex-direction: ${(props) =>
     props.flexDirection ? props.flexDirection : 'column'};

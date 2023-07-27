@@ -5,11 +5,14 @@ import { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import {
-  Box,
+  CheckCircle,
+  CheckedCircle,
+  Icon,
   Image,
   Infomation,
   InnerShadow,
   Item,
+  Label,
   Wrapper,
 } from './Swiper.style';
 import { theme } from 'providers/theme';
@@ -19,6 +22,23 @@ import XIcon from 'assets/icons/x.svg';
 import BellIcon from 'assets/icons/bell-filled.svg';
 import { useBottomSheet } from 'hooks/useBottomSheet';
 import { NotificationKeyword } from 'features/notification';
+import { Box } from '..';
+
+import LikeIcon from 'assets/icons/like.svg';
+import HeartIcon from 'assets/icons/heart-outlined.svg';
+import CommentIcon from 'assets/icons/comment.svg';
+import DownArrowIcon from 'assets/icons/down-arrow.svg';
+import CheckedCircleIcon from 'assets/icons/checked-circle.svg';
+import { queryClient } from 'library/react-query';
+import { useQuery } from 'react-query';
+import { getWorkedAtByTimestamp } from 'utils/workedAt';
+import { CheckboxField } from 'components/Form';
+import { TownRange } from 'features/location';
+import {
+  CategoryFilter,
+  PriceFilter,
+  SortFilter,
+} from 'features/search/components';
 
 export const Swiper = ({
   items,
@@ -126,6 +146,8 @@ export const Swiper = ({
 
 const SwiperSlideHeader = ({ category, isActiveDeleteButton }) => {
   const bottomSheet = useBottomSheet(1);
+  const { data, isLoading } = useQuery(['sort']);
+
   if (category === '키워드 알림') {
     if (isActiveDeleteButton) {
       return (
@@ -178,6 +200,99 @@ const SwiperSlideHeader = ({ category, isActiveDeleteButton }) => {
       );
     }
   }
+
+  if (category === '동네홍보' || category === '동네생활') {
+    return (
+      <Box flexDirection="row" padding="10px 20px">
+        <Button
+          size="medium"
+          variant={data?.standard === '정확도순' ? 'dark' : 'transparent'}
+          borderColor="lightGray"
+          onClick={() =>
+            queryClient.setQueryData(['sort'], {
+              standard: '정확도순',
+            })
+          }
+        >
+          정확도순
+        </Button>
+        <Button
+          size="medium"
+          variant={data?.standard === '최신순' ? 'dark' : 'transparent'}
+          borderColor="lightGray"
+          onClick={() =>
+            queryClient.setQueryData(['sort'], {
+              standard: '최신순',
+            })
+          }
+        >
+          최신순
+        </Button>
+      </Box>
+    );
+  }
+  if (category === '중고거래') {
+    return (
+      <Box flexDirection="row" padding="20px" overflowX="scroll" gap="15px">
+        <Button
+          variant="transparent"
+          size="medium"
+          endIcon={DownArrowIcon}
+          borderColor="lightGray"
+          onClick={() =>
+            bottomSheet.open({
+              type: 'content',
+              content: <TownRange close={bottomSheet.close} />,
+            })
+          }
+        >
+          노량진동 외 78
+        </Button>
+        <Button
+          variant="transparent"
+          size="medium"
+          endIcon={DownArrowIcon}
+          borderColor="lightGray"
+          onClick={() =>
+            bottomSheet.open({
+              type: 'content',
+              content: <PriceFilter close={bottomSheet.close} />,
+            })
+          }
+        >
+          가격
+        </Button>
+        <Button
+          variant="transparent"
+          size="medium"
+          endIcon={DownArrowIcon}
+          borderColor="lightGray"
+          onClick={() =>
+            bottomSheet.open({
+              type: 'content',
+              content: <CategoryFilter close={bottomSheet.close} />,
+            })
+          }
+        >
+          카테고리
+        </Button>
+        <Button
+          variant="transparent"
+          size="medium"
+          endIcon={DownArrowIcon}
+          borderColor="lightGray"
+          onClick={() =>
+            bottomSheet.open({
+              type: 'content',
+              content: <SortFilter close={bottomSheet.close} />,
+            })
+          }
+        >
+          정확도순
+        </Button>
+      </Box>
+    );
+  }
 };
 
 const SwiperItem = ({
@@ -187,6 +302,7 @@ const SwiperItem = ({
   toggleActiveDelete,
   category = '',
 }) => {
+  const [isSelected, setIsSelected] = useState(false);
   if (type === 'aroundStore') {
     return (
       <Item>
@@ -345,20 +461,351 @@ const SwiperItem = ({
   if (type === 'notification' && category === '키워드 알림') {
     return (
       <Item onClick={item.clickEvent}>
-        <Box flexDirection="row" padding="30px 0" gap="15px">
+        <Box flexDirection="row" alignItems="center" width="100%">
+          <Box width="100%" padding="30px 0" flexDirection="row" gap="15px">
+            <Image
+              src={item.image}
+              width="70px"
+              height="70px"
+              borderRadius="5px"
+            />
+            <Box>
+              <Infomation fontSize="medium">
+                <Infomation fontWeight="700">{item.keyword}</Infomation> -{' '}
+                {item.title}
+              </Infomation>
+              <Infomation fontSize="small" color="gray">
+                {item.town} ・ {item.postedAt}
+              </Infomation>
+            </Box>
+          </Box>
+          {toggleActiveDelete && (
+            <Button
+              startIcon={XIcon}
+              size="xlarge"
+              variant="transparent"
+              padding="0"
+              justifySelf="end"
+              onClick={() => item.delete()}
+            />
+          )}
+        </Box>
+      </Item>
+    );
+  }
+
+  if (type === 'search' && category === '중고거래') {
+    return (
+      <>
+        {order === 0 && (
+          <Label>
+            {isSelected ? (
+              <CheckedCircle src={CheckedCircleIcon} />
+            ) : (
+              <CheckCircle></CheckCircle>
+            )}
+            <CheckboxField
+              isBoxVisible={false}
+              getValue={setIsSelected}
+              fontSize="medium"
+            >
+              거래가능만 보기
+            </CheckboxField>
+          </Label>
+        )}
+        <Item borderBottomColor="lightGray">
+          <Box
+            padding="20px 0"
+            width="100%"
+            flexDirection="row"
+            alignItems="start"
+            justifyContent="space-between"
+            gap="15px"
+          >
+            <Image
+              src={item.image}
+              width="100px"
+              height="100px"
+              borderRadius="5px"
+            />
+            <Box width="400px" gap="5px">
+              <Infomation
+                fontSize="medium"
+                color="black"
+                display="-webkit-box"
+                textOverflow="ellipsis"
+                webkitLineClamp={2}
+                webkitBoxOrient="vertical"
+                width="100%"
+              >
+                {item.title}
+              </Infomation>
+              <Infomation fontSize="small" color="gray">
+                {item.town} ・ {getWorkedAtByTimestamp(item.postedAt)}
+              </Infomation>
+              <Infomation fontWeight="600">
+                {item.price.toLocaleString('en-US')}원
+              </Infomation>
+              <Box
+                width="100%"
+                flexDirection="row"
+                justifyContent="space-between"
+                padding="15px 0 0"
+              >
+                <Box flexDirection="row" justifyContent="end" width="100%">
+                  {item.comments && (
+                    <Box flexDirection="row" alignItems="start">
+                      <Icon src={CommentIcon} />
+                      <Infomation>{item.comments}</Infomation>
+                    </Box>
+                  )}
+                  {item.likes && (
+                    <Box flexDirection="row" alignItems="start">
+                      <Icon src={HeartIcon} />
+                      <Infomation gap="5px">{item.likes}</Infomation>
+                    </Box>
+                  )}
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </Item>
+      </>
+    );
+  }
+
+  if (type === 'search' && category === '동네생활') {
+    return (
+      <Item borderBottomColor="lightGray">
+        <Box padding="20px 0" width="100%">
+          <Infomation
+            display="flex"
+            fontSize="small"
+            width="none"
+            backgroundColor="lightGray"
+            color="gray"
+            padding="2px 4px"
+          >
+            {item.category}
+          </Infomation>
+          <Box
+            padding="5px 0"
+            width="100%"
+            flexDirection="row"
+            alignItems="start"
+            justifyContent="space-between"
+            gap="15px"
+          >
+            <Box width="400px">
+              <Infomation
+                fontSize="medium"
+                color="black"
+                textOverflow="ellipsis"
+                overflow="hidden"
+                whiteSpace="nowrap"
+                width="100%"
+              >
+                {item.title}
+              </Infomation>
+              <Infomation
+                fontSize="small"
+                textOverflow="ellipsis"
+                overflow="hidden"
+                whiteSpace="nowrap"
+                width="100%"
+                color="gray"
+              >
+                {item.description}
+              </Infomation>
+            </Box>
+            <Image
+              src={item.image}
+              width="60px"
+              height="60px"
+              borderRadius="5px"
+            />
+          </Box>
+          <Box
+            width="100%"
+            flexDirection="row"
+            justifyContent="space-between"
+            padding="15px 0 0"
+          >
+            <Infomation fontSize="small" color="gray">
+              {item.town} ・ {getWorkedAtByTimestamp(item.postedAt)} ・ 조회{' '}
+              {item.views}
+            </Infomation>
+            <Box flexDirection="row">
+              {item.likes && (
+                <Box flexDirection="row" alignItems="start">
+                  <Icon src={LikeIcon} />
+                  <Infomation gap="5px">{item.likes}</Infomation>
+                </Box>
+              )}
+              {item.comments && (
+                <Box flexDirection="row" alignItems="start">
+                  <Icon src={CommentIcon} />
+                  <Infomation>{item.comments}</Infomation>
+                </Box>
+              )}
+            </Box>
+          </Box>
+        </Box>
+      </Item>
+    );
+  }
+
+  if (type === 'search' && category === '동네홍보') {
+    return (
+      <Item borderBottomColor="lightGray">
+        <Box
+          flexDirection="row"
+          alignItems="start"
+          padding="20px 0"
+          gap="15px"
+          width="100%"
+          justifyContent="space-between"
+        >
           <Image
             src={item.image}
-            width="70px"
-            height="70px"
+            width="100px"
+            height="100px"
             borderRadius="5px"
           />
-          <Box>
-            <Infomation fontSize="medium">
-              <Infomation fontWeight="700">{item.keyword}</Infomation> -{' '}
+          <Box padding="5px 0">
+            <Infomation
+              fontSize="medium"
+              color="gray"
+              textOverflow="ellipsis"
+              overflow="hidden"
+              whiteSpace="nowrap"
+              width="320px"
+            >
               {item.title}
             </Infomation>
+            <Infomation
+              display="-webkit-box"
+              fontSize="small"
+              textOverflow="ellipsis"
+              webkitLineClamp={2}
+              webkitBoxOrient="vertical"
+            >
+              {item.description}
+            </Infomation>
             <Infomation fontSize="small" color="gray">
-              {item.town} ・ {item.postedAt}
+              {item.town} ・ {getWorkedAtByTimestamp(item.postedAt)}
+            </Infomation>
+            <Box
+              width="100%"
+              flexDirection="row"
+              justifyContent="end"
+              padding="15px 0 0"
+            >
+              {item.likes && (
+                <Box flexDirection="row" alignItems="start">
+                  <Icon src={HeartIcon} />
+                  <Infomation gap="5px">{item.likes}</Infomation>
+                </Box>
+              )}
+              {item.comments && (
+                <Box flexDirection="row" alignItems="start">
+                  <Icon src={CommentIcon} />
+                  <Infomation>{item.comments}</Infomation>
+                </Box>
+              )}
+            </Box>
+          </Box>
+        </Box>
+      </Item>
+    );
+  }
+
+  if (type === 'search' && category === '동네가게') {
+    return (
+      <Item borderBottomColor="lightGray">
+        <Box
+          flexDirection="row"
+          alignItems="start"
+          padding="20px 0"
+          gap="15px"
+          width="100%"
+          justifyContent="space-between"
+        >
+          <Box padding="5px 0">
+            <Infomation fontSize="small" color="gray">
+              <Infomation fontWeight="600" fontSize="medium">
+                {item.storeName}
+              </Infomation>{' '}
+              {item.category}
+            </Infomation>
+            <Infomation
+              display="-webkit-box"
+              fontSize="small"
+              textOverflow="ellipsis"
+              webkitLineClamp={2}
+              webkitBoxOrient="vertical"
+            >
+              {item.description}
+            </Infomation>
+            <Infomation fontSize="small" color="gray">
+              단골 {item.likes}
+            </Infomation>
+            <Infomation fontSize="small" color="gray">
+              {item.distance} ・ {item.town}
+            </Infomation>
+            {item.badges.length !== 0 && (
+              <Box flexDirection="row">
+                {item.badges.map((badge, i) => (
+                  <Infomation
+                    key={i}
+                    fontSize="small"
+                    color="black"
+                    backgroundColor="lightGray"
+                    padding="3px"
+                  >
+                    {badge}
+                  </Infomation>
+                ))}
+              </Box>
+            )}
+          </Box>
+          {toggleActiveDelete && (
+            <Button
+              startIcon={XIcon}
+              size="xlarge"
+              variant="transparent"
+              padding="0"
+              onClick={() => item.delete()}
+            />
+          )}
+          <Image
+            src={item.image}
+            width="80px"
+            height="80px"
+            borderRadius="5px"
+          />
+        </Box>
+      </Item>
+    );
+  }
+
+  if (type === 'search' && category === '이웃') {
+    return (
+      <Item borderBottomColor="lightGray">
+        <Box flexDirection="row" padding="30px 0" gap="15px" width="100%">
+          <Image
+            src={item.profileImage}
+            width="40px"
+            height="40px"
+            borderRadius="50%"
+          />
+          <Box padding="5px 0">
+            <Infomation fontSize="small">
+              <Infomation fontWeight="600">{item.username}</Infomation> #
+              {item.userId}
+            </Infomation>
+            <Infomation fontSize="small" color="gray">
+              {item.town}
             </Infomation>
           </Box>
           {toggleActiveDelete && (

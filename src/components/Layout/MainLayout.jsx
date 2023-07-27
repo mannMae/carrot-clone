@@ -92,7 +92,9 @@ const Header = () => {
         <Dropdown options={['역삼동', '노량진동']} />
         <Icons>
           <Icon src={UserCicleIcon} />
-          <Icon src={SearchIcon} />
+          <Link to="/search">
+            <Icon src={SearchIcon} />
+          </Link>
           <Icon
             src={BellIcon}
             onClick={() =>
@@ -110,8 +112,9 @@ const Header = () => {
       <HeaderWrapper>
         <Dropdown options={['역삼동', '노량진동']} />
         <Icons>
-          <Icon src={QrReadIcon} />
-          <Icon src={SearchIcon} />
+          <Link to="/search">
+            <Icon src={SearchIcon} />
+          </Link>
           <Icon
             src={BellIcon}
             onClick={() =>

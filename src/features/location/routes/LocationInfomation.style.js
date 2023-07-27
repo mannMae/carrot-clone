@@ -4,7 +4,7 @@ export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: 20px;
+  padding: 60px 20px 0;
 `;
 
 export const BoxTitle = styled.h3`
