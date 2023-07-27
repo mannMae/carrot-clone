@@ -1,6 +1,6 @@
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 
-import { Dropdown } from 'components/Elements';
+import { Button, Dropdown } from 'components/Elements';
 import { WriteButton } from 'features/write';
 import {
   BottomNavigationItem,
@@ -10,6 +10,7 @@ import {
   Heading,
   Icon,
   Icons,
+  Keywords,
 } from './MainLayout.style';
 
 import SearchIcon from 'assets/icons/search.svg';
@@ -36,6 +37,7 @@ import QuestionMarkIcon from 'assets/icons/question-mark.svg';
 import XIcon from 'assets/icons/x.svg';
 import LeftArrowIcon from 'assets/icons/left-arrow.svg';
 import { InputField } from 'components/Form';
+import { useState } from 'react';
 
 export const MainLayout = ({ children }) => {
   const location = useLocation();
@@ -65,6 +67,13 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const bottomSheet = useBottomSheet(0);
+  const [inputValue, setInputValue] = useState('');
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      navigate(`/search/keyword=${inputValue}`);
+    }
+  };
+
   if (location.pathname === '/home') {
     return (
       <HeaderWrapper>
@@ -170,18 +179,40 @@ const Header = () => {
     );
   } else if (location.pathname === '/search') {
     return (
-      <HeaderWrapper gap="30px">
-        <Icons>
-          <Icon src={LeftArrowIcon} onClick={() => navigate(-1)} />
-        </Icons>
-        <InputField
-          backgroundColor="lightGray"
-          color="gray"
-          outline="none"
-          placeholder="노량진동 근처에서 검색"
-          borderRadius="10px"
-        />
-      </HeaderWrapper>
+      <>
+        <HeaderWrapper gap="30px">
+          <Icons>
+            <Icon src={LeftArrowIcon} onClick={() => navigate(-1)} />
+          </Icons>
+          <InputField
+            backgroundColor="lightGray"
+            color="gray"
+            outline="none"
+            placeholder="노량진동 근처에서 검색"
+            borderRadius="10px"
+            getValue={setInputValue}
+            onKeyPress={handleKeyPress}
+          />
+          {inputValue !== '' && (
+            <Keywords>
+              {keywords.map((keyword, i) => (
+                <Link to={`/search/keyword=${keyword}`}>
+                  <Button
+                    key={i}
+                    startIcon={SearchIcon}
+                    size="medium"
+                    gap="10px"
+                    color="black"
+                    backgroundColor="transparent"
+                  >
+                    {keyword}
+                  </Button>
+                </Link>
+              ))}
+            </Keywords>
+          )}
+        </HeaderWrapper>
+      </>
     );
   }
 };
@@ -240,3 +271,21 @@ const BottomNavigation = () => {
     </BottomNavigationWrapper>
   );
 };
+
+const keywords = [
+  '화분',
+  '행거',
+  '향수',
+  '화장대',
+  '핸드폰',
+  '호텔',
+  '휴대폰',
+  '헌터',
+  '헬스',
+  '협탁',
+  '헬멧',
+  '헤드셋',
+  '휴대용유모차',
+  '항아리',
+  '햄스터',
+];

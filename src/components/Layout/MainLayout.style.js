@@ -72,3 +72,18 @@ export const BottomNavigationItem = styled.button`
   align-items: center;
   gap: 5px;
 `;
+
+export const Keywords = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 15px;
+  gap: 15px;
+  background-color: #fff;
+`;
