@@ -240,6 +240,118 @@ const Header = ({ hasTopImage }) => {
       </>
     );
   }
+
+  if (location.pathname === '/setting/user/info') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>계정 / 정보 관리</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/setting/user/info/email/regist') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>이메일 등록하기</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/setting/user/info/phone/edit') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>휴대폰 번호 변경하기</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/setting/user/info/terms') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>서비스 이용약관</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/setting/user/info/terms/terms-of-use') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>서비스 이용약관</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/setting/user/info/terms/privacy-policy') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>개인정보 처리방침</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/setting/user/info/terms/location-service') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>위치기반서비스 이용약관</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
 };
 
 const BottomNavigation = () => {

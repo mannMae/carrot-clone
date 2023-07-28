@@ -6,6 +6,7 @@ import { LocationRoutes } from 'features/location';
 import { MarketRoutes } from 'features/market';
 import { TownLife } from 'features/misc';
 import { SearchRoutes } from 'features/search';
+import { SettingRoutes } from 'features/setting';
 import { UserRoutes } from 'features/user';
 import { WriteRoutes } from 'features/write/routes';
 
@@ -57,7 +58,8 @@ export const protectedRoutes = [
       { path: '/location/*', element: <LocationRoutes /> },
       { path: '/write/*', element: <WriteRoutes /> },
       { path: '/search/*', element: <SearchRoutes /> },
-      { path: '*', element: <Navigate to="." /> },
+      { path: '/setting/*', element: <SettingRoutes /> },
+      { path: '*', element: <Navigate to="/home" /> },
     ],
   },
 ];

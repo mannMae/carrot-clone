@@ -1,6 +1,10 @@
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.div`
+  position: ${(props) => props.position};
+  top: ${(props) => props.top};
+  left: ${(props) => props.left};
+
   display: ${(props) => (props.display ? props.display : 'flex')};
   width: ${(props) => (props.width ? props.width : null)};
   max-width: ${(props) => (props.maxWidth ? props.maxWidth : null)};
@@ -20,6 +24,10 @@ export const Wrapper = styled.div`
     props.borderColor
       ? `1px solid ${props.theme.colors[props.borderColor]}`
       : null};
+  border-top: ${(props) =>
+    props.borderTopColor
+      ? `1px solid ${props.theme.colors[props.borderTopColor]}`
+      : null};
   border-bottom: ${(props) =>
     props.borderBottomColor
       ? `1px solid ${props.theme.colors[props.borderBottomColor]}`
@@ -32,4 +40,7 @@ export const Wrapper = styled.div`
     props.backgroundColor ? props.theme.colors[props.backgroundColor] : null};
   overflow: ${(props) => (props.overflow ? props.overflow : null)};
   overflow-y: ${(props) => (props.overflowY ? props.overflowY : null)};
+  opacity: ${(props) => props.opacity};
+
+  transform: ${(props) => props.transform};
 `;

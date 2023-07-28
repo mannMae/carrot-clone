@@ -159,7 +159,9 @@ const Header = () => {
       <HeaderWrapper>
         <Heading>나의 당근</Heading>
         <Icons>
-          <Icon src={SettingIcon} />
+          <Link to="/setting">
+            <Icon src={SettingIcon} />
+          </Link>
         </Icons>
       </HeaderWrapper>
     );
@@ -214,6 +216,16 @@ const Header = () => {
         </HeaderWrapper>
       </>
     );
+  } else if (location.pathname === '/setting') {
+    return (
+      <HeaderWrapper>
+        <Icons>
+          <Icon src={LeftArrowIcon} onClick={() => navigate(-1)} />
+        </Icons>
+        <Heading>설정</Heading>
+        <Icons></Icons>
+      </HeaderWrapper>
+    );
   }
 };
 
@@ -251,7 +263,11 @@ const BottomNavigation = () => {
       icon: [UserOutlinedIcon, UserFilledIcon],
     },
   ];
-  if (location.pathname === '/location' || location.pathname === '/search') {
+  if (
+    location.pathname === '/location' ||
+    location.pathname === '/search' ||
+    location.pathname === '/setting'
+  ) {
     return;
   }
   return (
