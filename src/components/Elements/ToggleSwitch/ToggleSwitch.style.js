@@ -22,7 +22,7 @@ export const Button = styled.button`
     props.isTouching
       ? `translateX(${props.x}px)`
       : props.isActive
-      ? `translateX(23px)`
+      ? `translateX(30px)`
       : `translateX(0)`};
   transition: all ease 0.3s 0s;
 `;

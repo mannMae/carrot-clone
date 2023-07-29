@@ -6,7 +6,7 @@ export const SettingRoutes = () => {
   return (
     <Routes>
       <Route path="" element={<Setting />} />
-      <Route path="/user/info/*" element={<UserInfo />} />
+      <Route path="/user/*" element={<UserInfo />} />
       <Route path="*" element={<Navigate to="." />} />
     </Routes>
   );

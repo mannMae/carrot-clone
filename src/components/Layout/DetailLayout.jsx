@@ -352,6 +352,86 @@ const Header = ({ hasTopImage }) => {
       </>
     );
   }
+
+  if (location.pathname === '/setting/user/follow') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>모아보기 사용자 관리</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/setting/user/block') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>차단 사용자 관리</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/setting/user/hidden') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>게시글 미노출 사용자 관리</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/setting/user/etc') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>기타 설정</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/setting/user/change-post-town') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>중고거래 게시글의 동네 변경하기</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
 };
 
 const BottomNavigation = () => {

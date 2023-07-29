@@ -36,7 +36,6 @@ export const Setting = () => {
           <Button
             variant="transparent"
             padding="15px 0"
-            width="100%"
             justifyContent="space-between"
           >
             방해금지 시간 설정
@@ -129,38 +128,46 @@ export const Setting = () => {
             계정 / 정보 관리
           </Button>
         </Link>
-        <Button
-          variant="transparent"
-          padding="15px 0"
-          width="100%"
-          justifyContent="start"
-        >
-          모아보기 사용자 관리
-        </Button>
-        <Button
-          variant="transparent"
-          padding="15px 0"
-          width="100%"
-          justifyContent="start"
-        >
-          차단 사용자 관리
-        </Button>
-        <Button
-          variant="transparent"
-          padding="15px 0"
-          width="100%"
-          justifyContent="start"
-        >
-          게시글 미노출 사용자 관리
-        </Button>
-        <Button
-          variant="transparent"
-          padding="15px 0"
-          width="100%"
-          justifyContent="start"
-        >
-          기타 설정
-        </Button>
+        <Link to="./user/follow" style={{ width: '100%' }}>
+          <Button
+            variant="transparent"
+            padding="15px 0"
+            width="100%"
+            justifyContent="start"
+          >
+            모아보기 사용자 관리
+          </Button>
+        </Link>
+        <Link to="./user/block" style={{ width: '100%' }}>
+          <Button
+            variant="transparent"
+            padding="15px 0"
+            width="100%"
+            justifyContent="start"
+          >
+            차단 사용자 관리
+          </Button>
+        </Link>
+        <Link to="./user/hidden" style={{ width: '100%' }}>
+          <Button
+            variant="transparent"
+            padding="15px 0"
+            width="100%"
+            justifyContent="start"
+          >
+            게시글 미노출 사용자 관리
+          </Button>
+        </Link>
+        <Link to="./user/etc" style={{ width: '100%' }}>
+          <Button
+            variant="transparent"
+            padding="15px 0"
+            width="100%"
+            justifyContent="start"
+          >
+            기타 설정
+          </Button>
+        </Link>
       </Box>
       <Box padding="15px 15px 0" borderTopColor="lightGray">
         <SectionTitle>기타</SectionTitle>

@@ -1,7 +1,16 @@
 import { Box, Button } from 'components/Elements';
 import { SectionTitle, Wrapper } from './UserInfo.style';
 import { Link, useLocation } from 'react-router-dom';
-import { EditPhone, RegistEmail, Terms } from '..';
+import {
+  Block,
+  ChangePostTown,
+  EditPhone,
+  Etc,
+  Follow,
+  Hidden,
+  RegistEmail,
+  Terms,
+} from '..';
 
 export const UserInfo = () => {
   const location = useLocation();
@@ -12,9 +21,28 @@ export const UserInfo = () => {
     return <EditPhone />;
   }
 
-  console.log(location);
   if (location.pathname.includes('/setting/user/info/terms')) {
     return <Terms />;
+  }
+
+  if (location.pathname === '/setting/user/follow') {
+    return <Follow />;
+  }
+
+  if (location.pathname === '/setting/user/block') {
+    return <Block />;
+  }
+
+  if (location.pathname === '/setting/user/hidden') {
+    return <Hidden />;
+  }
+
+  if (location.pathname === '/setting/user/etc') {
+    return <Etc />;
+  }
+
+  if (location.pathname === '/setting/user/change-post-town') {
+    return <ChangePostTown />;
   }
 
   return (

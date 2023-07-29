@@ -20,8 +20,8 @@ export const ToggleSwitch = ({ getValue }) => {
     console.log(X, screenX);
     if (X <= 0) {
       setX(0);
-    } else if (X >= 23) {
-      setX(23);
+    } else if (X >= 30) {
+      setX(30);
     } else {
       setX(X);
     }
