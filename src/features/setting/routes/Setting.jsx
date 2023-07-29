@@ -19,14 +19,16 @@ export const Setting = () => {
     <Wrapper>
       <Box padding="15px 15px 0" borderTopColor="lightGray">
         <SectionTitle>알림 설정</SectionTitle>
-        <Button
-          variant="transparent"
-          padding="15px 0"
-          width="100%"
-          justifyContent="start"
-        >
-          알림 및 소리
-        </Button>
+        <Link to="./notification">
+          <Button
+            variant="transparent"
+            padding="15px 0"
+            width="100%"
+            justifyContent="start"
+          >
+            알림 및 소리
+          </Button>
+        </Link>
         <Box
           flexDirection="row"
           width="100%"

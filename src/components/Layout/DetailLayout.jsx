@@ -432,6 +432,22 @@ const Header = ({ hasTopImage }) => {
       </>
     );
   }
+
+  if (location.pathname === '/setting/notification') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>알림 및 소리</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
 };
 
 const BottomNavigation = () => {
