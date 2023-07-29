@@ -21,10 +21,20 @@ export const AppRoutes = () => {
 
   const element = useRoutes([...routes]);
 
+  console.log(bottomSheetQueries);
+
   return (
     <>
       {element}
-      {bottomSheetQueries.map((query, i) => (
+      {/* {bottomSheetQueries.map((query, i) => (
+        <BottomSheet query={query} key={i} />
+      ))} */}
+      {[
+        ['bottomSheet'],
+        ['bottomSheet', 1],
+        ['bottomSheet', 2],
+        ['bottomSheet', 3],
+      ].map((query, i) => (
         <BottomSheet query={query} key={i} />
       ))}
     </>

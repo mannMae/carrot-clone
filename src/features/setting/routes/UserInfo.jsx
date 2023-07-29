@@ -12,7 +12,8 @@ export const UserInfo = () => {
     return <EditPhone />;
   }
 
-  if (location.pathname === '/setting/user/info/terms') {
+  console.log(location);
+  if (location.pathname.includes('/setting/user/info/terms')) {
     return <Terms />;
   }
 
