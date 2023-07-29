@@ -448,6 +448,22 @@ const Header = ({ hasTopImage }) => {
       </>
     );
   }
+
+  if (location.pathname.split('/')[2] === 'announcement') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>공지사항</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
 };
 
 const BottomNavigation = () => {

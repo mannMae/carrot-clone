@@ -173,14 +173,16 @@ export const Setting = () => {
       </Box>
       <Box padding="15px 15px 0" borderTopColor="lightGray">
         <SectionTitle>기타</SectionTitle>
-        <Button
-          variant="transparent"
-          padding="15px 0"
-          width="100%"
-          justifyContent="start"
-        >
-          공지사항
-        </Button>
+        <Link to="./announcement">
+          <Button
+            variant="transparent"
+            padding="15px 0"
+            width="100%"
+            justifyContent="start"
+          >
+            공지사항
+          </Button>
+        </Link>
         <Button
           variant="transparent"
           padding="15px 0"
