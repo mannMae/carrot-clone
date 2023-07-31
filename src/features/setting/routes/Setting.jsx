@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useBottomSheet } from 'hooks/useBottomSheet';
 import { SetTime } from '..';
 import { Link } from 'react-router-dom';
+import { useModal } from 'hooks/useModal';
 
 export const Setting = () => {
   const [isDoNotDisturbModeActive, setIsDoNotDisturbModeActive] =
@@ -15,6 +16,7 @@ export const Setting = () => {
   const [doNotDisturbModeEndTime, setDoNotDisturbModeEndTime] =
     useState('오전 8:00');
   const bottomSheet = useBottomSheet(0);
+  const modal = useModal();
   return (
     <Wrapper>
       <Box padding="15px 15px 0" borderTopColor="lightGray">
@@ -188,32 +190,88 @@ export const Setting = () => {
           padding="15px 0"
           width="100%"
           justifyContent="start"
+          onClick={() =>
+            modal.open({
+              title: '',
+              content: `오라형님, 당근마켓을 다른 국가로 변경하면 한국 서비스는 로그아웃돼요. 외국에서 당근마켓을 이용하시려면 그 국가의 전화번호로 새롭게 가입하셔야 해요.`,
+              buttons: (
+                <Box flexDirection="column" width="100%">
+                  <Button
+                    variant=""
+                    width="100%"
+                    height="30px"
+                    borderRadius="5px"
+                    fontWeight="600"
+                    alignItems="center"
+                  >
+                    네, 변경할게요
+                  </Button>
+                  <Button
+                    color="black"
+                    backgroundColor="white"
+                    borderColor="lightGray"
+                    width="100%"
+                    height="30px"
+                    borderRadius="5px"
+                    fontWeight="600"
+                    alignItems="center"
+                    onClick={() => modal.close()}
+                  >
+                    취소
+                  </Button>
+                </Box>
+              ),
+            })
+          }
         >
           국가 변경
         </Button>
-        <Box
-          flexDirection="row"
-          width="100%"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Button
-            variant="transparent"
-            padding="15px 0"
+        <Link to="./language" style={{ width: '100%' }}>
+          <Box
+            flexDirection="row"
             width="100%"
-            justifyContent="start"
+            justifyContent="space-between"
+            alignItems="center"
           >
-            언어 설정
-          </Button>
-          <Button backgroundColor="transparent" color="primary" padding="0">
-            한국어
-          </Button>
-        </Box>
+            <Button
+              variant="transparent"
+              padding="15px 0"
+              width="100%"
+              justifyContent="start"
+            >
+              언어 설정
+            </Button>
+            <Button backgroundColor="transparent" color="primary" padding="0">
+              한국어
+            </Button>
+          </Box>
+        </Link>
         <Button
           variant="transparent"
           padding="15px 0"
           width="100%"
           justifyContent="start"
+          onClick={() =>
+            modal.open({
+              title: '',
+              content: `캐시 데이터 삭제 완료`,
+              buttons: (
+                <Box flexDirection="column" width="100%">
+                  <Button
+                    variant=""
+                    width="100%"
+                    height="30px"
+                    borderRadius="5px"
+                    fontWeight="600"
+                    alignItems="center"
+                    onClick={() => modal.close()}
+                  >
+                    확인
+                  </Button>
+                </Box>
+              ),
+            })
+          }
         >
           캐시 데이터 삭제하기
         </Button>
@@ -240,17 +298,52 @@ export const Setting = () => {
           padding="15px 0"
           width="100%"
           justifyContent="start"
+          onClick={() =>
+            modal.open({
+              title: '로그아웃',
+              content: `정말 로그아웃 하시겠나요?`,
+              buttons: (
+                <Box flexDirection="column" width="100%">
+                  <Button
+                    variant=""
+                    width="100%"
+                    height="30px"
+                    borderRadius="5px"
+                    fontWeight="600"
+                    alignItems="center"
+                  >
+                    로그아웃
+                  </Button>
+                  <Button
+                    color="black"
+                    backgroundColor="white"
+                    borderColor="lightGray"
+                    width="100%"
+                    height="30px"
+                    borderRadius="5px"
+                    fontWeight="600"
+                    alignItems="center"
+                    onClick={() => modal.close()}
+                  >
+                    닫기
+                  </Button>
+                </Box>
+              ),
+            })
+          }
         >
           로그아웃
         </Button>
-        <Button
-          variant="transparent"
-          padding="15px 0"
-          width="100%"
-          justifyContent="start"
-        >
-          탈퇴하기
-        </Button>
+        <Link to="./delete-account" style={{ width: '100%' }}>
+          <Button
+            variant="transparent"
+            padding="15px 0"
+            width="100%"
+            justifyContent="start"
+          >
+            탈퇴하기
+          </Button>
+        </Link>
       </Box>
     </Wrapper>
   );

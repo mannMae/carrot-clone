@@ -12,38 +12,14 @@ export const Modal = () => {
   }
 
   const { isActive, modalOptions } = data;
-  const { title, content, button } = modalOptions;
+  const { title, content, buttons } = modalOptions;
 
   return (
     <>
       <Wrapper isActive={isActive}>
         {title && <Text>{title}</Text>}
         {content && <Text>{content}</Text>}
-        <Box flexDirection="row" width="100%">
-          <Button
-            variant=""
-            width="100%"
-            height="30px"
-            borderRadius="5px"
-            fontWeight="600"
-            alignItems="center"
-          >
-            네, 안 볼게요
-          </Button>
-          <Button
-            color="black"
-            backgroundColor="white"
-            borderColor="lightGray"
-            width="100%"
-            height="30px"
-            borderRadius="5px"
-            fontWeight="600"
-            alignItems="center"
-            onClick={() => close()}
-          >
-            취소
-          </Button>
-        </Box>
+        {isActive && buttons && buttons}
       </Wrapper>
       <Overlay isActive={isActive} onClick={() => close()} />
     </>
