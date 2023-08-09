@@ -125,17 +125,32 @@ const Header = ({ hasTopImage }) => {
   const modalOptions = {
     title: '',
     content: `${details.user.username}님의 모든 게시글을 보지 않으시겠어요?\n게시글 목록에서 ${details.user.username}님의 게시글이 더는 보이지 않아요.`,
-    button: (
-      <Button
-        variant=""
-        width="100%"
-        height="30px"
-        borderRadius="5px"
-        fontWeight="600"
-        alignItems="center"
-      >
-        네, 안 볼게요
-      </Button>
+    buttons: (
+      <Box flexDirection="row" width="100%">
+        <Button
+          variant=""
+          width="100%"
+          height="30px"
+          borderRadius="5px"
+          fontWeight="600"
+          alignItems="center"
+        >
+          네, 안 볼게요
+        </Button>
+        <Button
+          color="black"
+          backgroundColor="white"
+          borderColor="lightGray"
+          width="100%"
+          height="30px"
+          borderRadius="5px"
+          fontWeight="600"
+          alignItems="center"
+          onClick={() => modal.close()}
+        >
+          취소
+        </Button>
+      </Box>
     ),
   };
 
@@ -449,6 +464,61 @@ const Header = ({ hasTopImage }) => {
     );
   }
 
+  if (location.pathname === '/setting/language') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>언어 설정</Heading>
+          <Button
+            color="black"
+            backgroundColor="transparent"
+            fontWeight="600"
+            onClick={() => {
+              modal.open({
+                title: '언어를 초기화 하시겠습니까?',
+                content: `언어를 초기화 하시면 디바이스에 설정된 언어를 따르게 됩니다.`,
+                buttons: (
+                  <Box flexDirection="column" width="100%">
+                    <Button
+                      variant=""
+                      width="100%"
+                      height="30px"
+                      borderRadius="5px"
+                      fontWeight="600"
+                      alignItems="center"
+                    >
+                      확인
+                    </Button>
+                    <Button
+                      color="black"
+                      backgroundColor="white"
+                      borderColor="lightGray"
+                      width="100%"
+                      height="30px"
+                      borderRadius="5px"
+                      fontWeight="600"
+                      alignItems="center"
+                      onClick={() => modal.close()}
+                    >
+                      취소
+                    </Button>
+                  </Box>
+                ),
+              });
+            }}
+          >
+            초기화하기
+          </Button>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
   if (location.pathname.split('/')[2] === 'announcement') {
     return (
       <>
@@ -459,6 +529,22 @@ const Header = ({ hasTopImage }) => {
             </Link>
           </Icons>
           <Heading>공지사항</Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/setting/delete-account') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={XIcon} />
+            </Link>
+          </Icons>
+          <Heading>탈퇴하기</Heading>
           <Icons></Icons>
         </HeaderWrapper>
       </>
