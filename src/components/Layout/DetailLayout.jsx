@@ -550,6 +550,22 @@ const Header = ({ hasTopImage }) => {
       </>
     );
   }
+
+  if (location.pathname === '/auth/login') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading></Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
 };
 
 const BottomNavigation = () => {

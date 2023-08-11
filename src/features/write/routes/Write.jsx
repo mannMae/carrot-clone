@@ -21,8 +21,10 @@ import {
   LocationSelect,
   useRemoveLocation,
 } from 'features/location';
+import { useUser } from 'library/auth';
 
 export const Write = () => {
+  // const user = useUser();
   const bottomSheet = useBottomSheet();
   const [tradeType, setTradeType] = useState('판매하기');
 
