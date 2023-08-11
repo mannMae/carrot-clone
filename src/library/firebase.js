@@ -22,7 +22,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const firebaseAuth = getAuth(app);
-firebaseAuth.languageCode = 'it';
+firebaseAuth.languageCode = 'kr';
 
 window.recaptchaVerifier = new RecaptchaVerifier(
   firebaseAuth,
