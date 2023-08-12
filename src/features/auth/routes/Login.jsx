@@ -1,5 +1,5 @@
 import { Form, InputField } from 'components/Form';
-import { Wrapper } from './Login.style';
+import { Anchor, Guide, Wrapper } from './Login.style';
 import { Box, Button } from 'components/Elements';
 import { useEffect, useState } from 'react';
 import { validate } from 'utils/validate';
@@ -7,6 +7,8 @@ import { useLogin, useUser } from 'library/auth';
 import { loginWithPhoneNumber } from '../api/login';
 import { appVerifier, firebaseAuth } from 'library/firebase';
 import { signInWithCredential } from 'firebase/auth';
+import { Link } from 'react-router-dom';
+import { queryClient } from 'library/react-query';
 
 export const Login = () => {
   // const login = useUser();
@@ -36,7 +38,12 @@ export const Login = () => {
     console.log(confirmationResult);
     confirmationResult
       .confirm(confirmationCode)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        queryClient.setQueryData(['user'], {
+          user: res.user,
+        });
+      })
       .catch((error) => console.error(error));
   };
   return (
@@ -68,7 +75,8 @@ export const Login = () => {
           );
         }}
       </Form>
-      {confirmationResult && (
+      {true && (
+        // confirmationResult
         <Form onSubmit={handleConfirmationSubmit}>
           {({ register, formState }) => {
             return (
@@ -83,13 +91,18 @@ export const Login = () => {
                   placeholder="인증번호 입력"
                   required
                 />
+
+                <Guide>어떤 경우에도 타인에게 공유하지 마세요!</Guide>
                 <Button
+                  height="40px"
                   width="100%"
                   borderRadius="5px"
                   fontWeight="600"
                   size="large"
-                  variant={isValidated ? 'transparent' : 'transparentGray'}
-                  borderColor="lightGray"
+                  color="gray"
+                  backgroundColor="lightGray"
+                  variant={confirmationCode.length && 'primary'}
+                  borderColor={!confirmationCode.length && 'lightGray'}
                 >
                   동의하고 시작하기
                 </Button>
@@ -98,6 +111,9 @@ export const Login = () => {
           }}
         </Form>
       )}
+      <Link to="." style={{ justifySelf: 'center', alignSelf: 'center' }}>
+        <Anchor>인증번호가 오지 않나요?</Anchor>
+      </Link>
     </Wrapper>
   );
 };

@@ -16,6 +16,7 @@ export const Wrapper = styled.button`
 
   width: ${(props) => (props.width ? props.width : null)};
   height: ${(props) => (props.height ? props.height : null)};
+  box-sizing: border-box;
   border: ${(props) =>
     props?.variant?.backgroundColor === 'white'
       ? `1px solid ${props.theme.colors[props.variant.color]}`
