@@ -75,8 +75,7 @@ export const Login = () => {
           );
         }}
       </Form>
-      {true && (
-        // confirmationResult
+      {confirmationResult && (
         <Form onSubmit={handleConfirmationSubmit}>
           {({ register, formState }) => {
             return (

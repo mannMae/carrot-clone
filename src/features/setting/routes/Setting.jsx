@@ -6,6 +6,7 @@ import { useBottomSheet } from 'hooks/useBottomSheet';
 import { SetTime } from '..';
 import { Link } from 'react-router-dom';
 import { useModal } from 'hooks/useModal';
+import { logout } from 'features/auth/api/logout';
 
 export const Setting = () => {
   const [isDoNotDisturbModeActive, setIsDoNotDisturbModeActive] =
@@ -311,6 +312,10 @@ export const Setting = () => {
                     borderRadius="5px"
                     fontWeight="600"
                     alignItems="center"
+                    onClick={() => {
+                      modal.close();
+                      logout();
+                    }}
                   >
                     로그아웃
                   </Button>
