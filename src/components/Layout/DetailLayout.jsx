@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   BottomNavigationWrapper,
   HeaderWrapper,
@@ -26,6 +26,7 @@ import PhoneIcon from 'assets/icons/phone.svg';
 import PlusIcon from 'assets/icons/plus-black.svg';
 import AirplaneGrayIcon from 'assets/icons/airplane-gray.svg';
 import AirplanePrimaryIcon from 'assets/icons/airplane-primary.svg';
+import { SearchField } from 'components/Form/SearchField';
 
 export const DetailLayout = ({ children }) => {
   const location = useLocation();
@@ -562,6 +563,27 @@ const Header = ({ hasTopImage }) => {
           </Icons>
           <Heading></Heading>
           <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/auth/register') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <SearchField
+            placeholder="동명(읍, 면)으로 검색 (ex. 서초동)"
+            margin="0 0 0 20px"
+            borderRadius="10px"
+            backgroundColor="lightGray"
+            queryKey="town"
+          />
         </HeaderWrapper>
       </>
     );
