@@ -11,7 +11,6 @@ import { storage } from 'utils/storage';
 export const AppRoutes = () => {
   const auth = storage.getToken();
   const { data, isLoading } = useQuery(['user']);
-  console.log(data);
 
   const routes = data ? protectedRoutes : publicRoutes;
 

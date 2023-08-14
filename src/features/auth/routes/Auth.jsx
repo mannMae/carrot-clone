@@ -7,9 +7,11 @@ import {
   Title,
   Wrapper,
 } from './Auth.style';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Auth = () => {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <Box></Box>
@@ -23,7 +25,13 @@ export const Auth = () => {
         </Description>
       </Box>
       <Box alignItems="center" gap="20px">
-        <Button size="large" width="100%" borderRadius="5px" padding="10px">
+        <Button
+          size="large"
+          width="100%"
+          borderRadius="5px"
+          padding="10px"
+          onClick={() => navigate('./register')}
+        >
           시작하기
         </Button>
         <LoginGuide>
