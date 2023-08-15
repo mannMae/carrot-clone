@@ -1,12 +1,25 @@
 import { useQuery } from 'react-query';
-import { Town, Towns, TownsInner, TownsTitle, Wrapper } from './Register.style';
-import { useEffect } from 'react';
+import {
+  RegistGuide,
+  SearchByEmail,
+  SubGuide,
+  Town,
+  Towns,
+  TownsInner,
+  TownsTitle,
+  Wrapper,
+} from './Register.style';
+import { useEffect, useState } from 'react';
 import { Button } from 'components/Elements';
 
 import targetIcon from 'assets/icons/target-white.svg';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { PhoneAuth } from '..';
 
 export const Register = () => {
   const { data, isLoading } = useQuery(['search', 'town']);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     console.log(data);
@@ -15,6 +28,37 @@ export const Register = () => {
   const filteredTowns = towns.filter(
     (town) => town.substring(0, data?.keyword.length) === data?.keyword
   );
+
+  const handleClickTown = () => {
+    navigate('./phone-auth');
+  };
+
+  const [confirmation, setConfirmation] = useState();
+
+  if (location.pathname === '/auth/register/phone-auth') {
+    return (
+      <Wrapper>
+        {!confirmation && (
+          <>
+            <RegistGuide>
+              {'안녕하세요!\n휴대폰 번호로 가입해주세요.'}
+            </RegistGuide>
+            <SubGuide>
+              휴대폰 번호는 안전하게 보관되며 이웃들에게 공개되지 않아요.
+            </SubGuide>
+          </>
+        )}
+        <PhoneAuth getConfirmation={setConfirmation} />
+        {!confirmation && (
+          <>
+            <SearchByEmail>
+              휴대폰 번호가 변경되었나요? <Link to=".">이메일로 계정 찾기</Link>
+            </SearchByEmail>
+          </>
+        )}
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper>
@@ -35,8 +79,16 @@ export const Register = () => {
         </TownsTitle>
         <TownsInner>
           {data?.keyword
-            ? filteredTowns.map((town, i) => <Town key={i}>{town}</Town>)
-            : towns.map((town, i) => <Town key={i}>{town}</Town>)}
+            ? filteredTowns.map((town, i) => (
+                <Town key={i} onClick={() => handleClickTown(town)}>
+                  {town}
+                </Town>
+              ))
+            : towns.map((town, i) => (
+                <Town key={i} onClick={() => handleClickTown(town)}>
+                  {town}
+                </Town>
+              ))}
         </TownsInner>
       </Towns>
     </Wrapper>

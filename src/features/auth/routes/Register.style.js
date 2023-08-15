@@ -31,3 +31,28 @@ export const Town = styled.span`
   font-weight: 400;
   cursor: pointer;
 `;
+
+export const RegistGuide = styled.h5`
+  font-size: ${(props) => props.theme.fontSizes.xlarge};
+  font-weight: 600;
+  line-height: 30px;
+  white-space: pre-wrap;
+`;
+
+export const SubGuide = styled.p`
+  font-size: ${(props) => props.theme.fontSizes.small};
+  font-weight: 400;
+`;
+
+export const SearchByEmail = styled.p`
+  align-self: center;
+  font-size: ${(props) => props.theme.fontSizes.small};
+  font-weight: 400;
+
+  a {
+    font-size: ${(props) => props.theme.fontSizes.small};
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 400;
+  }
+`;

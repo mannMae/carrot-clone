@@ -588,6 +588,19 @@ const Header = ({ hasTopImage }) => {
       </>
     );
   }
+  if (location.pathname === '/auth/register/phone-auth') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
 };
 
 const BottomNavigation = () => {
