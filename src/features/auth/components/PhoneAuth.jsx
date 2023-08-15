@@ -9,6 +9,7 @@ import { appVerifier, firebaseAuth } from 'library/firebase';
 import { signInWithCredential } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import { queryClient } from 'library/react-query';
+import { storage } from 'utils/storage';
 
 export const PhoneAuth = ({ getConfirmation }) => {
   const [phoneNumber, setPhoneNumber] = useState();
@@ -38,7 +39,6 @@ export const PhoneAuth = ({ getConfirmation }) => {
     confirmationResult
       .confirm(confirmationCode)
       .then((res) => {
-        console.log(res);
         queryClient.setQueryData(['user'], {
           user: res.user,
         });

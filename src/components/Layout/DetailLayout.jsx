@@ -552,23 +552,7 @@ const Header = ({ hasTopImage }) => {
     );
   }
 
-  if (location.pathname === '/auth/login') {
-    return (
-      <>
-        <HeaderWrapper borderBottomColor="lightGray">
-          <Icons>
-            <Link to={-1}>
-              <Icon src={LeftArrowIcon} />
-            </Link>
-          </Icons>
-          <Heading></Heading>
-          <Icons></Icons>
-        </HeaderWrapper>
-      </>
-    );
-  }
-
-  if (location.pathname === '/auth/register') {
+  if (location.pathname === '/register') {
     return (
       <>
         <HeaderWrapper borderBottomColor="lightGray">
@@ -588,7 +572,7 @@ const Header = ({ hasTopImage }) => {
       </>
     );
   }
-  if (location.pathname === '/auth/register/phone-auth') {
+  if (location.pathname === '/register/phone-auth') {
     return (
       <>
         <HeaderWrapper borderBottomColor="lightGray">
@@ -597,6 +581,80 @@ const Header = ({ hasTopImage }) => {
               <Icon src={LeftArrowIcon} />
             </Link>
           </Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/register/profile') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>프로필 설정</Heading>
+          <Button backgroundColor="transparent" color="black">
+            완료
+          </Button>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/login') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading></Heading>
+          <Icons></Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/user/profile') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>프로필</Heading>
+          <Icons>
+            <ShareButton
+              title={details.title}
+              text={details.description}
+              url={currentUrl}
+            />
+          </Icons>
+        </HeaderWrapper>
+      </>
+    );
+  }
+
+  if (location.pathname === '/user/profile/edit') {
+    return (
+      <>
+        <HeaderWrapper borderBottomColor="lightGray">
+          <Icons>
+            <Link to={-1}>
+              <Icon src={LeftArrowIcon} />
+            </Link>
+          </Icons>
+          <Heading>프로필 수정</Heading>
+          <Button backgroundColor="transparent" color="black">
+            완료
+          </Button>
         </HeaderWrapper>
       </>
     );

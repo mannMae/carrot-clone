@@ -15,6 +15,7 @@ import { Button } from 'components/Elements';
 import targetIcon from 'assets/icons/target-white.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PhoneAuth } from '..';
+import { ProfileSetting } from 'features/user';
 
 export const Register = () => {
   const { data, isLoading } = useQuery(['search', 'town']);
@@ -35,7 +36,7 @@ export const Register = () => {
 
   const [confirmation, setConfirmation] = useState();
 
-  if (location.pathname === '/auth/register/phone-auth') {
+  if (location.pathname === '/register/phone-auth') {
     return (
       <Wrapper>
         {!confirmation && (
@@ -56,6 +57,14 @@ export const Register = () => {
             </SearchByEmail>
           </>
         )}
+      </Wrapper>
+    );
+  }
+
+  if (location.pathname === '/register/profile') {
+    return (
+      <Wrapper>
+        <ProfileSetting />
       </Wrapper>
     );
   }

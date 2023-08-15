@@ -7,6 +7,12 @@ export const storage = {
   setToken: (token) => {
     window.localStorage.setItem(`${storagePrefix}token`, JSON.stringify(token));
   },
+  getUser: () => {
+    return JSON.parse(window.localStorage.getItem(`${storagePrefix}user`));
+  },
+  setUser: (uid) => {
+    window.localStorage.setItem(`${storagePrefix}user`, JSON.stringify(uid));
+  },
   clearToken: () => {
     window.localStorage.removeItem(`${storagePrefix}token`);
   },

@@ -6,7 +6,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 const App = (props) => {
   const location = useLocation();
-  if (location.pathname.split('/').length === 2) {
+  if (location.pathname.split('/').length === 1) {
     return (
       <Suspense
         fallback={
@@ -36,11 +36,8 @@ const App = (props) => {
 
 export const publicRoutes = [
   {
-    path: '/',
+    path: '*',
     element: <App />,
-    children: [
-      { path: '/auth/*', element: <AuthRoutes /> },
-      { path: '*', element: <Navigate to="/auth" /> },
-    ],
+    children: [{ path: '*', element: <AuthRoutes /> }],
   },
 ];

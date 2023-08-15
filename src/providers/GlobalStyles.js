@@ -20,7 +20,6 @@ body{
     line-height: 1;
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #fff;
-    margin-bottom: 100px;
 }
 ol, ul{
     list-style: none;

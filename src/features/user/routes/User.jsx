@@ -30,8 +30,10 @@ import FaderIcon from 'assets/icons/fader.svg';
 import TagIcon from 'assets/icons/tag.svg';
 import TelemarketerIcon from 'assets/icons/telemarketer.svg';
 import MailIcon from 'assets/icons/mail.svg';
+import { useNavigate } from 'react-router-dom';
 
 export const User = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Head title="나의 당근" />
@@ -48,6 +50,7 @@ export const User = () => {
               padding="4px"
               size="small"
               fontWeight="500"
+              onClick={() => navigate('./profile')}
             >
               프로필 보기
             </Button>
