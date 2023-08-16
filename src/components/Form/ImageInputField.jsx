@@ -1,106 +1,68 @@
 import { useEffect, useState } from 'react';
-import {
-  Icon,
-  Image,
-  ImageWrapper,
-  Input,
-  InputWrapper,
-  Label,
-  MainPhotoLabel,
-  Text,
-  Wrapper,
-} from './ImageInputField.style';
-
-import CameraIcon from 'assets/icons/camera.svg';
-import { Button } from 'components/Elements';
-
-import XIcon from 'assets/icons/x.svg';
+import { Input } from './ImageInputField.style';
 
 let newFiles = [];
 
-export const ImageInputField = ({ registraion }) => {
+export const ImageInputField = (props) => {
+  const getValue = props.getValue;
+  const isMultiple = props.multiple === 'multiple';
+  const [image, setImage] = useState();
   const [images, setImages] = useState([]);
   const [isEncoding, setIsEncoding] = useState(false);
 
-  const addImage = (e) => {
-    newFiles = [];
-    for (let file of e.target.files) {
-      encodeFileToBase64(file);
+  const handleChangeInput = (e) => {
+    if (!e.target.files[0]) {
+      return;
+    }
+    if (isMultiple) {
+      newFiles = [];
+      for (let file of e.target.files) {
+        encodeFileToBase64(file);
+      }
+    } else {
+      encodeFileToBase64(e.target.files[0]);
     }
   };
+
   const encodeFileToBase64 = (file) => {
     setIsEncoding(true);
-    console.log('encoding', images);
     const reader = new FileReader();
     reader.readAsDataURL(file);
     new Promise((resolve) => {
       reader.onload = () => {
-        newFiles.push(reader.result);
-        console.log(newFiles);
+        if (isMultiple) {
+          newFiles.push(reader.result);
+        } else {
+          setImage(reader.result);
+        }
         setIsEncoding(false);
       };
       resolve();
     });
   };
+
+  useEffect(() => {
+    if (getValue) {
+      if (isMultiple) {
+        getValue(images);
+      } else {
+        getValue(image);
+      }
+    }
+  }, [image]);
+
   useEffect(() => {
     if (isEncoding === false) {
       setImages([...images, ...newFiles]);
-      // onChange([...images, ...newFiles]);
     }
   }, [isEncoding]);
 
-  useEffect(() => {
-    if (images.length > 10) {
-      setImages(images.slice(0, 10));
-    }
-  }, [images]);
-
-  const deleteImage = (index) => {
-    setImages(images.filter((p, i) => i !== index));
-  };
   return (
-    <Wrapper>
-      <InputWrapper>
-        {images.length <= 9 ? (
-          <Label onChange={addImage}>
-            <Icon src={CameraIcon} />
-            <Text>
-              <Text disabled={false}>{images.length}</Text>/10
-            </Text>
-            <Input
-              type="file"
-              multiple="multiple"
-              accept="image/jpeg, image/png"
-              {...registraion}
-            />
-          </Label>
-        ) : (
-          <Label onChange={addImage} disabled={true}>
-            <Icon src={CameraIcon} />
-            <Text>
-              <Text disabled={true}>{images.length}</Text>/10
-            </Text>
-            <Input type="file" multiple="multiple" disabled {...registraion} />
-          </Label>
-        )}
-      </InputWrapper>
-      {images.map((image, i) => (
-        <ImageWrapper>
-          <Image src={image} key={i} />
-          {i === 0 && <MainPhotoLabel>대표 사진</MainPhotoLabel>}
-          <Button
-            position="absolute"
-            top="-10%"
-            right="-10%"
-            startIcon={XIcon}
-            variant="dark"
-            iconColor="invert(100%)"
-            padding="2px"
-            onClick={() => deleteImage(i)}
-            type="button"
-          />
-        </ImageWrapper>
-      ))}
-    </Wrapper>
+    <Input
+      onChange={handleChangeInput}
+      {...props}
+      type="file"
+      accept="image/jpeg, image/png"
+    />
   );
 };

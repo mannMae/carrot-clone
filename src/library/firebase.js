@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
 import { RecaptchaVerifier } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,6 +23,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const firebaseAuth = getAuth(app);
+export const firebaseDatabase = getDatabase(app);
+
 firebaseAuth.languageCode = 'kr';
 
 window.recaptchaVerifier = new RecaptchaVerifier(

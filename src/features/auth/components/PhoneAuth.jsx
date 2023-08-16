@@ -3,19 +3,18 @@ import { Anchor, Guide } from './PhoneAuth.style';
 import { Box, Button } from 'components/Elements';
 import { useEffect, useState } from 'react';
 import { validate } from 'utils/validate';
-import { useLogin, useUser } from 'library/auth';
 import { loginWithPhoneNumber } from '../api/login';
-import { appVerifier, firebaseAuth } from 'library/firebase';
-import { signInWithCredential } from 'firebase/auth';
+import { appVerifier, firebaseAuth, firebaseDatabase } from 'library/firebase';
 import { Link } from 'react-router-dom';
-import { queryClient } from 'library/react-query';
-import { storage } from 'utils/storage';
+import { get, ref } from 'firebase/database';
 
 export const PhoneAuth = ({ getConfirmation }) => {
   const [phoneNumber, setPhoneNumber] = useState();
   const [isValidated, setIsValidated] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState();
   const [confirmationCode, setConfirmationCode] = useState('');
+  const [uid, setUid] = useState('');
+
   useEffect(() => {
     setIsValidated(validatePhoneNumber(phoneNumber));
   }, [phoneNumber]);
@@ -39,12 +38,26 @@ export const PhoneAuth = ({ getConfirmation }) => {
     confirmationResult
       .confirm(confirmationCode)
       .then((res) => {
-        queryClient.setQueryData(['user'], {
-          user: res.user,
-        });
+        setUid(res.user.uid);
+        checkUserList(res.user.uid);
+        // queryClient.setQueryData(['user'], {
+        //   user: res.user,
+        // });
       })
       .catch((error) => console.error(error));
   };
+
+  const checkUserList = async (uid) => {
+    console.log(uid);
+    await get(ref(firebaseDatabase, 'users/'))
+      .then((res) => console.log(res))
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    console.log(uid);
+  }, [uid]);
+
   return (
     <>
       <Form onSubmit={handleSubmit}>

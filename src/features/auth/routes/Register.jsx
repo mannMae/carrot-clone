@@ -16,21 +16,27 @@ import targetIcon from 'assets/icons/target-white.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PhoneAuth } from '..';
 import { ProfileSetting } from 'features/user';
+import { queryClient } from 'library/react-query';
 
 export const Register = () => {
   const { data, isLoading } = useQuery(['search', 'town']);
+  const user = useQuery(['user', 'register']);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     console.log(data);
-  }, [data]);
+    console.log(user.data);
+  }, [data, user]);
 
   const filteredTowns = towns.filter(
     (town) => town.substring(0, data?.keyword.length) === data?.keyword
   );
 
-  const handleClickTown = () => {
+  const handleClickTown = (town) => {
+    queryClient.setQueryData(['user', 'register'], {
+      town,
+    });
     navigate('./phone-auth');
   };
 

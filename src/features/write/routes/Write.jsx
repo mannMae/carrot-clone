@@ -6,7 +6,7 @@ import {
   List,
   Wrapper,
 } from './Write.style';
-import { ImageInputField } from 'components/Form/ImageInputField';
+import { MultiImageInputField } from 'components/Form';
 import { Box, Button } from 'components/Elements';
 import { CheckboxField, InputField, TextareaField } from 'components/Form';
 import { RadioField } from 'components/Form/RadioField';
@@ -38,7 +38,7 @@ export const Write = () => {
 
   return (
     <Wrapper>
-      <ImageInputField registraion={register('images')} />
+      <MultiImageInputField registraion={register('images')} />
       <Box gap="15px">
         <BoxTitle>제목</BoxTitle>
         <InputField

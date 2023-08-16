@@ -11,7 +11,7 @@ import { storage } from 'utils/storage';
 export const AppRoutes = () => {
   const user = storage.getUser();
 
-  const routes = user ? protectedRoutes : publicRoutes;
+  const routes = true ? protectedRoutes : publicRoutes;
 
   const query = useQuery(['bottomSheet']);
   const bottomSheetQueries = queryClient

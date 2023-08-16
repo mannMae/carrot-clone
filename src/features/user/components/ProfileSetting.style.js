@@ -16,8 +16,9 @@ export const ProfileImage = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  padding: 15px 0 0;
+  padding: ${(props) => (props.hasImage ? null : '15px 0 0')};
   background-color: ${(props) => props.theme.colors.lightGray};
+  object-fit: cover;
 `;
 
 export const Icon = styled.img`
