@@ -9,9 +9,9 @@ import { useUser } from 'library/auth';
 import { storage } from 'utils/storage';
 
 export const AppRoutes = () => {
-  const user = storage.getUser();
+  const { data: user } = useQuery(['user']);
 
-  const routes = true ? protectedRoutes : publicRoutes;
+  const routes = user ? protectedRoutes : publicRoutes;
 
   const query = useQuery(['bottomSheet']);
   const bottomSheetQueries = queryClient

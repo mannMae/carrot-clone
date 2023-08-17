@@ -4,11 +4,11 @@ import { Box, Button } from 'components/Elements';
 import { useEffect, useState } from 'react';
 import { validate } from 'utils/validate';
 import { loginWithPhoneNumber } from '../api/login';
-import { appVerifier, firebaseAuth, firebaseDatabase } from 'library/firebase';
+import { appVerifier, firebaseAuth } from 'library/firebase';
 import { Link } from 'react-router-dom';
-import { get, ref } from 'firebase/database';
+import { queryClient } from 'library/react-query';
 
-export const PhoneAuth = ({ getConfirmation }) => {
+export const PhoneAuth = ({ getConfirmation, getUid }) => {
   const [phoneNumber, setPhoneNumber] = useState();
   const [isValidated, setIsValidated] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState();
@@ -39,23 +39,14 @@ export const PhoneAuth = ({ getConfirmation }) => {
       .confirm(confirmationCode)
       .then((res) => {
         setUid(res.user.uid);
-        checkUserList(res.user.uid);
-        // queryClient.setQueryData(['user'], {
-        //   user: res.user,
-        // });
       })
       .catch((error) => console.error(error));
   };
 
-  const checkUserList = async (uid) => {
-    console.log(uid);
-    await get(ref(firebaseDatabase, 'users/'))
-      .then((res) => console.log(res))
-      .catch((error) => console.error(error));
-  };
-
   useEffect(() => {
-    console.log(uid);
+    if (getUid) {
+      getUid(uid);
+    }
   }, [uid]);
 
   return (

@@ -17,12 +17,16 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PhoneAuth } from '..';
 import { ProfileSetting } from 'features/user';
 import { queryClient } from 'library/react-query';
+import { child, ref, set } from 'firebase/database';
+import { firebaseDatabase } from 'library/firebase';
 
 export const Register = () => {
   const { data, isLoading } = useQuery(['search', 'town']);
-  const user = useQuery(['user', 'register']);
+  const user = useQuery(['user']);
   const navigate = useNavigate();
   const location = useLocation();
+  const [town, setTown] = useState();
+  const [uid, setUid] = useState('');
 
   useEffect(() => {
     console.log(data);
@@ -34,13 +38,23 @@ export const Register = () => {
   );
 
   const handleClickTown = (town) => {
-    queryClient.setQueryData(['user', 'register'], {
-      town,
-    });
+    setTown(town);
     navigate('./phone-auth');
   };
 
   const [confirmation, setConfirmation] = useState();
+
+  useEffect(() => {
+    if (!uid) {
+      return;
+    }
+    queryClient.setQueryData(['user'], {
+      town,
+      uid,
+      image: '',
+      nickname: '',
+    });
+  }, [uid]);
 
   if (location.pathname === '/register/phone-auth') {
     return (
@@ -55,7 +69,7 @@ export const Register = () => {
             </SubGuide>
           </>
         )}
-        <PhoneAuth getConfirmation={setConfirmation} />
+        <PhoneAuth getConfirmation={setConfirmation} getUid={setUid} />
         {!confirmation && (
           <>
             <SearchByEmail>
@@ -63,14 +77,6 @@ export const Register = () => {
             </SearchByEmail>
           </>
         )}
-      </Wrapper>
-    );
-  }
-
-  if (location.pathname === '/register/profile') {
-    return (
-      <Wrapper>
-        <ProfileSetting />
       </Wrapper>
     );
   }

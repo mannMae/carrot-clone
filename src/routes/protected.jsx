@@ -11,10 +11,12 @@ import { UserRoutes } from 'features/user';
 import { WriteRoutes } from 'features/write/routes';
 
 import { Suspense } from 'react';
+import { useQuery } from 'react-query';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 const App = (props) => {
   const location = useLocation();
+
   if (location.pathname.split('/').length === 2) {
     return (
       <MainLayout>
