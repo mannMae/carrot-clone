@@ -17,6 +17,8 @@ const firebaseConfig = {
   messagingSenderId: '959844861850',
   appId: '1:959844861850:web:e1a0c671cda8e4f66a5c23',
   measurementId: 'G-ZDBEX1JTKM',
+  databaseURL:
+    'https://carrot-market-clone-3db9b-default-rtdb.asia-southeast1.firebasedatabase.app',
 };
 
 // Initialize Firebase

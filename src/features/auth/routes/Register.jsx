@@ -19,19 +19,16 @@ import { ProfileSetting } from 'features/user';
 import { queryClient } from 'library/react-query';
 import { child, ref, set } from 'firebase/database';
 import { firebaseDatabase } from 'library/firebase';
+import { storage } from 'utils/storage';
 
 export const Register = () => {
   const { data, isLoading } = useQuery(['search', 'town']);
-  const user = useQuery(['user']);
   const navigate = useNavigate();
   const location = useLocation();
   const [town, setTown] = useState();
   const [uid, setUid] = useState('');
 
-  useEffect(() => {
-    console.log(data);
-    console.log(user.data);
-  }, [data, user]);
+  useEffect(() => {}, [data]);
 
   const filteredTowns = towns.filter(
     (town) => town.substring(0, data?.keyword.length) === data?.keyword
@@ -48,12 +45,13 @@ export const Register = () => {
     if (!uid) {
       return;
     }
-    queryClient.setQueryData(['user'], {
+    queryClient.setQueryData(['user', 'register'], {
       town,
       uid,
       image: '',
       nickname: '',
     });
+    storage.setUser(uid);
   }, [uid]);
 
   if (location.pathname === '/register/phone-auth') {

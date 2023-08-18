@@ -7,11 +7,12 @@ import { queryClient } from 'library/react-query';
 import { publicRoutes } from './public';
 import { useUser } from 'library/auth';
 import { storage } from 'utils/storage';
+import { useEffect } from 'react';
 
 export const AppRoutes = () => {
-  const { data: user } = useQuery(['user']);
+  const uid = storage.getUser();
 
-  const routes = user ? protectedRoutes : publicRoutes;
+  const routes = uid ? protectedRoutes : publicRoutes;
 
   const query = useQuery(['bottomSheet']);
   const bottomSheetQueries = queryClient
@@ -19,9 +20,9 @@ export const AppRoutes = () => {
     .queries.map((query, i) => query.queryKey)
     .filter((p) => p[0] === 'bottomSheet');
 
-  // const commonRoutes = [{ path: '/', element: <Home /> }];
-
   const element = useRoutes([...routes]);
+
+  useEffect(() => {}, []);
 
   return (
     <>

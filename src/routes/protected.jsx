@@ -1,6 +1,7 @@
 import { Spinner } from 'components/Elements';
 import { DetailLayout, MainLayout } from 'components/Layout';
 import { AroundRoutes } from 'features/around';
+import { getUser } from 'features/auth';
 import { ChatRoutes } from 'features/chat';
 import { LocationRoutes } from 'features/location';
 import { MarketRoutes } from 'features/market';
@@ -10,12 +11,30 @@ import { SettingRoutes } from 'features/setting';
 import { UserRoutes } from 'features/user';
 import { WriteRoutes } from 'features/write/routes';
 
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { storage } from 'utils/storage';
 
 const App = (props) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { data: user } = useQuery(['user', 'register']);
+  const uid = storage.getUser();
+
+  useEffect(() => {
+    try {
+      getUser(uid).then((res) => {
+        if (res.val()) {
+        } else {
+          navigate('/user/profile');
+        }
+        console.log(res);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }, [uid]);
 
   if (location.pathname.split('/').length === 2) {
     return (
